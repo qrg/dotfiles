@@ -15,6 +15,7 @@ COMMONFILE=~/.sh.d/common.sh
 # cf.) man zshcompsys
 # -----------------------------------------------------------------------------
 
+# incr-0.2.zsh の後継がauto-fu.zsh
 # incr-0.2.zsh
 # if [ -f ${ZDOTDIR}/plugin/incr-0.2.zsh ]; then
 #     source ${ZDOTDIR}/plugin/incr-0.2.zsh
