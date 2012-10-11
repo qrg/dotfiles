@@ -1,0 +1,125 @@
+include "109.mayu" # 109 キーボード設定
+
+#
+# Synergistic extended sequence
+#
+# -----------------------------------------------------------------------
+# |    |  ! |  @ |  # |  $ |  % |  ^ |  & |  * |  ( |  ) |  { |  } |  | |
+# |    | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 0  | [  | ]  | \  |
+# -----------------------------------------------------------------------
+# |      |  X |  W |  L |  Z |  J |  Q |  G |  C |  H |  Y |  ? |  + |
+# |      |    |    |    |    |    |    |    |    |    |    | /  | =  |
+# ----------------------------------------------------------------------
+# |CTRL |  O |  I |  E |  A |  F |  |  B |  R |  T |  N |  S |  _ |  ~ |
+# |     |    |    |    |    |    |  |    |    |    |    |    | -  | `  |
+# ----------------------------------------------------------------------
+# |Shift    |    |    |  K |  U |  ` |  P |  D |  M |  V |  . |        |
+# |         | ;  |  : |    |    | @  |    |    |    |    | ,  |        |
+# -----------------------------------------------------------------------
+# |           |ALT |XL2 | XL |Spc  |Tab  |XR  |XR2 |    |    |        |
+# |           |    |    |    |     |     |    |    |    |    |        |
+# -----------------------------------------------------------------------
+if(!SXBase)
+    define SXBase
+
+    def	key	MouseMoveUp                = 0xe0
+    def	key	MouseMoveDown              = 0xe1
+    def	key	MouseMoveLeft              = 0xe2
+    def	key	MouseMoveRight             = 0xe3
+    def	key	MouseButtonLeft            = 0xe4
+    def	key	MouseButtonRight           = 0xe5
+    def	key	MouseButtonMiddle          = 0xe6
+    def	key	MouseWheelUp               = 0xe7
+    def	key	MouseWheelDown             = 0xe8
+    def	key	WINSTAT                    = 0xe9
+
+    #def	key	WinampPrevious         = 0xd0
+    #def	key	WinampNext             = 0xd1
+    #def	key	WinampForward          = 0xd2
+    #def	key	WinampBackward         = 0xd3
+    #def	key	WinampShow             = 0xd4
+    #def	key	WinampShade            = 0xd5
+    #def	key	WinampJumpTo           = 0xd6
+    #def	key	WinampSetting          = 0xd7
+    #def	key	WinampVolumeUp         = 0xd8
+    #def	key	WinampVolumeDown       = 0xd9
+    #def	key	WinampQuit             = 0xda
+    #def	key	GlobalVolumeUp         = 0xdb
+    #def	key	GlobalVolumeDown       = 0xdcdef	key	EX10		= 0xea
+    #def	key	EX11                   = 0xeb
+    #def	key	EX12                   = 0xec
+    #def	key	EX13                   = 0xed
+    #def	key	EX14                   = 0xee
+    #def	key	EX15                   = 0xef
+
+
+
+    #窓使いの憂鬱のバグ(例えばShiftを押した後$LEFT_PARENTHESISを入力しても8が入力される)回避
+    keyseq	$FORCE_LEFT_PARENTHESIS	   = D-LeftShift S-*_8 U-LeftShift
+    keyseq	$FORCE_RIGHT_PARENTHESIS   = D-LeftShift S-*_9 U-LeftShift
+    keyseq	$FORCE_LESS-THAN_SIGN	   = D-LeftShift S-*Comma U-LeftShift
+    keyseq	$FORCE_GREATER-THAN_SIGN   = D-LeftShift S-*Period U-LeftShift
+    keyseq	$FORCE_LEFT_CURLY_BRACKET  = D-LeftShift S-*LeftSquareBracket U-LeftShift
+    keyseq	$FORCE_RIGHT_CURLY_BRACKET = D-LeftShift S-*RightSquareBracket U-LeftShift
+    keyseq	$APOSTROPHE                = D-LeftShift S-*_7 U-LeftShift
+    keyseq	$EQUAL                     = S-*HyphenMinus                                #D-LeftShift S-*HyphenMinus U-LeftShift
+    keyseq	$UNDERBAR                  = D-LeftShift S-*ReverseSolidus U-LeftShift
+    keyseq	$COLON                     = ~S-*COLON
+    keyseq	$DQUOTE                    = D-LeftShift S-*_2 U-LeftShift
+    keyseq	$QUOTE                     = D-LeftShift S-*_7 U-LeftShift
+
+    keyseq	$PLUS                      = D-LeftShift S-*SemiColon U-LeftShift
+    keyseq	$MINUS                     = ~S-*HyphenMinus
+    keyseq	$XOR                       = ~S-*CircumflexAccent
+
+    keyseq	$ULC                       = U-LeftControl
+    keyseq	$ULS                       = U-LeftShift
+    keyseq	$ULA                       = U-LeftAlt
+endif
+
+if(!QWERTY)
+
+    # 一段目
+
+    # 二段目
+    def subst *Q                       =  *X
+    def subst *W                       =  *W
+    def subst *E                       =  *L
+    def subst *R                       =  *Z
+    def subst *T                       =  *J
+    def subst *Y                       =  *Q
+    def subst *U                       =  *G
+    def subst *I                       =  *H
+    def subst *O                       =  *C
+    def subst *P                       =  *Y
+    def subst *Atmark                  =  *Slash
+
+    # 三段目
+    def subst *A                       =  *O
+    def subst *S                       =  *I
+    def subst *D                       =  *E
+    def subst *F                       =  *A
+    def subst *G                       =  *F
+    def subst *H                       =  *B
+    def subst *J                       =  *T
+    def subst *K                       =  *R
+    def subst *L                       =  *N
+    def subst *Semicolon               =  *S
+    def subst *Colon                   =  *Minus
+    def subst S-*Colon                 =  S-*ReverseSolidus	#_
+
+    # 四段目
+    def subst *Z                       =  *SemiColon
+    def subst *X                       =  *Period
+    key m1-*Period                     =  ~S-*Colon
+    def subst *C                       =  *K
+    def subst *V                       =  *U
+    def subst *B                       =  *CommercialAt
+    def subst *N                       =  *D
+    def subst *M                       =  *M
+    def subst *Comma                   =  *P
+    def subst *Period                  =  *V
+    def subst *Slash                   =  *Comma
+    def subst S-*Slash                 =  ~S-*Period
+
+endif

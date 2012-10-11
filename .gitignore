@@ -1,0 +1,7 @@
+*zcompdump
+zcompdump*
+.zsh.d/zsh_history
+.vim/backup/*
+.vim/.gvimpos
+*viminfo
+*vimpos

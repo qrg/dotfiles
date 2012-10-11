@@ -1,0 +1,42 @@
+key	m1-*	=
+
+#1段目
+	def	subst	_1	=*F1
+	def	subst	_2	=*F2
+	def	subst	_3	=*F3
+	def	subst	_4	=*F4
+	def	subst	_5	=*F5
+	def	subst	_6	=*F6
+	def	subst	_7	=*F7
+	def	subst	_8	=*F8
+	def	subst	_9	=*F9
+	def	subst	_0	=*F10
+	def	subst	HyphenMinus			=*F11
+	def	subst	CircumflexAccent	=*F12
+
+	def	subst	S	=*←
+	def	subst	F	=*→
+	def	subst	D	=*↓
+	def	subst	E	=*↑
+# Emacs でカーソルが飛んでしまってよくわからなくなるのでコメントアウト
+# 8:28 2011/10/19 Qurage
+#		key	R-←	=*← *← *←	#高速化
+#		key	R-→	=*→ *→ *→	#左右移動は3倍
+#		key	R-↓	=*↓ *↓		#上下移動は2倍
+#		key	R-↑	=*↑ *↑		#
+
+	def	subst	~m0-U	=*Insert
+	def	subst	~m0-I	=*Home
+	def	subst	~m0-O	=*PageUp
+	def	subst	~m0-J	=*Delete
+	def	subst	~m0-K	=*End
+	def	subst	~m0-L	=*PageDown
+
+	def	subst	~m0-Semicolon	=*Enter
+	def	subst	~m0-Space		=*BackSpace
+	def	subst	~m0-G			=*Tab
+
+#4段目
+	def	subst	X		=*Colon
+
+key	~C-~M-~S-*NL-*CL-*SL-*KL-*IL-~IC-*MAX-*MIN-*MMAX-*MMIN-	=

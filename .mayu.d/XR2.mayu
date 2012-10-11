@@ -1,0 +1,79 @@
+#XR2 key mapping
+# -----------------------------------------------------------------------
+# |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+# |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+# -----------------------------------------------------------------------
+# |      |    |    |    |    |    |    |  7 |  8 |  9 |    |    |    |
+# |      |    |    |    |    |    |    |    |    |    |    |    |    |
+# ----------------------------------------------------------------------
+# |CTRL |    |    |    |    |    |  |    |  4 |  5 |  6 |  . |    |    |
+# |     |    |    |    |    |    |  |    |    |    |    |    |    |    |
+# ----------------------------------------------------------------------
+# |Shift    |    |    |    |    |    |  0 |  1 |  2 |  3 |  , |        |
+# |         |    |    |    |    |    |    |    |    |    |    |        |
+# -----------------------------------------------------------------------
+# |           |ALT |XL2 |Del | BS  |Tab  |XR  |XR2 |    |    |        |
+# |           |    |    |    |     |     |    |    |    |    |        |
+# -----------------------------------------------------------------------
+
+key m3-* =
+
+    def subst    Y         = Numlock
+    key NL-Numlock         = &Ignore
+
+    def subst    XL        = Delete
+    def subst    Space     = BackSpace
+
+# -----------------------------------------------------------------------
+# 分岐存在セクション
+
+# define ergonomic    #人間工学重視
+
+if(ergonomic)
+
+    def subst    M         = *Num0
+    def subst    Comma     = *Num1
+    def subst    FullStop  = *Num2
+    def subst    Solidus   = *Num3
+    def subst    J         = *Num4
+    def subst    K         = *Num5
+    def subst    L         = *Num6
+    def subst    Semicolon = *Num7
+    def subst    I         = *Num8
+    def subst    O         = *Num9
+
+else
+
+    key         XR         = *Num0 X
+    def subst    A         = *Num1
+    def subst    S         = *Num2
+    def subst    D         = *Num3
+    def subst    F         = *Num4
+    def subst    G         = *Num0
+    def subst    Q         = *Num5
+    def subst    W         = *Num6
+    def subst    E         = *Num7
+    def subst    R         = *Num8
+    def subst    T         = *Num9
+    def subst    X         = *Comma
+    def subst    Z         = *NumPeriod
+    def subst    J         = *NumPlus
+    def subst    K         = *NumMinus
+    def subst    L         = *NumSolidus
+    def subst    Semicolon = *NumMultiply
+
+endif
+
+#    key IL-~IC-*Num0       = &SetImeStatus(off) *Num0   &Wait(0)   &SetImeStatus(on)
+#    key IL-~IC-XR          = &SetImeStatus(off) *Num0 X &Wait(0)   &SetImeStatus(on)
+#    key IL-~IC-*Num1       = &SetImeStatus(off) *Num1   &Wait(0)   &SetImeStatus(on)
+#    key IL-~IC-*Num2       = &SetImeStatus(off) *Num2   &Wait(0)   &SetImeStatus(on)
+#    key IL-~IC-*Num3       = &SetImeStatus(off) *Num3   &Wait(0)   &SetImeStatus(on)
+#    key IL-~IC-*Num4       = &SetImeStatus(off) *Num4   &Wait(0)   &SetImeStatus(on)
+#    key IL-~IC-*Num5       = &SetImeStatus(off) *Num5   &Wait(0)   &SetImeStatus(on)
+#    key IL-~IC-*Num6       = &SetImeStatus(off) *Num6   &Wait(0)   &SetImeStatus(on)
+#    key IL-~IC-*Num7       = &SetImeStatus(off) *Num7   &Wait(0)   &SetImeStatus(on)
+#    key IL-~IC-*Num8       = &SetImeStatus(off) *Num8   &Wait(0)   &SetImeStatus(on)
+#    key IL-~IC-*Num9       = &SetImeStatus(off) *Num9   &Wait(0)   &SetImeStatus(on)
+
+key ~C-~M-~S-*NL-*CL-*SL-*KL-*IL-~IC-*MAX-*MIN-*MMAX-*MMIN-    = 

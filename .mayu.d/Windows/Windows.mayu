@@ -1,0 +1,35 @@
+# 5
+    key    ~R-m0-XL       = &Default
+    key    ~R-m1-XR       = &Default
+    key    ~R-m3-XR2      = Hiragana
+
+# ※1あああ→aaa→(キャンセル)
+#    keymap2 ICXL : Global
+#    key    *XL               = &SetImeStatus(off)
+
+keymap2 TASKCHANGE : Global
+    key    m0-*LeftShift  =          &Prefix(TASKCHANGE,false)  #タスク切り替え
+    key    A-*Tab         = A-*Tab   &Prefix(TASKCHANGE,false)
+    key    A-S-*Tab       = A-S-*Tab &Prefix(TASKCHANGE,false)
+
+keymap    Global
+#    key    IC-*XL         = F10 &Prefix(ICXL,false)    # ※1あああ→aaa→(キャンセル)
+#    key    IC-*XR         = F6                         # アアア→あああ
+#    key    IC-*XR2        = F7                         # あああ→アアア
+
+    #タスク切り替え
+    key          m0-*K    = A-*Tab                     #タスク切り替え
+    def subst    m0-m1-*J = A-S-Tab
+    key          A-*Tab   = A-*Tab   &Prefix(TASKCHANGE,false)
+    key          A-S-*Tab = A-S-*Tab &Prefix(TASKCHANGE,false)
+
+    #ウィンドウを閉じる
+    key    m0-m1-Esc      =A-F4
+    #アプリ強制終了
+    key    A-S-F4         =&PlugIn("ModernGUIOps","ForceKillActiveApp","",true)
+
+    include    ".mayu.d/Windows/Apps.mayu"
+    include    ".mayu.d/Windows/GUIOps.mayu"
+#    include    ".mayu.d/Windows/Mouse.mayu"
+#    include    ".mayu.d/Windows/App_Games.mayu"
+#    include    ".mayu.d/Windows/App_MSN_Messenger.mayu"

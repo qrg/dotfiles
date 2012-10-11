@@ -1,0 +1,42 @@
+#■Photophop
+#Window Photophop_setting /Photophop\.exe/ :Global
+#	key	m2-*A	=&VK(D-CONTROL) C-*A &VK(U-CONTROL)
+#	key	m2-*B	=&VK(D-CONTROL) C-*B &VK(U-CONTROL)
+#	key	m2-*C	=&VK(D-CONTROL) C-*C &VK(U-CONTROL)
+#	key	m2-*D	=&VK(D-CONTROL) C-*D &VK(U-CONTROL)
+#	key	m2-*E	=&VK(D-CONTROL) C-*E &VK(U-CONTROL)
+#	key	m2-*F	=&VK(D-CONTROL) C-*F &VK(U-CONTROL)
+#	key	m2-*G	=&VK(D-CONTROL) C-*G &VK(U-CONTROL)
+#	key	m2-*H	=&VK(D-CONTROL) C-*H &VK(U-CONTROL)
+#	key	m2-*I	=&VK(D-CONTROL) C-*I &VK(U-CONTROL)
+#	key	m2-*J	=&VK(D-CONTROL) C-*J &VK(U-CONTROL)
+#	key	m2-*K	=&VK(D-CONTROL) C-*K &VK(U-CONTROL)
+#	key	m2-*L	=&VK(D-CONTROL) C-*L &VK(U-CONTROL)
+#	key	m2-*M	=&VK(D-CONTROL) C-*M &VK(U-CONTROL)
+#	key	m2-*N	=&VK(D-CONTROL) C-*N &VK(U-CONTROL)
+#	key	m2-*O	=&VK(D-CONTROL) C-*O &VK(U-CONTROL)
+#	key	m2-*P	=&VK(D-CONTROL) C-*P &VK(U-CONTROL)
+#	key	m2-*Q	=&VK(D-CONTROL) C-*Q &VK(U-CONTROL)
+#	key	m2-*R	=&VK(D-CONTROL) C-*R &VK(U-CONTROL)
+#	key	m2-*S	=&VK(D-CONTROL) C-*S &VK(U-CONTROL)
+#	key	m2-*T	=&VK(D-CONTROL) C-*T &VK(U-CONTROL)
+#	key	m2-*U	=&VK(D-CONTROL) C-*U &VK(U-CONTROL)
+#	key	m2-*V	=&VK(D-CONTROL) C-*V &VK(U-CONTROL)
+#	key	m2-*W	=&VK(D-CONTROL) C-*W &VK(U-CONTROL)
+#	key	m2-*X	=&VK(D-CONTROL) C-*X &VK(U-CONTROL)
+#	key	m2-*Y	=&VK(D-CONTROL) C-*Y &VK(U-CONTROL)
+#	key	m2-*Z	=&VK(D-CONTROL) C-*Z &VK(U-CONTROL)
+
+#■Blender
+Window Blender_setting /Blender\.exe/ :Global
+	key	Semicolon	=&Ignore
+	key	W		=Y
+	key	L		=Z
+	key	A		=G
+	key	I		=S
+	key	E		=R
+	key	U		=B
+	key	O		=A
+	key	m0-MouseWheelUp		=Delete
+	key	m0-MouseMoveDown		=E
+	key	m0-X		=&VK(D-MENU) M &VK(U-MENU)

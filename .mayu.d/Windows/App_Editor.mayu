@@ -1,0 +1,38 @@
+Window Emacs_setting /emacs\.exe/ : Global
+    key *XL          = NonConvert
+    key *XR          = Convert
+    key *XR2         = Hiragana
+
+#■VisualStudio2005
+#keymap2    MACRO_CPP    :Global
+#key    c            =C O N S T
+#key    S-c          =C O N S T $LOW_LINE C A S T S-Comma S-Period S-_8 S-_9 ← ← ←
+#key    e            =E X P L I C I T
+#key    i            =S-_3 I N C L U D E Space S-Comma S-Period ←
+#key    o            =O P E R A T O R
+#key    p            =P U B L I C $COLON
+#key    S-p          =P R O T E C T E D $COLON
+#key    C-p          =P R I V A T E $COLON
+#key    r            =R E I N T E R P R E T $LOW_LINE C A S T S-Comma S-Period S-_8 S-_9 ← ← ←
+#key    s            =S T A T I C $LOW_LINE C A S T S-Comma S-Period S-_8 S-_9 ← ← ←
+#key    S-s          =S T R U C T Enter $LEFT_CURLY_BRACKET Enter Enter Enter P R I V A T E $COLON Enter Enter $RIGHT_CURLY_BRACKET SemiColon
+#key    u            =U N S I G N E D
+#key    v            =V O I D
+#
+#Window VS2005_setting /(devenv|JmEdit2)\.exe/ :Global
+#key    ~IC-~m0-*XR2 =&SetImeStatus(off) &Prefix(MACRO_CPP,False)\
+#&HelpMessage("C++ Sequence",\
+#"c    ⇒ const\n"\
+#"s-c    ⇒ const_cast<>()\n"\
+#"e    ⇒ explicit\n"\
+#"i    ⇒ #include<>\n"\
+#"o    ⇒ operator\n"\
+#"p    ⇒ public:\n"\
+#"S-p    ⇒ protected:\n"\
+#"C-p    ⇒ private:\n"\
+#"s    ⇒ static_cast<>()\n"\
+#"S-s    ⇒ struct{...}\n"\
+#"u    ⇒ unsigned\n"\
+#"r    ⇒ reinterpret_cast<>()\n"\
+#"v    ⇒ void\n"\
+#)

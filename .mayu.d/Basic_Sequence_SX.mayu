@@ -1,0 +1,97 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#SX(Synergistic eXtended) Sequence
+#
+#author
+#    mnemoto@users.sourceforge.net
+#
+# ----------------------------------------------------------------------------
+# | Esc|  ! |  @ |  # |  $ |  % |  ^ |  & |  * |  ( |  ) | {  | }  |  | |    |
+# |    |1 F1|2 F2|3 F3|4 F4|5 F5|6 F6|7 F7|8 F8|9 F9|0 Fa|[ Fb|] Fc| \  |    |
+# ----------------------------------------------------------------------------
+# | Tab   |ai" |ou< |ei> |  P |  Y |  Q |  G |::C:|  R |  L |  ? |  + |      |
+# |       | '  | ,  | .  |    |    |    |    |::::|    |    | /  | =  |      |
+# ----------------------------------------------------------------------     |
+# | Contrl |  A |  O |  E |  U |  I |  D |//H/|  T |//N/|  S |  _ |  ~ |     |
+# |        |    |    |    |    |    |    |////|    |////|    | -  | `  |     |
+# ----------------------------------------------------------------------------
+# | Shift    |ann:|onn |enn |unn |inn |  B |  M |  W |  V |  Z |  | |        |
+# |          | ;  | F  |  J |  K |  X |    |    |    |    |    | \  |        |
+# ----------------------------------------------------------------------------
+# |            |Alt |XL2 | XL  |         |  XR | XR2| Alt|                   |
+# |            |    |    |     |         |     |    |    |                   |
+# --------------------------------------- -------------------------------------
+#
+include ".mayu.d/Basic_Sequence_SXBase.mayu"
+
+if(SX)
+    define    SX
+else
+    #def subst    *半角/全角  = *Esc
+
+    #モデファイア定義
+    # file:///E:/Backup/Settings/Mayu/doc/README-ja.html => iii. モディファイヤキー割り当ての変更
+
+    def key XL                = 0x7b        # 0x7b    = 無変換 NonConvert
+    def key XR                = 0x79        # 0x79    = 変換   Convert
+    def key XL2               = E0-0x5b     # E0-0x5b = LeftWindows LWindows LWin
+    def key XR2               = 0x70        # 0x70    = ひらがな Hiragana
+
+    mod    mod0              += !!XL
+    mod    mod1              += !!XR
+
+    if(SX)
+    mod    mod2              += !!XL2
+    endif
+
+    mod    mod3              += !!XR2
+
+    if(SX)
+    mod    win               -= XL2
+    endif
+
+    mod    ctrl              += 英数
+    key    *英数              = *LeftControl
+    key    *XL                = &Ignore
+    key    *XR                = &Ignore
+
+    if(SX)
+    key    *XL2               = &Ignore
+    endif
+
+    key    *XR2               = &Ignore
+
+
+    #■拡張操作系統
+    mod    mod4            = !!!PrintScreen
+    mod    mod5            = !!ScrollLock
+    mod    mod6            = !!!Pause
+    key    *PrintScreen    = *PrintScreen
+    key    *ScrollLock     = &Ignore
+    key    *Pause          = &Ignore
+    key    U-*PrintScreen  = $ULA $ULC $ULS
+    key    U-*ScrollLock   = $ULA $ULC $ULS
+    key    U-*Pause        = $ULA $ULC $ULS
+
+    #XR拡張
+        include    ".mayu.d/XR.mayu"
+
+    #XL拡張
+        include    ".mayu.d/XL.mayu"
+
+    #XL2拡張
+    if(SX)
+        include    ".mayu.d/XL2.mayu"
+    endif
+
+    #XR2拡張
+        include    ".mayu.d/XR2.mayu"
+
+    #日本語入力効率改善
+        include    ".mayu.d/JP.mayu"
+
+    keymap2 AvoidInsertAnnoying :Global
+    key *insert            = *insert
+    keymap Global
+    key *insert            = &Prefix(AvoidInsertAnnoying,false)
+
+endif

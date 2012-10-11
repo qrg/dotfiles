@@ -1,0 +1,75 @@
+#include	".mayu.d/Basic_Sequence_XD.mayu"
+#
+#Reserving	Lock0123(move) Lock45(button)
+#
+#
+#
+#
+#
+
+if(MOUSE)
+else
+define MOUSE
+
+def subst m0-~m1-*W	=←
+def subst m0-~m1-*E	=*MouseMoveUp
+def subst U-l2-*E	=U-*MouseMoveUp
+def subst m0-~m1-*R	=→
+def subst m0-~m1-*T	=*MouseWheelUp
+def subst m0-~m1-*A	=*MouseButtonLeft
+def subst m0-~m1-*S	=*MouseMoveLeft
+def subst U-l1-*S	=U-*MouseMoveLeft
+def subst m0-~m1-*D	=*MouseMoveDown
+def subst U-l3-*D	=U-*MouseMoveDown
+def subst m0-~m1-*F	=*MouseMoveRight
+def subst U-l0-*F	=U-*MouseMoveRight
+def subst m0-~m1-*G	=*MouseButtonMiddle
+def subst m0-~m1-*Z	=*MouseButtonRight
+def subst m0-~m1-*X	=*MouseWheelUp
+def subst m0-~m1-*C	=*MouseButtonMiddle
+def subst m0-~m1-*V	=*MouseWheelDown
+
+key D-~R-m0-*IC-*S-*A-*C-MouseMoveRight	=&PlugIn("ModernGUIOps","SetCursorPush","6000,",true)	&Toggle(Lock0,on)
+key D-R-m0-*IC-*S-*A-*C-MouseMoveRight	=&Ignore
+key U-l0-~l1-*MouseMoveRight		=&PlugIn("ModernGUIOps","SetCursorPush","0,",true) 	&Toggle(Lock0,off)
+key U-l0-l1-*MouseMoveRight		=&Toggle(Lock0,off)
+
+key D-~R-m0-*S-*IC-*A-*C-MouseMoveLeft	=&PlugIn("ModernGUIOps","SetCursorPush","-6000,",true)	&Toggle(Lock1,on)
+key D-R-m0-*S-*IC-*A-*C-MouseMoveLeft	=&Ignore
+key U-l1-~l0-*MouseMoveLeft		=&PlugIn("ModernGUIOps","SetCursorPush","0,",true)	&Toggle(Lock1,off)
+key U-l1-l0-*MouseMoveLeft		=&Toggle(Lock1,off)
+
+key D-~R-m0-*S-*IC-*A-*C-MouseMoveUp	=&PlugIn("ModernGUIOps","SetCursorPush",",-6000",true)	&Toggle(Lock2,on)
+key D-R-m0-*S-*IC-*A-*C-MouseMoveUp	=&Ignore
+key U-l2-~l3-*MouseMoveUp		=&PlugIn("ModernGUIOps","SetCursorPush",",0",true)	&Toggle(Lock2,off)
+key U-l2-l3-*MouseMoveUp		=&Toggle(Lock2,off)
+
+key D-~R-m0-*S-*IC-*A-*C-MouseMoveDown	=&PlugIn("ModernGUIOps","SetCursorPush",",6000",true)	&Toggle(Lock3,on)
+key D-R-m0-*S-*IC-*A-*C-MouseMoveDown	=&Ignore
+key U-l3-~l2-*MouseMoveDown		=&PlugIn("ModernGUIOps","SetCursorPush",",0",true)	&Toggle(Lock3,off)
+key U-l3-l2-*MouseMoveDown		=&Toggle(Lock3,off)
+
+
+#左クリック
+key	D-~R-m0-~m1-*MouseButtonLeft	=&VK(D-LButton)	&Toggle(Lock4,on)
+key	D-R-m0-~m1-*MouseButtonLeft	=&Ignore
+key	U-l4-*MouseButtonLeft		=&VK(U-LButton)	&Toggle(Lock4,off)
+
+#右クリック
+key	D-~R-m0-~m1-*MouseButtonRight	=&VK(D-RButton)	&Toggle(Lock5,on)
+key	D-R-m0-~m1-*MouseButtonRight	=&Ignore
+key	U-l5-*MouseButtonRight		=&VK(U-RButton)	&Toggle(Lock5,off)
+
+#中クリック
+key	D-~R-m0-*MouseButtonMiddle	=&VK(D-MButton)
+key	D-R-m0-*MouseButtonMiddle	=&Ignore
+key	U-m0-*MouseButtonMiddle		=&VK(U-MButton)
+key	D-~R-m0-*MouseButtonMiddle	=&VK(D-MButton)
+key	D-R-m0-*MouseButtonMiddle	=&Ignore
+key	U-m0-*MouseButtonMiddle		=&VK(U-MButton)
+
+#ホイールスクロール
+key	m0-*MouseWheelUp		=&MouseWheel(120)
+key	m0-*MouseWheelDown		=&MouseWheel(-120)
+
+endif
