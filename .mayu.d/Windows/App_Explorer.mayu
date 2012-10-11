@@ -1,6 +1,0 @@
-	#1
-	Window Explorer_setting /explorer\.exe/ :Global
-	key	D-ESC	=&WindowClose
-
-	Window cmd_setting /ConsoleWindowClass/ :Global
-	key	A-F4	=&WindowClose

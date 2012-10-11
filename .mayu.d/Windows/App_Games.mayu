@@ -1,6 +1,0 @@
-#■SecondLife
-Window SecondLife_setting /SecondLife(.)*\.exe/ :Global
-	key	m1-↑	=↑
-	key	m1-↓	=↓
-	key	m1-←	=←
-	key	m1-→	=→

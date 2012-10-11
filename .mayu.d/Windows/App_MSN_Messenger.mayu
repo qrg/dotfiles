@@ -1,3 +1,0 @@
-	#1
-	Window MSN_Messanger_setting /msnmsgr\.exe/ :Global
-	key	ESC	=&Ignore
