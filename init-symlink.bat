@@ -10,6 +10,7 @@ mklink "%HOME%\.gitignore_global" "%HOME%\dotfiles\.gitignore_global"
 mklink "%HOME%\.mayu" "%HOME%\dotfiles\.mayu"
 mklink "%HOME%\.tmux.conf" "%HOME%\dotfiles\.tmux.conf"
 mklink "%HOME%\.vimrc" "%HOME%\dotfiles\.vimrc"
+mklink "%HOME%\.gvimrc" "%HOME%\dotfiles\.gvimrc"
 mklink "%HOME%\.zshrc" "%HOME%\dotfiles\.zshrc"
 
 pause
