@@ -3,7 +3,7 @@
 cd $(dirname $0)
 
 ln -Fisv $PWD/.sh.d $HOME
-ln -Fisv $PWD/.vim.d $HOME
+ln -Fisv $PWD/.vim $HOME
 ln -Fisv $PWD/.zsh.d $HOME
 ln -Fisv $PWD/.bashrc $HOME
 ln -Fisv $PWD/.gitignore_global $HOME
