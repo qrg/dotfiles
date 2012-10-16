@@ -1,9 +1,6 @@
 *zcompdump
 zcompdump*
 .zsh.d/zsh_history
-.vim/backup/*
-.vim/.gvimpos
+.vim/local/*
 .vim/.netrwhist
-*viminfo
-*vimpos
-*vimwinpos
+
