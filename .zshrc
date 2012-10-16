@@ -10,6 +10,13 @@ HISTFILE=${ZDOTDIR}/zsh_history
 
 COMMONFILE=~/.sh.d/common.sh
 
+ZshPluginDir=${ZDOTDIR}/plugin
+
+AutoFuFile=${ZshPluginDir}/auto-fu.zsh/auto-fu.zsh
+ZshCompetionsDir=${ZshPluginDir}/zsh-completions
+GitCompletionFile=${ZshPluginDir}/git-completion.bash
+GitPromptFile=${ZshPluginDir}/git-prompt.sh
+
 # -----------------------------------------------------------------------------
 # completion
 # cf.) man zshcompsys
@@ -22,8 +29,8 @@ COMMONFILE=~/.sh.d/common.sh
 # fi
 
 # auto-fu.zsh
-if [ -f ${ZDOTDIR}/plugin/auto-fu.zsh/auto-fu.zsh ]; then
-    source ${ZDOTDIR}/plugin/auto-fu.zsh/auto-fu.zsh
+if [ -f ${AutoFuFile} ]; then
+    source ${AutoFuFile}
     function zle-line-init (){ auto-fu-init }
     zle -N zle-line-init
     zstyle ':completion:*' completer _oldlist _complete _history _expand _prefix
@@ -31,7 +38,7 @@ if [ -f ${ZDOTDIR}/plugin/auto-fu.zsh/auto-fu.zsh ]; then
 fi
 
 # additional zsh-completions
-fpath=(${ZDOTDIR}/plugin/zsh-completions $fpath)
+fpath=(${ZshCompletionsDir} $fpath)
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
                               /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin \
                               /usr/local/git/bin
@@ -50,8 +57,8 @@ compinit -u -d ${ZCOMPFILE}
 # git-completion
 autoload bashcompinit
 bashcompinit
-if [ -f ${ZDOTDIR}/plugin/git-completion.bash ]; then
-    source ${ZDOTDIR}/plugin/git-completion.bash
+if [ -f ${GitCompletionFile} ]; then
+    source ${GitCompletionFile}
 fi
 
 # auto change directory
