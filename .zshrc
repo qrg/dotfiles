@@ -196,11 +196,11 @@ ${GREEN}%n@%m ${CYAN}%~${GRAY} ---  $(LANG=C)%D{%m}.%D{%d} %D{%a} %D{%T}$(LANG=j
 # http://qiita.com/items/7180eb6c788233280502
 
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git 
+zstyle ':vcs_info:*' enable git
 
 # 下のformatsの値をそれぞれの変数に入れてくれる機能の、変数の数の最大。
 # デフォルトだと2くらいなので、指定しておかないと、下のformatsがほぼ動かない。
-zstyle ':vcs_info:*' max-exports 7
+zstyle ':vcs_info:*' max-exports 10
 
 # 左から順番に、vcs_info_msg_{n}_ という名前の変数に格納されるので、下で利用する
 zstyle ':vcs_info:*' formats '%R' '%S' '%b' '%s'
@@ -227,11 +227,11 @@ function echo_rprompt () {
         # -Dつけて、~とかに変換
         repos=`print -nD "$vcs_info_msg_0_"`
 
-        # if [[ -n "$vcs_info_msg_2_" ]]; then
+        if [[ -n "$vcs_info_msg_2_" ]]; then
             branch="$vcs_info_msg_2_"
-        # else
-        #     branch=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
-        # fi
+        else
+            branch=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+        fi
 
         if [[ -n "$vcs_info_msg_4_" ]]; then # staged
             branch="%F{green}$branch%f"
@@ -241,11 +241,11 @@ function echo_rprompt () {
             branch="%F{blue}$branch%f"
         fi
 
-        print -n "[%25<..<"
-        print -n "%F{yellow}$vcs_info_msg_1_%F"
+        print -n "[%35<..<"
+        print -n "%F{yellow}$vcs_info_msg_1_%f"
         print -n "%<<]"
 
-        print -n "[%15<..<"
+        print -n "[%20<..<"
         print -nD "%F{yellow}$repos%f"
         print -n "@$branch"
         print -n "%<<]"
