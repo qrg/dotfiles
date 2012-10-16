@@ -32,3 +32,14 @@ alias sudo='sudo '              # enable aliases with sudo
 alias w3m='w3m -B'
 alias tmux='tmux -2'
 alias mysql="mysql --pager='less -S'"
+
+# git aliases ---------------------------------------------------------
+alias g="git"
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gco="git checkout"
+alias gd="git diff"
+alias gb="git branch"
+alias gh="git help"
+
