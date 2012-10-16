@@ -123,26 +123,6 @@ setopt extended_history
 # prompt
 # -----------------------------------------------------------------------------
 
-local BLACK=$'[0;30m'
-local RED=$'[0;31m'
-local GREEN=$'[0;32m'
-local YELLOW=$'[0;33m'
-local BLUE=$'[0;34m'
-local PURPLE=$'[0;35m'
-local CYAN=$'[0;36m'
-local GRAY=$'[0;37m'
-
-local LGRAY=$'[1;30m'
-local LRED=$'[1;31m'
-local LGREEN=$'[1;32m'
-local LYELLOW=$'[1;33m'
-local LBLUE=$'[1;34m'
-local LPURPLE=$'[1;35m'
-local LCYAN=$'[1;36m'
-local WHITE=$'[1;37m'
-
-local NORMAL=$'[0m'
-
 # %B               underline
 # %/ or %d         ディレクトリ (0=全て, -1=前方からの数)
 # %~               ディレクトリ
@@ -189,7 +169,7 @@ if [ -f ${GitPromptFile} ]; then
 fi
 
 PROMPT="
-${GREEN}%n@%m ${CYAN}%~${GRAY} ---  $(LANG=C)%D{%m}.%D{%d} %D{%a} %D{%T}$(LANG=ja_JP.UTF-8)${NORMAL}
+%F{green}%n@%m %F{cyan}%f%~%F{gray} ---  $(LANG=C)%D{%m}.%D{%d} %D{%a} %D{%T}$(LANG=ja_JP.UTF-8)%f
 %(!.#.$) "
 
 # Git PROMPT ------------------------------------------------------------------
@@ -234,29 +214,37 @@ function echo_rprompt () {
         fi
 
         if [[ -n "$vcs_info_msg_4_" ]]; then # staged
-            branch="%F{green}$branch%f"
+            branch="%K{green}%F{white} $branch %f%k"
         elif [[ -n "$vcs_info_msg_5_" ]]; then # unstaged
-            branch="%F{red}$branch%f"
+            branch="%K{red}%F{white} $branch %f%k"
         else
-            branch="%F{blue}$branch%f"
+            branch="%K{blue}%F{white} $branch %f%k"
         fi
 
         print -n "[%35<..<"
         print -n "%F{yellow}$vcs_info_msg_1_%f"
         print -n "%<<]"
 
-        print -n "[%20<..<"
+        print -n "%30<..<"
         print -nD "%F{yellow}$repos%f"
-        print -n "@$branch"
-        print -n "%<<]"
+        print -n " $branch"
+        print -n "%<<"
 
     else
         print -nD "[%F{yellow}%60<..<%~%<<%f]"
     fi
 }
 
+# git stash count
+function git_prompt_stash_count {
+  local COUNT=$(git stash list 2>/dev/null | wc -l | tr -d ' ')
+  if [ "$COUNT" -gt 0 ]; then
+    echo " %K{red}%F{white} $COUNT %f%k"
+  fi
+}
+
 setopt prompt_subst
-RPROMPT='`echo_rprompt`'
+RPROMPT='`echo_rprompt``git_prompt_stash_count`'
 
 # MySQL PROMPT ----------------------------------------------------------------
 
