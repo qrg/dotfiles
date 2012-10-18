@@ -1,147 +1,189 @@
 scriptencoding utf-8
 
-"set encoding=utf-8
+" =====================================================================
+" debug
+" =====================================================================
+set verbose=5
+set verbosefile=~/vimdebug
+
+" =====================================================================
+" general
+" =====================================================================
+
+let $LANG='en'
+
+set encoding=utf-8
 set fileencoding=utf-8
 set fileformat=unix
-
+set fileformats=unix,dos,mac 
 set nocompatible
 
-"------------------------------------------------------------------------------
+" =====================================================================
 " path
-"------------------------------------------------------------------------------
+" =====================================================================
+" Vim documentation: os_msdos
+" http://vim-jp.org/vimdoc-ja/os_msdos.html#msdos-linked-files
 
-" temporary dir for .swp files
-set directory=~/.vim/tmp
-" vim history
-set viminfo+=n~/.vim/viminfo
-set backupdir=~/.vim/backup
+" vim runtimepath
+set runtimepath^=~/.vim
+set runtimepath+=~/.vim/after
 
+" vim history file dir
+set viminfo+=n~/.vim/local/info.vim
 
-"------------------------------------------------------------------------------
-" history 
-"------------------------------------------------------------------------------
+" vim swap files dir
+"set directory = g:SwapDir
+
+" vim backup files dir
+"set backupdir = g:BackupDir
+
+" undo history file dir
+if has('persistent_undo')
+    set undodir=~/.vim/local
+endif
+
+" =====================================================================
+" local files
+" =====================================================================
+
+" history -------------------------------------------------------------
 set undolevels=99999999
 
+" swapfile ([no]bk) ---------------------------------------------------
+"set swapfile
+set noswapfile
 
-"------------------------------------------------------------------------------
-" complement 
-"------------------------------------------------------------------------------
-"コマンドライン補完を便利に
+" backup --------------------------------------------------------------
+"set backup
+set nobackup
+
+" extension of backup file
+"set backupext=.back
+
+" session -------------------------------------------------------------
+
+" TODO git commit 時 session を read/write するのを避ける良い方法なにか
+" 現状だと gvim のときだけ session 読み書きする
+
+if has("gui_running")
+    " restore the previous session when vim started
+    source ~/.vim/local/session.vim
+
+    " save the current session when vim terminated
+    " '!' option overwrite the session file
+    autocmd VimLeave * mksession! ~/.vim/local/session.vim
+
+    " session options
+    set sessionoptions=blank,buffers,curdir,folds,help,resize,slash,
+                  \tabpages,unix,winpos,winsize
+endif
+
+" undo history -------------------------------------------------------
+if has('persistent_undo')
+  augroup vimrc-undofile
+    autocmd!
+    autocmd BufReadPre ~/* setlocal undofile
+  augroup END
+endif
+
+" =====================================================================
+" complement
+" =====================================================================
+" command-line completion operates in an enhanced mode
 set wildmenu
+" http://vimwiki.net/?%27wildmode%27
+set wildmode=longest,full
 
-"検索/補完時に大文字小文字を区別しない
+"検索/補完時に大文字/小文字を区別しない
 set ignorecase
-
-"検索時に大文字を含んでいたら大/小を区別
+"検索語に大文字を含む場合、大文字/小文字を区別する
 set smartcase
 
-"------------------------------------------------------------------------------
-" misc 
-"------------------------------------------------------------------------------
+" =====================================================================
+" search
+" =====================================================================
+" enable incremental search
+set incsearch
+
+" when search next/previows reaches end/beginning of file,
+" it wraps around to the beginning/end
+"set nowrapscan        " do not wrap around
+set wrapscan          " wrap around
+"set wrapscan!         " toggle wrap around on/off
+"set ws! ws?           " toggle and show value
+
+
+" =====================================================================
+" edit
+" =====================================================================
+
+" バックスペースでインデントや改行を削除できるようにする
+set backspace=indent,eol,start
+
+" 新しい行を作ったときに高度な自動インデントを行う
+set smartindent
+set autoindent
+set cindent
+
+" カーソルを行頭、行末で止まらないようにする
+set whichwrap=b,s,h,l,<,>,[,]
+
+" =====================================================================
+" misc
+" =====================================================================
+
+" http://vimwiki.net/?%27backupcopy%27
+" 編集したファイルが hardlink/symlinkなど
+" 特別な属性を持っているとき全て元のまま保つi
+
+"set backupcopy=yes
+
+" flash screen instead of sounding beep
+" abbreviated as 'vb'
+" 't_vb=
+set visualbell t_vb=
 
 "変更中のファイルでも、保存しないで他のファイルを表示
 set hidden
 
-"インクリメンタルサーチを行う
-set incsearch
-
-"set term=xterm
-
-"検索をファイルの先頭へループしない
-set nowrapscan
-"set wrapscan
-
-"シフト移動幅
-set shiftwidth=2
-
-"閉じ括弧が入力されたとき、対応する括弧を表示する
-set showmatch
-
-"新しい行を作ったときに高度な自動インデントを行う
-"set smartindent
-"set autoindent
-"set cindent
-
-"行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする。
-set smarttab
-
-"ファイル内の <Tab> が対応する空白の数
-set tabstop=2
-
-"カーソルを行頭、行末で止まらないようにする
-set whichwrap=b,s,h,l,<,>,[,]
-
-set expandtab
-set shiftround
 set nowrap
 
 set laststatus=2
 
-"------------------------------------------------------------------------------
+" -----------------------------------------------------------------------------
+" tab
+" -----------------------------------------------------------------------------
+" use space instead of tab
+set expandtab
+
+" 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする。
+set smarttab
+
+" Number of spaces to use for each step of (auto)indent. Used for |'cindent'|, |>>|, |<<|, etc.
+" indent幅の画面上の見た目の文字数
+" 'cindent' や shift operator (>>, <<) で挿入/削除される自動的に挿入される indent幅に適用される
+set shiftwidth=4
+
+" ファイル中の<Tab>を画面上の見た目で何文字分に展開するかを指定する
+set tabstop=4
+
+" indent を 'shiftwidth' の値の倍数に丸める
+" command '>', '<' に適用される。
+" insert-mode の <C-t> と <C-d> では、indent は常に 'shiftwidth' の倍数に丸められる
+set shiftround
+
+" =====================================================================
 " appearance
-"------------------------------------------------------------------------------
-" シンタックスハイライトを利用する
-syntax on
+" =====================================================================
+source ~/.vim/vimrc/appearance.vimrc
 
-" 行番号を表示
-set number
-
-" ルーラーを表示
-set ruler
-
-" 現在行にアンダーラインを表示
-"set cursorline
-
-" 現在列をハイライト表示
-"set cursorcolumn
-set cmdheight=2
-
-" タイトルにファイル名を表示
-set title
-"set notitle
-
-highlight LineNr ctermfg=darkgrey
-highlight cursorcolumn term=reverse ctermbg=7 guibg=Grey90
-highlight SpecialKey term=underline ctermfg=grey guifg=Grey90
-
-" 入力中のコマンドをステータスに表示
-set showcmd
+" =====================================================================
+" keybind
+" =====================================================================
+source ~/.vim/vimrc/keymap.vimrc
 
 
-"タブ文字、行末など不可視文字を表示する
-set list
-"listで表示される文字のフォーマットを指定する
-"  eol      改行コード
-"  trail    行末に続く半角スペース
-"  extends  ウィンドウの幅を超えて省略された文字が右にある場合に表示
-"  precedes ウィンドウの幅を超えて省略された文字が左にある場合に表示
-"  nbsp     半角スペース
-set listchars=eol:↲,tab:⇀\ ,extends:»,precedes:«,nbsp:▯,trail:▯
-
-"全角スペースの表示
-highlight JpSpace cterm=underline ctermfg=Blue guifg=Blue
-au BufRead,BufNew * match JpSpace /　/
-
-"行番号を表示する
-set number
-
-"検索語を強調表示
-set hlsearch
-
-" <C-l>で検索後の強調表示を解除する
-nnoremap <C-l> :nohl<CR><C-l>
-
-" ステータスライン
-highlight statusline cterm=reverse
-
-set statusline=\ %F%m%r%h%w\ \|\ %{&fenc!=''?&fenc:&enc}\ \|\ FORMAT=%{&ff}\ \|\ TYPE=%Y\ \|\ ASCII=\%03.3b\ \|\ HEX=\%02.2B\ \|\ POS=%04l,%04v\ \|\ %p%%\ \|\ LEN=%L
-
-"挿入モード時、ステータスラインの色を変更
-if has('syntax')
-augroup InsertHook
-  autocmd!
-  autocmd InsertEnter * highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=black ctermbg=yellow cterm=none
-  autocmd InsertLeave * highlight StatusLine guifg=darkblue guibg=darkgrey gui=none ctermfg=black ctermbg=grey cterm=none
-  augroup END
-endif
+" =====================================================================
+" function
+" =====================================================================
 

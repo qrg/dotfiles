@@ -1,17 +1,18 @@
 set guifont=DjvSAKA-mono:h10
 set guifontwide=DjvSAKA-mono:h10
 set antialias
-colorscheme qrg-dk
+
+colorscheme molokai-q
 
 " -----------------------------------------------
-" Path
+" path
 " -----------------------------------------------
-let g:gvimwinpos = '~/.vim/gvimwinpos'
+let s:gvimwinpos="~/dotfiles/.vim/local/gvimwinpos"
 
 " -----------------------------------------------
-" Save/Restore Window Size/Position
+" save/restore window size/position
 " -----------------------------------------------
-let g:save_window_file = expand(gvimwinpos)
+let g:save_window_file = expand(s:gvimwinpos)
 augroup SaveWindow
   autocmd!
   autocmd VimLeavePre * call s:save_window()
@@ -33,25 +34,32 @@ endif
 " guioptions (go)
 " default: "gmrLtT" (MS-Windows), "agimrLtT" (GTK, Motif and Athena)
 "
-" a  ƒrƒWƒ…ƒAƒ‹ƒ‚[ƒh‚Å‘I‘ð‚µ‚½•¶Žš‚ªƒVƒXƒeƒ€‚ÌƒNƒŠƒbƒvƒ{[ƒh‚É“ü‚éB‘¼‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÆƒNƒŠƒbƒvƒ{[ƒh‚ð‹¤—L‚·‚éƒIƒvƒVƒ‡ƒ“
-" A  "a"‚ÉŽ—‚Ä‚¢‚é‚ªAcommand-line ‚Å‘I‘ð‚µ‚½‚Æ‚«‚©Actrl + shift ‚ð‰Ÿ‚µ‚È‚ª‚çƒ}ƒEƒX‚Å‘I‘ð‚µ‚½‚Æ‚«‚É‹¤—L‚ÌƒNƒŠƒbƒvƒ{[ƒh‚ðŽg—p‚·‚é
-" c  ŠÈ’P‚ÈŽ¿–â‚ðƒ|ƒbƒvƒAƒbƒvƒ_ƒCƒAƒƒO‚Å‚Í‚È‚­AƒRƒ“ƒ\[ƒ‹‚ðŽg‚¤‚æ‚¤‚É‚·‚é
-" e  tab‚ðGUI‚Å
-" f  ƒVƒFƒ‹‚©‚çŽÀs‚³‚ê‚½‚Æ‚«‚Éfork()‚µ‚È‚¢B-fƒIƒvƒVƒ‡ƒ“‚Å‹N“®‚µ‚½‚Ì‚Æ“¯‚¶
-" i  Vim‚ÌƒAƒCƒRƒ“‚ðŽg—p‚·‚éB
-" m  ƒƒjƒ…[‚ð•\Ž¦‚·‚éB
-" M  "$VIMRUNTIME/menu.vim"‚ð“Ç‚Ýž‚Ü‚È‚­‚·‚é
-" g  Žg—p‚Å‚«‚È‚¢ƒƒjƒ…[‚ðƒOƒŒ[•\Ž¦‚·‚é
-" t  ƒƒjƒ…[‚ÌØ‚è—£‚µ‚ðo—ˆ‚é‚æ‚¤‚É‚·‚é
-" T  ƒc[ƒ‹ƒo[‚ð•\Ž¦‚·‚é
-" r  ƒEƒBƒ“ƒhƒE‚Ì‰E‘¤‚ÉƒXƒNƒ[ƒ‹ƒo[‚ð•\Ž¦‚·‚é
-" R  c‚É•ªŠ„‚³‚ê‚½ƒEƒBƒ“ƒhƒE‚Ì‰E‘¤‚ÉƒXƒNƒ[ƒ‹ƒo[‚ð•\Ž¦‚·‚é
-" l  ƒEƒBƒ“ƒhƒE‚Ì¶‚ÉƒXƒNƒ[ƒ‹ƒo[‚ð•\Ž¦‚·‚é
-" L  c‚É•ªŠ„‚³‚ê‚½ƒEƒBƒ“ƒhƒE‚Ì¶‘¤‚ÉƒXƒNƒ[ƒ‹ƒo[‚ð•\Ž¦‚·‚é
-" b  …•½ƒXƒNƒ[ƒ‹ƒo[‚ð•\Ž¦‚·‚é
-" v  ƒ_ƒCƒAƒƒO‚Ìƒ{ƒ^ƒ“‚ðc‚É”z’u‚·‚é
-" p  ƒ|ƒCƒ“ƒ^ƒR[ƒ‹ƒoƒbƒN‚ðŽg‚¤
-" F  ƒƒbƒZ[ƒWƒtƒbƒ^[‚ð•\Ž¦‚·‚é
+" a  ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ãƒ¢ãƒ¼ãƒ‰ã§é¸æŠžã—ãŸæ–‡å­—ãŒã‚·ã‚¹ãƒ†ãƒ ã®ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«å…¥ã‚‹ã€‚ä»–ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’å…±æœ‰ã™ã‚‹ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+" A  "a"ã«ä¼¼ã¦ã„ã‚‹ãŒã€command-line ã§é¸æŠžã—ãŸã¨ãã‹ã€ctrl + shift ã‚’æŠ¼ã—ãªãŒã‚‰ãƒžã‚¦ã‚¹ã§é¸æŠžã—ãŸã¨ãã«å…±æœ‰ã®ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹
+" c  ç°¡å˜ãªè³ªå•ã‚’ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã§ã¯ãªãã€ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚’ä½¿ã†ã‚ˆã†ã«ã™ã‚‹
+" e  tabã‚’GUIã§
+" f  ã‚·ã‚§ãƒ«ã‹ã‚‰å®Ÿè¡Œã•ã‚ŒãŸã¨ãã«fork()ã—ãªã„ã€‚-fã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§èµ·å‹•ã—ãŸã®ã¨åŒã˜
+" i  Vimã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹ã€‚
+" m  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹ã€‚
+" M  "$VIMRUNTIME/menu.vim"ã‚’èª­ã¿è¾¼ã¾ãªãã™ã‚‹
+" g  ä½¿ç”¨ã§ããªã„ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã‚°ãƒ¬ãƒ¼è¡¨ç¤ºã™ã‚‹
+" t  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®åˆ‡ã‚Šé›¢ã—ã‚’å‡ºæ¥ã‚‹ã‚ˆã†ã«ã™ã‚‹
+" T  ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
+" r  ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å³å´ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
+" R  ç¸¦ã«åˆ†å‰²ã•ã‚ŒãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å³å´ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
+" l  ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å·¦ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
+" L  ç¸¦ã«åˆ†å‰²ã•ã‚ŒãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å·¦å´ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
+" b  æ°´å¹³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
+" v  ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®ãƒœã‚¿ãƒ³ã‚’ç¸¦ã«é…ç½®ã™ã‚‹
+" p  ãƒã‚¤ãƒ³ã‚¿ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ä½¿ã†
+" F  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¿ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
 set guioptions-=T
 set guioptions-=m
+
+
+" support mouse
+set mouse=a
+set ttymouse=xterm2
+set mousehide " hide cursor when editing
+set guioptions+=a
 

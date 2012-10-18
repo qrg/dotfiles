@@ -1,8 +1,8 @@
 " Vim color file
 "
-" Author:	Qurage (http://twitter.com/qurage)
+" Author: Qurage (http://twitter.com/qurage)
 "
-" Note: Based on the monokai theme for vim
+" Note: Based on the molokai theme for vim
 " by Tomas Restrepo
 " http://www.vim.org/scripts/script.php?script_id=2340
 "
@@ -108,9 +108,9 @@ hi WildMenu        guifg=#66D9EF guibg=#000000
 
 hi Normal          guifg=#dddddd guibg=#131414
 hi Comment         guifg=#465457
-hi CursorLine                    guibg=#293739
-hi CursorColumn                  guibg=#293739
-hi LineNr          guifg=#7f969a guibg=#131414
+hi CursorLine                    guibg=#141e20
+hi CursorColumn                  guibg=#141e20
+hi LineNr          guifg=#334d51 guibg=#181919
 hi NonText         guifg=#777777 guibg=#131414 gui=none
 
 "
