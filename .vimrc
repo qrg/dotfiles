@@ -39,7 +39,7 @@ set viminfo+=n~/.vim/local/info.vim
 
 " undo history file dir
 if has('persistent_undo')
-    set undodir=~/.vim/local
+    set undodir=~/.vim/local/undo
 endif
 
 " =====================================================================
