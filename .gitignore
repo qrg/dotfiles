@@ -2,6 +2,13 @@
 *zcompdump
 zcompdump*
 .zsh.d/zsh_history
-.vim/local/*
 .vim/.netrwhist
-
+.vim/local/*.*
+gvimwinpos
+.vim/local/backup/*.*
+.vim/local/swap/*.*
+.vim/local/undo/*.*
+!.vim/local/backup/.gitkeep
+!.vim/local/swap/.gitkeep
+!.vim/local/undo/.gitkeep
+!.gitkeep
