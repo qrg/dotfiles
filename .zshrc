@@ -2,7 +2,7 @@
 # cf.) man zshoptions
 
 # -----------------------------------------------------------------------------
-# path config
+# path
 # -----------------------------------------------------------------------------
 ZDOTDIR=~/.zsh.d
 ZCOMPFILE=${ZDOTDIR}/zcompdump.${HOST}.${USER}
@@ -169,8 +169,13 @@ if [ -f ${GitPromptFile} ]; then
 fi
 
 PROMPT="
-%F{green}%n@%m %F{cyan}%f%~%F{gray} ---  $(LANG=C)%D{%m}.%D{%d} %D{%a} %D{%T}$(LANG=ja_JP.UTF-8)%f
+%F{green}%n@%m %F{cyan}%f%~%F{gray} ---  %D{%m}.%D{%d} $(LANG=C date +'%a') %D{%T}$(LANG=ja_JP.UTF-8)%f
 %(!.#.$) "
+
+# update time
+TRAPALRM () { zle reset-prompt }
+TMOUT=5
+
 
 # Git PROMPT ------------------------------------------------------------------
 # http://qiita.com/items/7180eb6c788233280502
@@ -302,6 +307,10 @@ esac
 
 # no beep sound when complete list displayed
 setopt nolistbeep
+
+# show time taken to finish off commands
+# when it takes more than value number (sec)
+REPORTTIME=1
 
 # ------------------------------------------------------------------------------
 # keybind
