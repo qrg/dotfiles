@@ -5,17 +5,18 @@
 # path
 # -----------------------------------------------------------------------------
 ZDOTDIR=~/.zsh.d
-ZCOMPFILE=${ZDOTDIR}/zcompdump.${HOST}.${USER}
-HISTFILE=${ZDOTDIR}/zsh_history
 
-COMMONFILE=~/.sh.d/common.sh
-
+ZshLocalDir=${ZDOTDIR}/local
 ZshPluginDir=${ZDOTDIR}/plugin
+
+CommonFile=~/.sh.d/common.sh
+ZshCompFile=${ZshLocalDir}/zcompdump.${HOST}.${USER}
+ZshHistFile=${ZshLocalDir}/zsh-history
 
 AutoFuFile=${ZshPluginDir}/auto-fu.zsh/auto-fu.zsh
 ZshCompetionsDir=${ZshPluginDir}/zsh-completions
 GitCompletionFile=${ZshPluginDir}/git-completion.bash
-GitPromptFile=${ZshPluginDir}/git-prompt.sh
+#GitPromptFile=${ZshPluginDir}/git-prompt.sh
 
 # -----------------------------------------------------------------------------
 # completion
@@ -39,6 +40,8 @@ fi
 
 # additional zsh-completions
 fpath=(${ZshCompletionsDir} $fpath)
+
+# enable complement with sudo
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
                               /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin \
                               /usr/local/git/bin
@@ -52,7 +55,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # zsh basic completion
 autoload -U compinit
-compinit -u -d ${ZCOMPFILE}
+compinit -u -d ${ZshCompFile}
 
 # git-completion
 autoload bashcompinit
@@ -101,12 +104,12 @@ setopt no_nomatch
 autoload -U predict-on
 zle -N predict-on
 zle -N predict-off
-bindkey '^xp' predict-on
-bindkey '^x^p' predict-off
+
 
 # -----------------------------------------------------------------------------
 # history
 # -----------------------------------------------------------------------------
+HISTFILE=${ZshHistFile}
 HISTSIZE=10000000
 SAVEHIST=10000000
 
@@ -164,17 +167,13 @@ setopt extended_history
 #     `<' の形式は文字列の左側を切り詰め, `>' の形式は文字列の右側を切り詰めます
 
 # load plugin that shows git branch at PROMPT
-if [ -f ${GitPromptFile} ]; then
-    source ${GitPromptFile}
-fi
+#if [ -f ${GitPromptFile} ]; then
+#    source ${GitPromptFile}
+#fi
 
 PROMPT="
 %F{green}%n@%m %F{cyan}%f%~%F{gray} ---  %D{%m}.%D{%d} $(LANG=C date +'%a') %D{%T}$(LANG=ja_JP.UTF-8)%f
 %(!.#.$) "
-
-# update time
-TRAPALRM () { zle reset-prompt }
-TMOUT=5
 
 
 # Git PROMPT ------------------------------------------------------------------
@@ -300,7 +299,6 @@ kterm*|xterm)
     ;;
 esac
 
-
 # ------------------------------------------------------------------------------
 # misc
 # ------------------------------------------------------------------------------
@@ -316,7 +314,7 @@ REPORTTIME=1
 # keybind
 # ------------------------------------------------------------------------------
 
-# like emacs
+# like emacs keybindings
 bindkey -e
 
 autoload history-search-end
@@ -329,17 +327,22 @@ bindkey "^N" history-beginning-search-forward-end
 
 # IGNOREEOF forces the user to type exit or logout, instead of just pressing ^D.
 # ^D でログアウトさせない(ミスタイプによる意図しないログアウト防止). ただし10回連続で ^D すると ログアウト.
+# TODO なんか効いてないぽい
 setopt IGNOREEOF
 
 # ^S で stop しない
 stty stop undef
 
+# 履歴から補完機能を on/off
+bindkey '^xp' predict-on
+bindkey '^x^p' predict-off
+
 # ------------------------------------------------------------------------------
 # common shell settings
 # ------------------------------------------------------------------------------
 # common settings with bash and zsh
-if [ -f ${COMMONFILE} ]; then
-    source ${COMMONFILE}
+if [ -f ${CommonFile} ]; then
+    source ${CommonFile}
 fi
 
 

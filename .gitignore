@@ -1,13 +1,15 @@
 .vim/bundle
 *zcompdump
 zcompdump*
-.zsh.d/zsh_history
+.zsh.d/local/zsh-history
+.zsh.d/local/*
 .vim/.netrwhist
-.vim/local/*.*
+.vim/local/*
 gvimwinpos
 .vim/local/backup/*.*
 .vim/local/swap/*.*
 .vim/local/undo/*.*
+!.zsh.d/local/.gitkeep
 !.vim/local/backup/.gitkeep
 !.vim/local/swap/.gitkeep
 !.vim/local/undo/.gitkeep
