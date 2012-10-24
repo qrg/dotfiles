@@ -16,6 +16,7 @@ ZshHistFile=${ZshLocalDir}/zsh-history
 AutoFuFile=${ZshPluginDir}/auto-fu.zsh/auto-fu.zsh
 ZshCompetionsDir=${ZshPluginDir}/zsh-completions
 GitCompletionFile=${ZshPluginDir}/git-completion.bash
+TwCompletionDir=${ZshPluginDir}/tw-zsh-completion
 #GitPromptFile=${ZshPluginDir}/git-prompt.sh
 
 # -----------------------------------------------------------------------------
@@ -40,6 +41,7 @@ fi
 
 # additional zsh-completions
 fpath=(${ZshCompletionsDir} $fpath)
+fpath=(${TwCompletionDir} $fpath)
 
 # enable complement with sudo
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \

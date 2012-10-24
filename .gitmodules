@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/neobundle"]
 	path = .vim/bundle/neobundle
 	url = git://github.com/Shougo/neobundle.vim.git
+[submodule ".zsh.d/plugin/tw-zsh-completion"]
+	path = .zsh.d/plugin/tw-zsh-completion
+	url = git://github.com/glidenote/tw-zsh-completion.git
