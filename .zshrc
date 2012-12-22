@@ -107,6 +107,9 @@ autoload -U predict-on
 zle -N predict-on
 zle -N predict-off
 
+# current dir は補完候補から外す
+zstyle ':completion:*' ignore-parents parent pwd ..''
+
 
 # -----------------------------------------------------------------------------
 # history
