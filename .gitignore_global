@@ -159,5 +159,5 @@ UpgradeLog*.XML
 *.cache
 *.sublime-workspace
 *.sublime_session
-
+*.last-run
 
