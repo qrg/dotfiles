@@ -158,3 +158,9 @@ UpgradeLog*.XML
 # Adobe DreamWeaver
 _notes/*
 
+# SublimeText project files
+*.cache
+*.sublime-workspace
+*.sublime_session
+*.last-run
+
