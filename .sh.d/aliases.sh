@@ -11,7 +11,15 @@ alias la='ls -lap --color=auto'
 alias chown='chown -v'
 alias chmod='chmod -v'
 alias cat='cat -n'              # -n, --number    number all output lines
+alias pd='popd
 
+
+alias cal='LANG=en_US.UTF-8 cal -3'
+alias man='LANG=ja_JP.UTF-8 man'
+
+# enable aliases with sudo
+alias sudo='sudo '
+'
 alias wget='wget -cvS'
 # -c, --continue
 #     Continue getting a partially-downloaded file.
@@ -19,21 +27,28 @@ alias wget='wget -cvS'
 # -S, --server-response
 #     Print the headers sent by HTTP servers and responses sent by FTP servers.
 
-alias pd='popd'
-
 alias vi='vim'
-#alias emacs='emacsclient -n -f ~/.emacs.d/var/server/server -a emacs'
-#alias e='emacsclient -n -f ~/.emacs.d/var/server/server -a emacs'
 
-alias cal='LANG=en_US.UTF-8 cal -3'
-alias man='LANG=ja_JP.UTF-8 man'
-alias sudo='sudo '              # enable aliases with sudo
+# Emacs Server -----------------------------------------------------------------
+# if emacsserver was enable, use emacsclient, or not, use emacs
+alias e='emacsclient -n -f ~/.emacs.d/var/server/server -a emacs '
+alias emacsclient='emacsclient -n -f ~/.emacs.d/var/server/server -a emacs '
+# -n, --no-wait
+#     Don't wait for the server to return
+#
+# -f SERVER, --server-file=SERVER
+#     Set filename of the TCP authentication file
+#
+# -a EDITOR, --alternate-editor=EDITOR
+#     Editor to fallback to if the server is not running
+#     If EDITOR is the empty string, start Emacs in daemon
+#     mode and try connecting again
 
 alias w3m='w3m -B'
 alias tmux='tmux -2'
 alias mysql="mysql --pager='less -S'"
 
-# git aliases ---------------------------------------------------------
+# Git --------------------------------------------------------------------------
 alias g="git"
 alias gs="git status"
 #alias gll="git log --color-words --color --graph --name-status --abbrev-commit --decorate --branches"
@@ -48,4 +63,3 @@ alias gsb="git show-branch"
 alias ghelp="git help"
 alias gpull="git pull"
 alias gpush="git push"
-

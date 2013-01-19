@@ -3,8 +3,8 @@
 
 export LANG=ja_JP.UTF-8
 
-#export EDITOR=emacsclient
-#export VISUAL=emacsclient
+export EDITOR=emacsclient
+export VISUAL=emacsclient
 #export ALTERNATE_EDITOR=emacs
 
 
@@ -27,4 +27,3 @@ if [ -d $HOME/.rbenv/bin ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 fi
-
