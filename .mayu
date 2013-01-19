@@ -6,8 +6,9 @@ keymap Global
 # key remap
 # --------------------------------------------------------------------
 
-    key Esc            = Kanji
-    key Kanji          = Esc
+#    key Esc            = Kanji
+#    key Kanji          = Esc
+
 
 # --------------------------------------------------------------------
 # define modifier keys

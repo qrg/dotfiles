@@ -155,6 +155,9 @@ Backup*/
 UpgradeLog*.XML
 
 
+# Adobe DreamWeaver
+_notes/*
+
 # SublimeText project files
 *.cache
 *.sublime-workspace
