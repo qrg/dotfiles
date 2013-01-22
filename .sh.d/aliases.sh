@@ -11,7 +11,7 @@ alias la='ls -lap --color=auto'
 alias chown='chown -v'
 alias chmod='chmod -v'
 alias cat='cat -n'              # -n, --number    number all output lines
-alias pd='popd
+alias pd='popd'
 
 
 alias cal='LANG=en_US.UTF-8 cal -3'
@@ -19,7 +19,7 @@ alias man='LANG=ja_JP.UTF-8 man'
 
 # enable aliases with sudo
 alias sudo='sudo '
-'
+
 alias wget='wget -cvS'
 # -c, --continue
 #     Continue getting a partially-downloaded file.
