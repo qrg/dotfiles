@@ -126,27 +126,6 @@ set cindent
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
 
-"===========================================================================
-" misc
-"===========================================================================
-
-" http://vimwiki.net/?%27backupcopy%27
-" 編集したファイルが hardlink/symlinkなど
-" 特別な属性を持っているとき全て元のまま保つi
-
-"set backupcopy=yes
-
-" flash screen instead of sounding beep
-" abbreviated as 'vb'
-" 't_vb=
-set visualbell t_vb=
-
-"変更中のファイルでも、保存しないで他のファイルを表示
-set hidden
-
-set nowrap
-
-set laststatus=2
 
 "===========================================================================
 " tab
@@ -170,6 +149,7 @@ set tabstop=4
 " insert-mode の <C-t> と <C-d> では、indent は常に 'shiftwidth' の倍数に丸められる
 set shiftround
 
+
 "===========================================================================
 " appearance
 "===========================================================================
@@ -184,4 +164,30 @@ source ~/.vim/vimrc/keymap.vimrc
 "===========================================================================
 " function
 "===========================================================================
+
+
+"===========================================================================
+" misc
+"===========================================================================
+
+" http://vimwiki.net/?%27backupcopy%27
+" 編集したファイルが hardlink/symlinkなど
+" 特別な属性を持っているとき全て元のまま保つi
+
+"set backupcopy=yes
+
+" flash screen instead of sounding beep
+" abbreviated as 'vb'
+" 't_vb=
+set visualbell t_vb=
+
+"変更中のファイルでも、保存しないで他のファイルを表示
+set hidden
+
+set nowrap
+
+set laststatus=2
+
+" vim から感謝されないようにする
+set notitle
 
