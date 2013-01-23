@@ -11,7 +11,7 @@ alias la='ls -lap --color=auto'
 alias chown='chown -v'
 alias chmod='chmod -v'
 alias cat='cat -n'              # -n, --number    number all output lines
-alias pd='popd
+alias pd='popd'
 
 
 alias cal='LANG=en_US.UTF-8 cal -3'
@@ -19,7 +19,7 @@ alias man='LANG=ja_JP.UTF-8 man'
 
 # enable aliases with sudo
 alias sudo='sudo '
-'
+
 alias wget='wget -cvS'
 # -c, --continue
 #     Continue getting a partially-downloaded file.
@@ -46,21 +46,21 @@ alias emacsclient='emacsclient -n -f ~/.emacs.d/var/server/server -a emacs '
 
 alias w3m='w3m -B'
 alias tmux='tmux -2'
-alias mysql="mysql --pager='less -S'"
+alias mysql='mysql --pager="less -S"'
 
 # Git --------------------------------------------------------------------------
-alias g="git"
-alias gs="git status"
-#alias gll="git log --color-words --color --graph --name-status --abbrev-commit --decorate --branches"
-alias gl="git log --pretty='medium-reverse' --graph --name-status"
-alias glmin="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow reverse)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias ga="git add"
-alias gc="git commit -v"
-alias gco="git checkout"
-alias gd="git diff"
-alias gbr="git branch"
-alias gbra="git branch -a"
-alias gsb="git show-branch"
-alias ghelp="git help"
-alias gpull="git pull"
-alias gpush="git push"
+alias g='git'
+alias gs='git status'
+#alias gll='git log --color-words --color --graph --name-status --abbrev-commit --decorate --branches'
+alias gl='git log --pretty=format:"%C(red reverse)%d%Creset%C(white reverse) %h% Creset %C(green reverse) %an %Creset %C(cyan)%ar%Creset%n%C(white bold)%w(80)%s%Creset%n%n%w(80,2,2)%b" --graph --name-status'
+alias glmin='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow reverse)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+alias ga='git add'
+alias gc='git commit -v'
+alias gco='git checkout'
+alias gd='git diff'
+alias gbr='git branch'
+alias gbra='git branch -a'
+alias gsb='git show-branch'
+alias ghelp='git help'
+alias gpull='git pull'
+alias gpush='git push'
