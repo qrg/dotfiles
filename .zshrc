@@ -296,10 +296,11 @@ export MYSQL_PS1="\n$GRAY [MySQL] $GREEN\u$GRAY@$GREEN\h $CYAN\d $GRAY\v $GRAY -
 # -----------------------------------------------------------------------------
 # title
 # -----------------------------------------------------------------------------
+
 case "${TERM}" in
-kterm*|xterm)
+  kterm*|xterm*|rxvt*)
     precmd() {
-        echo -ne "\033]0;${USER}@${HOST}\007"
+        echo -ne "\e]2;${USER}@${HOST}: $(pwd)\a"
     }
     ;;
 esac
