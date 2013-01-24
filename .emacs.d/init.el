@@ -41,7 +41,7 @@
 ;;###############################################################################
 (setq initial-frame-alist
     (append '((width  . 263)
-              (height . 64)
+              (height . 68)
               (top          . 0)
               (left         . 0)
               (cursor-type  . box)
