@@ -1,4 +1,5 @@
 #.vim/bundle
+*.elc
 .emacs.d/.scratch-log*
 .emacs.d/ac-comphist.dat
 .emacs.d/local/bookmark
