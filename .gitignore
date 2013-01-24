@@ -1,4 +1,7 @@
 #.vim/bundle
+.emacs.d/.scratch-log*
+.emacs.d/ac-comphist.dat
+.emacs.d/local/*
 *zcompdump
 zcompdump*
 .zsh.d/local/zsh-history
@@ -9,6 +12,8 @@ gvimwinpos
 .vim/local/backup/*.*
 .vim/local/swap/*.*
 .vim/local/undo/*.*
+!.emacs.d/local/.gitkeep
+!.emacs.d/local/*/.gitkeep
 !.zsh.d/local/.gitkeep
 !.vim/local/backup/.gitkeep
 !.vim/local/swap/.gitkeep

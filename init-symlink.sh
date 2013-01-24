@@ -2,6 +2,7 @@
 
 cd $(dirname $0)
 
+ln -Fisv $PWD/.emacs.d $HOME
 ln -Fisv $PWD/.sh.d $HOME
 ln -Fisv $PWD/.vim $HOME
 ln -Fisv $PWD/.zsh.d $HOME
