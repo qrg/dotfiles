@@ -58,7 +58,7 @@
 
 
 ;;###############################################################################
-;; COLOR THEME
+;; THEME
 ;;###############################################################################
 ; IME ON/OFF時のカーソルカラー
 (add-hook 'input-method-activate-hook
@@ -66,17 +66,6 @@
 (add-hook 'input-method-inactivate-hook
         (lambda() (set-cursor-color "#fff")))
 
-;; color-theme
-(require 'color-theme)
-
-(setq color-theme-load-all-themes nil)
-;; If t, load all color-theme files as presented by 'color-theme-libraries'.
-;; Else load nothing.
-
-(setq color-theme-directory my-theme-dir)
-
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-user03-dark)
-     ))
+(add-to-list 'custom-theme-load-path "~/.emacs.d/packages/elpa/molokai-theme-20120503.1929/")
+(load-theme 'molokai t)
+(enable-theme 'molokai)

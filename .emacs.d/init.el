@@ -25,8 +25,8 @@
 ; 色は匂へど     散りぬるを  我が世誰ぞ     常ならん
 ; 有為の奥山     境越えて    浅き夢見じ     酔ひもせず
 
-(set-frame-font     "DjvSAKA-mono 10")                                ; 標準フォント   /  "DjvSans-TkoG-Mono_dark 10"
-(set-face-attribute 'fixed-pitch    nil :family "DjvSAKA-mono 10" )   ; 固定等幅フォント
+(set-frame-font     "HrgnConsolas 10")                                ; 標準フォント   /  "DjvSans-TkoG-Mono_dark 10" "DjvSAKA-mono 10"
+(set-face-attribute 'fixed-pitch    nil :family "HrgnConsolas 10" )   ; 固定等幅フォント
 (set-face-attribute 'variable-pitch nil :family "Helvetica" )         ; 可変幅フォント
 ;; (set-fontset-font   "fontset-default"
 ;;                     'japanese-jisx0208
@@ -116,7 +116,7 @@
 
 (defconst my-markdown-command "perl ~/script/Markdown_1.0.1/Markdown.pl"
   "Path to markdown command.")
-(defconst my-tramp-autosave-dir "d:/sys/cygwin/tmp/"
+(defconst my-tramp-autosave-dir (concat my-local-dir "/auto-backup")
   "Path to the directory for tramp auto save files.")
 
 ;; load-path
@@ -132,7 +132,9 @@
       (normal-top-level-add-subdirs-to-load-path)))
 
 ;; load local settings
-(load (concat my-local-dir "/conf/local.el"))
+
+(if (file-exists-p (concat my-local-dir "/conf/local.el"))
+    (load (concat my-local-dir "/conf/local.el")))
 
 
 
@@ -180,15 +182,3 @@
 
 ;;; coding: utf-8-unix
 ;;; End:
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ecb-options-version "2.40"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
