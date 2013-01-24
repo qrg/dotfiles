@@ -92,8 +92,8 @@
   "Path to history file.")
 (defconst my-bookmark-file   (concat my-local-dir "/bookmark")
   "Path to bookmark file for emacs-w3m.el.")
-(defconst my-server-file     (concat my-local-dir "/server")
-  "Path to Emacs server file.")
+(defconst my-server-dir      (concat my-local-dir "/server")
+  "Path to Emacs server dir.")
 (defconst my-url-dir         (concat my-local-dir "/url")
   "Path to url file for emacs-w3m.el.")
 

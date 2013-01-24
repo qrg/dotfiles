@@ -7,7 +7,7 @@
 
 ;; server start for emacs-client
 (require 'server)
-(setq server-auth-dir my-server-file)
+;(setq server-auth-dir my-server-dir)
 (unless (server-running-p)(server-start))
 
 ;; Using emacs --daemon and emacsclient I have often had cause to use emacs at the terminal,

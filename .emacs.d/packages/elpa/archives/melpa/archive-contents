@@ -2119,7 +2119,7 @@
 	     [(20100517 820)
 	      nil "Kill text between delimiters. [source: github]" single])
  (deft .
-   [(20130124 1042)
+   [(20130124 1116)
     nil "quickly browse, filter, and edit plain text notes [source: git]" single])
  (deferred .
    [(20120306 1807)

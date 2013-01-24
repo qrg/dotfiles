@@ -31,8 +31,11 @@ alias vi='vim'
 
 # Emacs Server -----------------------------------------------------------------
 # if emacsserver was enable, use emacsclient, or not, use emacs
-alias e='emacsclient -n -f ~/.emacs.d/var/server/server -a emacs '
-alias emacsclient='emacsclient -n -f ~/.emacs.d/var/server/server -a emacs '
+#alias e='emacsclient -n -f ~/.emacs.d/local/server/server -a emacs '
+#alias emacsclient='emacsclient -n -f ~/.emacs.d/local/server/server -a emacs '
+alias e='emacsclient -n -a emacs '
+alias emacsclient='emacsclient -n -a emacs '
+
 # -n, --no-wait
 #     Don't wait for the server to return
 #

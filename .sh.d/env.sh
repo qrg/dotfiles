@@ -2,9 +2,9 @@
 
 export LANG=ja_JP.UTF-8
 
-#export EDITOR=emacsclient
-#export VISUAL=emacsclient
-#export ALTERNATE_EDITOR=emacs
+export EDITOR=emacsclient
+export VISUAL=emacsclient
+export ALTERNATE_EDITOR=emacs
 
 # cygwin --------------------------------------------------------------
 cygwin=false
