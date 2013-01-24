@@ -1,7 +1,14 @@
 #.vim/bundle
 .emacs.d/.scratch-log*
 .emacs.d/ac-comphist.dat
-.emacs.d/local/*
+.emacs.d/local/bookmark
+.emacs.d/local/history
+.emacs.d/local/places
+.emacs.d/local/recentf
+.emacs.d/local/scratch-log
+.emacs.d/local/scratch-log-prev
+.emacs.d/local/session
+.emacs.d/local/url/cookies
 *zcompdump
 zcompdump*
 .zsh.d/local/zsh-history
@@ -13,7 +20,6 @@ gvimwinpos
 .vim/local/swap/*.*
 .vim/local/undo/*.*
 !.emacs.d/local/.gitkeep
-!.emacs.d/local/*/.gitkeep
 !.zsh.d/local/.gitkeep
 !.vim/local/backup/.gitkeep
 !.vim/local/swap/.gitkeep
