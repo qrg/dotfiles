@@ -1,6 +1,6 @@
-set guifont=DjvSAKA-mono:h10
-set guifontwide=DjvSAKA-mono:h10
-set antialias
+set guifont=HrgnConsolas
+set guifontwide=HrgnConsolas
+"set antialias
 
 colorscheme molokai-q
 
