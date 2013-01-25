@@ -63,18 +63,18 @@ set nobackup
 " TODO git commit 時 session を read/write するのを避ける良い方法なにか
 " 現状だと gvim のときだけ session 読み書きする
 
-if has("gui_running")
+"if has("gui_running")
     " restore the previous session when vim started
-    source ~/.vim/local/session.vim
+"    source ~/.vim/local/session.vim
 
     " save the current session when vim terminated
     " '!' option overwrite the session file
-    autocmd VimLeave * mksession! ~/.vim/local/session.vim
+"    autocmd VimLeave * mksession! ~/.vim/local/session.vim
 
     " session options
-    set sessionoptions=blank,buffers,curdir,folds,help,resize,slash,
-                  \tabpages,unix,winpos,winsize
-endif
+"    set sessionoptions=blank,buffers,curdir,folds,help,resize,slash,
+"                  \tabpages,unix,winpos,winsize
+"endif
 
 " undo history -------------------------------------------------------
 if has('persistent_undo')
