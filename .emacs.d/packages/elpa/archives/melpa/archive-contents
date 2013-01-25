@@ -456,12 +456,12 @@
 	    [(20121227 1032)
 	     nil "Rip Clojure namespaces apart and rebuild them. [source: github]" single])
  (skewer-mode .
-	      [(20130115 1129)
+	      [(20130124 2234)
 	       ((simple-httpd
 		 (1 4 0))
 		(js2-mode
 		 (20090723)))
-	       "live browser JavaScript interaction [source: github]" tar])
+	       "live browser JavaScript and CSS interaction [source: github]" tar])
  (simplenote .
 	     [(20121119 2209)
 	      nil "Interact with simple-note.appspot.com [source: github]" single])
@@ -670,7 +670,7 @@
 		[(20091217 1955)
 		 nil "major mode for editing protocol buffers. [source: svn]" single])
  (projmake-mode .
-		[(20130123 1241)
+		[(20130124 1603)
 		 nil "Project oriented automatic builder and error highlighter, flymake for projects [source: github]" tar])
  (projectile .
 	     [(20130115 1907)
@@ -1020,7 +1020,7 @@
 		     [(20121011 2145)
 		      nil "Tiny functionality enhancements for evaluating sexps. [source: github]" single])
  (nrepl .
-	[(20130124 426)
+	[(20130124 1734)
 	 ((clojure-mode
 	   (1 11)))
 	 "Client for Clojure nREPL [source: github]" single])
@@ -2119,7 +2119,7 @@
 	     [(20100517 820)
 	      nil "Kill text between delimiters. [source: github]" single])
  (deft .
-   [(20130124 1116)
+   [(20130124 1352)
     nil "quickly browse, filter, and edit plain text notes [source: git]" single])
  (deferred .
    [(20120306 1807)
