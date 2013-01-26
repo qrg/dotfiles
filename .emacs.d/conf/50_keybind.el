@@ -47,6 +47,10 @@ Otherwise Execute the current buffer as Lisp code / eval-buffer."
 (global-set-key "\M-r\M-R" 'replace-string)
 (global-set-key "\M-r\M-E" 'replace-regexp)
 
+
+(global-set-key "\C-[return]" 'cua-set-rectangle-mark)
+(global-set-key "\C-^"  'cua-set-rectangle-mark) ; terminal
+
 ;; -----------------------------------------------------------------------------
 ;; Toggle Truncate Lines
 ;; -----------------------------------------------------------------------------
