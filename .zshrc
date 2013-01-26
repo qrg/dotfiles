@@ -24,13 +24,10 @@ TwCompletionDir=${ZshPluginDir}/tw-zsh-completion
 # cf.) man zshcompsys
 # -----------------------------------------------------------------------------
 
-# incr-0.2.zsh の後継がauto-fu.zsh
-# incr-0.2.zsh
-# if [ -f ${ZDOTDIR}/plugin/incr-0.2.zsh ]; then
-#     source ${ZDOTDIR}/plugin/incr-0.2.zsh
-# fi
-
+# plugins --------------------------------------------------
 # auto-fu.zsh
+
+# load a plugin for incremental completions
 if [ -f ${AutoFuFile} ]; then
     source ${AutoFuFile}
     function zle-line-init (){ auto-fu-init }
@@ -40,8 +37,16 @@ if [ -f ${AutoFuFile} ]; then
 fi
 
 # additional zsh-completions
-fpath=(${ZshCompletionsDir} $fpath)
-fpath=(${TwCompletionDir} $fpath)
+if [ -f ${ZshCompletionsDir} ]; then
+    fpath=(${ZshCompletionsDir} $fpath)
+fi
+
+# tw-rubygem 補完 http://blog.glidenote.com/blog/2012/10/06/tw-zsh-completion/
+if [ -f ${TwCompletionDir} ]; then
+    fpath=(${TwCompletionDir} $fpath)
+fi
+
+# ----------------------------------------------------------
 
 # enable complement with sudo
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
@@ -51,15 +56,21 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
 # ファイル補完候補に色を付ける
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# 補完の時に大文字小文字を区別しない(ただし大文字を打った場合は小文字に変換しない)
+# 補完の時に大文字小文字を区別しない
+# ただし大文字を打った場合は小文字に変換しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 
 # zsh basic completion
 autoload -U compinit
+
+# -d オプションで zcompdump ファイルを ${ZshCompFile} に指定した
+# パス,ファイル名で保存する
+# たまにうまくいかず ~/.zompdump が出来る。よくわからない
 compinit -u -d ${ZshCompFile}
 
 # git-completion
+# bash, zsh 兼用の git 補完関数を有効化
 autoload bashcompinit
 bashcompinit
 if [ -f ${GitCompletionFile} ]; then
@@ -176,6 +187,9 @@ setopt extended_history
 #    source ${GitPromptFile}
 #fi
 
+# $colors[red] のような記述で色指定する方法を有効化
+autoload -U colors && colors
+
 PROMPT="
 %F{green}%n@%m %F{cyan}%f%~%F{gray} ---  %D{%m}.%D{%d} $(LANG=C date +'%a') %D{%T}$(LANG=ja_JP.UTF-8)%f
 %(!.#.$) "
@@ -188,15 +202,16 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 
 # 下のformatsの値をそれぞれの変数に入れてくれる機能の、変数の数の最大。
-# デフォルトだと2くらいなので、指定しておかないと、下のformatsがほぼ動かない。
+# デフォルトだと 2 くらい
+# 指定しておかないと、下のformatsがほぼ動かない。
 zstyle ':vcs_info:*' max-exports 10
 
-# 左から順番に、vcs_info_msg_{n}_ という名前の変数に格納されるので、下で利用する
+# 左から順番に vcs_info_msg_{n}_ という名前の変数に格納されるので、下で利用する
 zstyle ':vcs_info:*' formats '%R' '%S' '%b' '%s'
 # 状態が特殊な場合のformats
 zstyle ':vcs_info:*' actionformats '%R' '%S' '%b|%a' '%s'
 
-# 4.3.10以上の場合は、check-for-changesという機能を使う。
+# zsh 4.3.10以上の場合は、check-for-changesという機能を使う。
 autoload -Uz is-at-least
 if is-at-least 4.3.10; then
     zstyle ':vcs_info:*' check-for-changes true
@@ -204,10 +219,8 @@ if is-at-least 4.3.10; then
     zstyle ':vcs_info:*' actionformats '%R' '%S' '%b|%a' '%s' '%c' '%u'
 fi
 
-# zshのPTOMPTに渡す文字列は、可読性がそんなに良くなくて、読み書きしたり、つまりデバッグが
-# 大変なため、文字列を組み立てるのは関数でやることにする。
-# そのほうが分岐などを追加するのが楽。
-# この先、追加で表示させたい情報はいろいろでてくるとおもうし。
+# zshのPTOMPTに渡す文字列は可読性があまり良くないため
+# 文字列を組み立てるのは関数で行う
 function echo_rprompt () {
     local repos branch st color
 
@@ -296,7 +309,7 @@ export MYSQL_PS1="\n$GRAY [MySQL] $GREEN\u$GRAY@$GREEN\h $CYAN\d $GRAY\v $GRAY -
 # -----------------------------------------------------------------------------
 # title
 # -----------------------------------------------------------------------------
-
+# user@host: current/dir/path を window title に表示
 case "${TERM}" in
   kterm*|xterm*|rxvt*)
     precmd() {
@@ -312,9 +325,9 @@ esac
 # no beep sound when complete list displayed
 setopt nolistbeep
 
-# show time taken to finish off commands
-# when it takes more than value number (sec)
-REPORTTIME=1
+# ここで設定した秒数以上の時間を必要とした処理のあとは統計情報を表示する
+# 処理所用時間, CPU使用率 など
+REPORTTIME=3
 
 # ------------------------------------------------------------------------------
 # keybind
@@ -332,11 +345,14 @@ bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
 # IGNOREEOF forces the user to type exit or logout, instead of just pressing ^D.
-# ^D でログアウトさせない(ミスタイプによる意図しないログアウト防止). ただし10回連続で ^D すると ログアウト.
+# ^D で logout させない(ミスタイプによる意図しないログアウト防止).
+# ただし10回連続で ^D すると logout.
 # TODO なんか効いてないぽい
 setopt IGNOREEOF
 
 # ^S で stop しない
+# ^S は ^R で command history から incremental search する機能の forward
+# として使いたい
 stty stop undef
 
 # 履歴から補完機能を on/off
@@ -355,6 +371,8 @@ fi
 # ------------------------------------------------------------------------------
 # functions
 # ------------------------------------------------------------------------------
+# ターミナルアプリで利用できる256色を一覧表示する。256色正しく表示されるか確認用
+# `$ showcolors` として使う
 function showcolors() {
     for ((f = 0; f < 255; f++)); do
         printf "\e[38;5;%dm %3d#\e[m" $f $f
@@ -364,4 +382,3 @@ function showcolors() {
     done
     echo
 }
-
