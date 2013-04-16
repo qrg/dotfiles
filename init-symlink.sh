@@ -13,6 +13,7 @@ ln -Fisv $PWD/.tmux.conf $HOME
 ln -Fisv $PWD/.vimrc $HOME
 ln -Fisv $PWD/.gvimrc $HOME
 ln -Fisv $PWD/.zshrc $HOME
+ln -Fisv $PWD/.tidyrc $HOME
 
 # ln
 # -d, -F, --directory    スーパーユーザがディレクトリに対するハードリンクを

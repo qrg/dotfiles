@@ -39,20 +39,22 @@ noremap! <C-a> <Home>
 noremap! <C-e> <End>
 
 " complement brackets
-inoremap < <><LEFT>
-inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-inoremap ( ()<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-inoremap ` ``<LEFT>
-vnoremap < "zdi<<C-R>z><Esc>
-vnoremap { "zdi{<C-R>z}<Esc>
-vnoremap [ "zdi[<C-R>z]<Esc>
-vnoremap ( "zdi(<C-R>z)<Esc>
-vnoremap " "zdi"<C-R>z^V"<Esc>
-vnoremap ' "zdi'<C-R>z'<Esc>
-vnoremap ` "zdi`<C-R>z`<Esc>
+" quotation や bracket 入力時に2つ入れる
+" 機械的に挿入されてスマートじゃないのでやめる
+"inoremap < <><LEFT>
+"inoremap { {}<LEFT>
+"inoremap [ []<LEFT>
+"inoremap ( ()<LEFT>
+"inoremap " ""<LEFT>
+"inoremap ' ''<LEFT>
+"inoremap ` ``<LEFT>
+"vnoremap < "zdi<<C-R>z><Esc>
+"vnoremap { "zdi{<C-R>z}<Esc>
+"vnoremap [ "zdi[<C-R>z]<Esc>
+"vnoremap ( "zdi(<C-R>z)<Esc>
+"vnoremap " "zdi"<C-R>z^V"<Esc>
+"vnoremap ' "zdi'<C-R>z'<Esc>
+"vnoremap ` "zdi`<C-R>z`<Esc>
 
 " 削除でレジスタに格納しない
 " TODO 効いてない気がする

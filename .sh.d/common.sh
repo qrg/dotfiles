@@ -5,6 +5,8 @@ CommonDir=~/dotfiles/.sh.d
 AliasesFile=${CommonDir}/aliases.sh
 EnvFile=${CommonDir}/env.sh
 
+NvmFile=~/.nvm/nvm.sh
+
 CommonPluginDir=${CommonDir}/plugin
 GitCompletionFile=${CommonPluginDir}/git-completion.bash
 
@@ -24,6 +26,13 @@ fi
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ${AliasesFile} ]; then
 	source ${AliasesFile}
+fi
+
+# -----------------------------------------------
+# nvm
+# -----------------------------------------------
+if [ -f ${NvmFile} ]; then
+	source ${NvmFile}
 fi
 
 # -----------------------------------------------

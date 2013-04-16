@@ -12,6 +12,7 @@
 .emacs.d/local/url/cookies
 *zcompdump
 zcompdump*
+.chpwd-recent-dirs
 .zsh.d/local/zsh-history
 .zsh.d/local/*
 .vim/.netrwhist

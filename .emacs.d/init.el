@@ -5,11 +5,12 @@
 ;; LANGUAGE
 ;;###############################################################################
 (set-language-environment "Japanese")
-(set-keyboard-coding-system 'japanese-shift-jis)
 
 ; 文字コード UTF-8 改行コード LF
-;(set-terminal-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
+;(set-keyboard-coding-system 'japanese-cp932)
+
 (set-buffer-file-coding-system 'utf-8-unix)
 ; 極力UTF-8とする
 (prefer-coding-system 'utf-8-unix)
@@ -131,12 +132,6 @@
   (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
       (normal-top-level-add-subdirs-to-load-path)))
 
-;; load local settings
-
-(if (file-exists-p (concat my-local-dir "/conf/local.el"))
-    (load (concat my-local-dir "/conf/local.el")))
-
-
 
 ;; -----------------------------------------------------------------------------
 ;; additional info directory path
@@ -178,6 +173,16 @@
 
 ;; ファイルロード後,変数`init-loader-show-log-after-init'の値がnon-nilなら,ログバッファを表示する関数を`after-init-hook'へ追加する.
 ;; ログの表示は, M-x init-loader-show-log でも可能.
+
+
+
+
+;;###############################################################################
+;; load local settings
+;;###############################################################################
+
+(if (file-exists-p (concat my-local-dir "/conf/local.el"))
+    (load (concat my-local-dir "/conf/local.el")))
 
 
 ;;; coding: utf-8-unix

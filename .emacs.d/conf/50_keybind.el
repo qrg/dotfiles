@@ -13,6 +13,10 @@
 ;; Redo
 (global-unset-key (kbd "C-S-/"))
 (global-set-key   (kbd "C-S-z") 'redo )
+(global-set-key   (kbd "") 'redo ) ; for win ssh -> linux
+
+;; suspend emacs
+(global-set-key   (kbd "C-M-z") 'suspend-emacs )
 
 ;; select all
 (global-set-key (kbd "C-a") 'mark-whole-buffer )
@@ -35,9 +39,8 @@ Otherwise Execute the current buffer as Lisp code / eval-buffer."
 ;; both of `C-x k` and `C-x C-k` works as `kill-buffer`
 (global-set-key "\C-x\C-k" 'kill-buffer)
 
+; helm を利用するので bs-show は使わない
 ;(global-set-key "\C-x\C-b" 'bs-show)
-(global-set-key "\C-x\C-b" 'anything-buffers+)
-
 
 (define-prefix-command 'meta-r-prefix)
 (global-set-key "\M-r" 'meta-r-prefix)
@@ -225,14 +228,24 @@ Otherwise Execute the current buffer as Lisp code / eval-buffer."
 (global-set-key (kbd "<C-wheel-up>") 'font-big)
 
 ;; -----------------------------------------------------------------------------
-;; anything
+;; helm
 ;; -----------------------------------------------------------------------------
-(global-set-key "\C-xrl" 'anything-bookmarks)
-(global-set-key "\C-b"   'anything-bookmarks)
-(global-set-key "\C-\M-f" 'anything-for-files)
 
+;; (global-set-key (kbd "C-b")     'anything-bookmarks)
+;; (global-set-key (kbd "C-\ M-f") 'anything-for-files)
+(global-set-key   (kbd "C-b")   'helm-bookmarks)
+(global-set-key   (kbd "C-M-f") 'helm-mini)
+
+;; (global-set-key (kbd "C-x C-b") 'anything-buffers+)
+(global-set-key   (kbd "C-x C-b") 'helm-buffers-list)
 (global-unset-key (kbd "C-x C-z"))
-(global-set-key (kbd "C-x C-z") 'anything-buffers+)
+(global-set-key   (kbd "C-x C-z") 'helm-recentf)
+
+(global-set-key   (kbd "C-h a")   'helm-c-apropos)
+(global-unset-key (kbd "C-M-s"))
+(global-set-key   (kbd "C-M-s")   'helm-occur)
+
+;(global-set-key   (kbd "M-y")     'helm-show-kill-ring)
 
 ;; -----------------------------------------------------------------------------
 ;; whitespace

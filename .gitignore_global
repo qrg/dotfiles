@@ -1,9 +1,7 @@
 *.pydevproject
 .project
 .metadata
-bin/**
-tmp/**
-tmp/**/*
+bin
 *.tmp
 *.bak
 *.swp
@@ -162,4 +160,27 @@ _notes/*
 *.sublime-workspace
 *.sublime_session
 *.last-run
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# SASS Ignores - "Sassy CSS" http://sass-lang.com/
+*.sass-cache
+
+# Emacs
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+
+# Org-mode
+.org-id-locations
+
+# Vim
+Session.vim
+.netrwhist
 

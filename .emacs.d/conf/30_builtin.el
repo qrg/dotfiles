@@ -286,6 +286,9 @@
 (setq ring-bell-function 'ignore)                ; ビープ音を消す
 (auto-image-file-mode 1)                         ; visiting of image files as imagse
 
+;; disable case sensitive
+(custom-set-variables '(read-file-name-completion-ignore-case t))
+
 ;; Whether movement off the edge of the frame wraps around.
 ;; The minibuffer is skipped over in up/down movements if it is inactive.
 (require 'windmove)

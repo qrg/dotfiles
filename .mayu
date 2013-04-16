@@ -75,7 +75,7 @@ key    m0-~m1-*    =
     def subst A                = S-CircumflexAccent    # ^
     def subst S                = CircumflexAccent      # ~
     def subst D                = S-YenSign             # |
-    def subst F                = YenSign               # \
+    def subst F                = BackSlash             # \
     def subst H                = S-_7                  # '
     def subst S-H              = S-_3                  # #
     def subst J                = S-_8                  # (
@@ -185,4 +185,3 @@ key m3-* =
 # --------------------------------------------------------------------
 
 key ~C-~M-~S-*NL-*CL-*SL-*KL-*IL-~IC-*MAX-*MIN-*MMAX-*MMIN-    =
-

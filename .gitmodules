@@ -13,3 +13,24 @@
 [submodule ".zsh.d/plugin/tw-zsh-completion"]
 	path = .zsh.d/plugin/tw-zsh-completion
 	url = git://github.com/glidenote/tw-zsh-completion.git
+[submodule "/home/qurage/dotfiles/.zsh.d/plugin/zsh-syntax-highlighting"]
+	path = /home/qurage/dotfiles/.zsh.d/plugin/zsh-syntax-highlighting
+	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "/home/qurage/dotfiles/.zsh.d/plugin/powerline-shell"]
+	path = /home/qurage/dotfiles/.zsh.d/plugin/powerline-shell
+	url = git://github.com/milkbikis/powerline-shell.git
+[submodule "/home/qurage/dotfiles/.vim/bundle/vim-powerline"]
+	path = /home/qurage/dotfiles/.vim/bundle/vim-powerline
+	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule "/home/qurage/dotfiles/.zsh.d/plugin/z"]
+	path = /home/qurage/dotfiles/.zsh.d/plugin/z
+	url = git://github.com/rupa/z.git
+[submodule "/home/qurage/dotfiles/.zsh.d/plugin/oh-my-zsh"]
+	path = /home/qurage/dotfiles/.zsh.d/plugin/oh-my-zsh
+	url = git://github.com/robbyrussell/oh-my-zsh.git
+[submodule "/home/qurage/dotfiles/.emacs.d/packages/manual-install/emacs-powerline"]
+	path = /home/qurage/dotfiles/.emacs.d/packages/manual-install/emacs-powerline
+	url = git://github.com/jonathanchu/emacs-powerline.git
+[submodule "/home/qurage/dotfiles/.zsh.d/plugin/zaw"]
+	path = /home/qurage/dotfiles/.zsh.d/plugin/zaw
+	url = git://github.com/zsh-users/zaw.git

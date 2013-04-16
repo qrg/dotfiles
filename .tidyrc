@@ -1,0 +1,14 @@
+// @(#) HTML Tidy Configuration Options
+
+char-encoding: raw
+doctype: "<!doctype html>"
+gnu-emacs: yes
+markup: no
+new-blocklevel-tags: section,article,aside,hgroup,header,footer,nav,figure,figcaption,video,audio,canvas
+new-empty-tags: source,command,embed,keygen,track,wbr
+new-inline-tags: mark,progress,meter,time,ruby,rt,rp,bdi,bdo,summary,datalist,output
+quiet: yes
+indent: yes
+indent-spaces: 4
+tab-size: 4
+wrap: 100

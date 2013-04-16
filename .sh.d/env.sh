@@ -7,6 +7,7 @@ export VISUAL=emacsclient
 export ALTERNATE_EDITOR=emacs
 
 # cygwin --------------------------------------------------------------
+# cygwin の場合にだけ読み込む
 cygwin=false
 
 case "$(uname)" in
@@ -20,8 +21,13 @@ if $cygwin; then
   export TEMP=/tmp
 fi
 
-# ruby with rbenv -----------------------------------------------------
+# rbenv & phpenv -------------------------------------------------------
+# .rbenv ディレクトリが home にあればパスを通す
+# phpenv は rbenv を内部利用しているため先に rbenv に PATH を通す
 if [ -d $HOME/.rbenv/bin ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
+  export PATH="$PATH:$HOME/.rbenv/bin:$HOME/.phpenv/bin"
   eval "$(rbenv init -)"
+  eval "$(phpenv init -)"
 fi
+
+
