@@ -25,9 +25,15 @@ fi
 # .rbenv ディレクトリが home にあればパスを通す
 # phpenv は rbenv を内部利用しているため先に rbenv に PATH を通す
 if [ -d $HOME/.rbenv/bin ]; then
-  export PATH="$PATH:$HOME/.rbenv/bin:$HOME/.phpenv/bin"
+  export PATH="$PATH:$HOME/.rbenv/bin"
+
   eval "$(rbenv init -)"
-  eval "$(phpenv init -)"
+
+  if [ -d $HOME/.phpenv/bin ]; then
+    export PATH="$PATH:$HOME/.rbenv/bin:$HOME/.phpenv/bin"
+    eval "$(phpenv init -)"
+  fi
+
 fi
 
 
