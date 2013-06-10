@@ -5,9 +5,17 @@ alias cp='cp -iv'                # -i, --interactive  prompt before overwrite
 alias mv='mv -iv'                # -i, --interactive  prompt before overwrite
 alias mkdir='mkdir -v'
 alias rmdir='rmdir -v'
-alias ls='ls --color=auto'
-alias ll='ls -l --color=auto'
-alias la='ls -lap --color=auto'
+
+if [ $(uname) = 'Darwin' ]; then
+    alias ls='ls -G'
+    alias ll='ls -lG'
+    alias la='ls -lapG'
+else
+    alias ls='ls --color=auto'
+    alias ll='ls -l --color=auto'
+    alias la='ls -lap --color=auto'
+fi
+
 alias chown='chown -v'
 alias chmod='chmod -v'
 alias cat='cat -n'              # -n, --number    number all output lines

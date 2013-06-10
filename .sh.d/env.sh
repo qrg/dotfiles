@@ -2,9 +2,9 @@
 
 export LANG=ja_JP.UTF-8
 
-export EDITOR=emacsclient
-export VISUAL=emacsclient
-export ALTERNATE_EDITOR=emacs
+#export EDITOR=emacsclient
+#export VISUAL=emacsclient
+#export ALTERNATE_EDITOR=emacs
 
 # cygwin --------------------------------------------------------------
 # cygwin の場合にだけ読み込む
@@ -34,6 +34,12 @@ if [ -d $HOME/.rbenv/bin ]; then
     eval "$(phpenv init -)"
   fi
 
+fi
+
+if [ `uname` = 'Darwin' -a -d $HOME/.rbenv/bin ]; then
+  export RBENV_ROOT="/usr/local/rbenv"
+  export PATH="/usr/local/rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
 fi
 
 
