@@ -36,10 +36,18 @@ if [ -d $HOME/.rbenv/bin ]; then
 
 fi
 
-if [ `uname` = 'Darwin' -a -d $HOME/.rbenv/bin ]; then
+# MacOSX
+if [ `uname` = 'Darwin' -a -d /usr/local/rbenv/bin ]; then
   export RBENV_ROOT="/usr/local/rbenv"
   export PATH="/usr/local/rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 fi
 
+# CentOS
+if [ `uname` = 'Linux' -a -d /usr/local/rbenv/bin ]; then
+  export PATH=$PATH:/usr/local/rbenv/bin
+  export RBENV_DIR="/usr/local/rbenv"
+  export RBENV_ROOT="/usr/local/rbenv"
+  eval "$(rbenv init -)"
+fi
 
