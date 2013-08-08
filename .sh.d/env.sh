@@ -25,22 +25,26 @@ fi
 # .rbenv ディレクトリが home にあればパスを通す
 # phpenv は rbenv を内部利用しているため先に rbenv に PATH を通す
 if [ -d $HOME/.rbenv/bin ]; then
-  export PATH="$PATH:$HOME/.rbenv/bin"
+  export PATH=$PATH:$HOME/.rbenv/bin
 
   eval "$(rbenv init -)"
 
   if [ -d $HOME/.phpenv/bin ]; then
-    export PATH="$PATH:$HOME/.rbenv/bin:$HOME/.phpenv/bin"
+    export PATH=$PATH:$HOME/.rbenv/bin:$HOME/.phpenv/bin
     eval "$(phpenv init -)"
   fi
 
 fi
 
-# MacOSX
-if [ `uname` = 'Darwin' -a -d /usr/local/rbenv/bin ]; then
-  export RBENV_ROOT="/usr/local/rbenv"
-  export PATH="/usr/local/rbenv/bin:$PATH"
+# MacOS
+if [ `uname` = 'Darwin' -a -d $HOME/.rbenv/bin ]; then
+  export RBENV_ROOT=/usr/local/rbenv
+  export PATH=/usr/local/rbenv/bin:$PATH
   eval "$(rbenv init -)"
+
+  # for homebrew
+  export PATH=/usr/local/bin:$PATH
+  export PATH=/usr/local/sbin:$PATH
 fi
 
 # CentOS

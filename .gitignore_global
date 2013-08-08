@@ -167,6 +167,7 @@ _notes/*
 *.iws
 .idea/
 mysql-connector*
+atlassian-ide-plugin.xml
 
 # SASS Ignores - "Sassy CSS" http://sass-lang.com/
 *.sass-cache
