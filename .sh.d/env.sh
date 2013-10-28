@@ -30,6 +30,7 @@ if [ -d $HOME/.pyvenv/bin ]; then
     source $HOME/.pyvenv/bin/activate
 fi
 
+
 # cygwin --------------------------------------------------------------
 # cygwin の場合にだけ読み込む
 cygwin=false

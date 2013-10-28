@@ -5,8 +5,6 @@ CommonDir=~/dotfiles/.sh.d
 EnvFile=${CommonDir}/env.sh
 AliasesFile=${CommonDir}/aliases.sh
 
-NvmFile=~/.nvm/nvm.sh
-
 CommonPluginDir=${CommonDir}/plugin
 GitCompletionDir=${CommonPluginDir}/git-completion
 
@@ -29,15 +27,6 @@ if [ -e ${AliasesFile} ]; then
 fi
 
 # -----------------------------------------------
-# nvm
-# -----------------------------------------------
-if [ -e ${NvmFile} ]; then
-    source ${NvmFile}
-    #nvm use default
-    nvm use v0.10.21
-fi
-
-# -----------------------------------------------
 # complement
 # -----------------------------------------------
 if [ -e ${GitCompletionDir} ]; then
@@ -50,4 +39,15 @@ if [ -e ${GitCompletionDir} ]; then
             fpath=(${GitCompletionDir} $fpath)
         ;;
     esac
+fi
+
+# -----------------------------------------------
+# nvm
+# -----------------------------------------------
+NvmFile=~/.nvm/nvm.sh
+
+if [ -e ${NvmFile} ]; then
+    source ${NvmFile}
+    #nvm use default
+    nvm use v0.10.21
 fi
