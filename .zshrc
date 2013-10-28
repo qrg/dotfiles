@@ -2,6 +2,7 @@
 # cf.) man zshoptions
 # cf.) http://www.gentei.org/~yuuji/rec/pc/zsh/zshcompsys.txt
 #
+
 # =============================================================================
 # path
 # =============================================================================
@@ -44,14 +45,14 @@ zstyle ':completion:*' recent-dirs-insert both
 zstyle ':filter-select' case-insensitive yes
 
 # load
-#if [ -f ${ZawFile} ]; then
+#if [ -e ${ZawFile} ]; then
 #    source ${ZawFile}
 #fi
 
 # ----------------------------------------------------------
 # auto-fu.zsh
 # C-g で toggle auto-fu on/off
-if [ -f ${AutoFuFile} ]; then
+if [ -e ${AutoFuFile} ]; then
     source ${AutoFuFile}
     function zle-line-init (){ auto-fu-init }
     zle -N zle-line-init
@@ -61,7 +62,7 @@ fi
 
 # ----------------------------------------------------------
 # additional zsh-completions
-if [ -f ${ZshCompletionsDir} ]; then
+if [ -e ${ZshCompletionsDir} ]; then
     fpath=(${ZshCompletionsDir} $fpath)
 fi
 
@@ -81,7 +82,7 @@ _Z_DATA=${ZshLocalDir}/zjumpdata
 
 # ----------------------------------------------------------
 # zsh syntax hightlighting
-if [ -f ${ZshSyntaxHighlightingFile} ]; then
+if [ -e ${ZshSyntaxHighlightingFile} ]; then
     source ${ZshSyntaxHighlightingFile}
 fi
 
@@ -89,8 +90,16 @@ fi
 # tw-rubygem 補完
 # http://blog.glidenote.com/blog/2012/10/06/tw-zsh-completion/
 #
-if [ -f ${TwCompletionDir} ]; then
+if [ -e ${TwCompletionDir} ]; then
     fpath=(${TwCompletionDir} $fpath)
+fi
+
+# ==============================================================================
+# common shell settings
+# ==============================================================================
+# common settings with bash and zsh
+if [ -e ${CommonFile} ]; then
+    source ${CommonFile}
 fi
 
 # =============================================================================
@@ -162,14 +171,6 @@ add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 5000
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
-
-# git-completion
-# bash, zsh 兼用の git 補完関数を有効化
-autoload bashcompinit
-bashcompinit
-if [ -f ${GitCompletionFile} ]; then
-    source ${GitCompletionFile}
-fi
 
 # auto change directory
 setopt auto_cd
@@ -534,14 +535,6 @@ bindkey "^[[1;5A" cdup
 bindkey '^h'  zaw-history
 bindkey '^[f' zaw-git-files
 #bindkey '^r'  zaw-cdr
-
-# ==============================================================================
-# common shell settings
-# ==============================================================================
-# common settings with bash and zsh
-if [ -f ${CommonFile} ]; then
-    source ${CommonFile}
-fi
 
 
 # ==============================================================================
