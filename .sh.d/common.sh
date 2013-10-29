@@ -7,6 +7,7 @@ AliasesFile=${CommonDir}/aliases.sh
 
 CommonPluginDir=${CommonDir}/plugin
 GitCompletionDir=${CommonPluginDir}/git-completion
+NvmFile=~/.nvm/nvm.sh
 
 # -----------------------------------------------
 # shell environment variable
@@ -44,8 +45,6 @@ fi
 # -----------------------------------------------
 # nvm
 # -----------------------------------------------
-NvmFile=~/.nvm/nvm.sh
-
 if [ -e ${NvmFile} ]; then
     source ${NvmFile}
     #nvm use default
