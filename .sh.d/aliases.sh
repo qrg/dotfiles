@@ -36,6 +36,7 @@ alias wget='wget -cvS'
 #     Print the headers sent by HTTP servers and responses sent by FTP servers.
 
 alias vi='vim'
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 # Emacs Server -----------------------------------------------------------------
 # if emacsserver was enable, use emacsclient, or not, use emacs
