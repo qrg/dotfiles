@@ -14,7 +14,7 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/bin:$PATH"
 # phpenv は rbenv を内部利用しているため先に rbenv に PATH を通す
 if [ -d $HOME/.rbenv/bin -o -d /usr/local/rbenv/bin ]; then
 
-  if [-d /usr/local/rbenv ]; then
+  if [ -d /usr/local/rbenv ]; then
     export RBENV_ROOT=/usr/local/var/rbenv
   else
     export RBENV_ROOT=$HOME/.rbenv
