@@ -45,9 +45,9 @@ zstyle ':completion:*' recent-dirs-insert both
 zstyle ':filter-select' case-insensitive yes
 
 # load
-#if [ -e ${ZawFile} ]; then
-#    source ${ZawFile}
-#fi
+if [ -e ${ZawFile} ]; then
+    source ${ZawFile}
+fi
 
 # ----------------------------------------------------------
 # auto-fu.zsh
