@@ -26,7 +26,7 @@ alias cal='LANG=en_US.UTF-8 cal -3'
 alias man='LANG=ja_JP.UTF-8 man'
 
 # enable aliases with sudo
-alias sudo='sudo '
+alias sudo='sudo env PATH=$PATH'
 
 alias wget='wget -cvS'
 # -c, --continue

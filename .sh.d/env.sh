@@ -7,9 +7,7 @@ export LANG=ja_JP.UTF-8
 #export ALTERNATE_EDITOR=emacs
 
 # PATH ----------------------------------------------------------------
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=/usr/local/share/bin:$PATH
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/bin:$PATH"
 
 # rbenv & phpenv --------------------------------
 # .rbenv ディレクトリが home にあればパスを通す
@@ -32,6 +30,10 @@ if [ -d $HOME/.rbenv/bin ]; then
     eval "$(phpenv init -)"
   fi
 
+elif [-d /usr/local/rbenv ]; then
+  export RBENV_ROOT=/usr/local/rbenv
+  export PATH=$RBENV_ROOT/bin:$RBENV_ROOT/shims:$PATH
+  eval "$(rbenv init -)"
 fi
 
 # pyvenv ------------------------------------
