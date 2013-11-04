@@ -15,14 +15,23 @@ export PATH=/usr/local/share/bin:$PATH
 # .rbenv ディレクトリが home にあればパスを通す
 # phpenv は rbenv を内部利用しているため先に rbenv に PATH を通す
 if [ -d $HOME/.rbenv/bin ]; then
-  export RBENV_ROOT=$HOME/.rbenv
+
+  if [ $(uname) = 'Darwin' ]; then
+    export RBENV_ROOT=/usr/local/var/rbenv
+  else
+    export RBENV_ROOT=$HOME/.rbenv
+  fi
+
   export PATH=$RBENV_ROOT/bin:$PATH
+  export PATH=$RBENV_ROOT/shims:$PATH
+
   eval "$(rbenv init -)"
 
   if [ -d $HOME/.phpenv/bin ]; then
     export PATH=$HOME/.phpenv/bin:$PATH
     eval "$(phpenv init -)"
   fi
+
 fi
 
 # pyvenv ------------------------------------
