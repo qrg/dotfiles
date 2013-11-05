@@ -32,11 +32,6 @@ if [ -d $HOME/.rbenv/bin -o -d /usr/local/rbenv/bin ]; then
 
 fi
 
-# pyvenv ------------------------------------
-if [ -d $HOME/.pyvenv/bin ]; then
-    source $HOME/.pyvenv/bin/activate
-fi
-
 
 # cygwin --------------------------------------------------------------
 # cygwin の場合にだけ読み込む
