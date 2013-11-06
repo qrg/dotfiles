@@ -241,6 +241,10 @@ SAVEHIST=1000000
 
 # ignore duplication command history list
 setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+
+# do not record if there was space at the line top
+setopt hist_ignore_space
 
 # share command history data
 setopt share_history
