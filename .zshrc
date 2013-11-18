@@ -135,7 +135,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # zsh basic completion
 autoload -U compinit
 # -d オプションで zcompdump ファイルを ${ZshCompFile} に指定したパス,ファイル名で保存する
-# たまにうまくいかず ~/.zompdump が出来る。よくわからない.
+# たまにうまくいかず ~/.zcompdump が出来る。よくわからない.
 compinit -u -d ${ZshCompFile}
 
 # 補完除外対象
@@ -243,14 +243,11 @@ SAVEHIST=1000000
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 
-# do not record if there was space at the line top
-setopt hist_ignore_space
-
-# share command history data
-setopt share_history
-
-# add timestamp with history
-setopt extended_history
+setopt hist_ignore_space  # do not record if there was space at the line top
+setopt share_history      # share command history data
+setopt extended_history   # add timestamp with history
+setopt inc_append_history # 履歴をすぐに反映
+setopt hist_reduce_blanks # 余分なスペースを削除
 
 # =============================================================================
 # prompt
