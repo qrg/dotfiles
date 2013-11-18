@@ -23,7 +23,7 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/bin:$PATH"
 # phpenv は rbenv を内部利用しているため先に rbenv に PATH を通す
 if [ -d $HOME/.rbenv ]; then
 
-  export PATH="${HOME}/bin:${HOME}/shims:$PATH"
+  export PATH="${HOME}/.rbenv/bin:${HOME}/.rbenv/shims:$PATH"
   
   eval "$(rbenv init -)"
 
