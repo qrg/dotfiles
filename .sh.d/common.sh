@@ -32,10 +32,10 @@ fi
 # -----------------------------------------------
 if [ -e ${GitCompletionDir} ]; then
     case `ps -p $$ | grep -e zsh -e bash` in
-        *-bash*)
+        *-bash*|*\ bash*)
             source ${GitCompletionDir}/git-completion.bash
         ;;
-        *-zsh*)
+        *-zsh*|*\ zsh*)
             zstyle ':completion:*:*:git:*' script ${GitCompletionDir}/git-completion.bash
             fpath=(${GitCompletionDir} $fpath)
         ;;
@@ -47,13 +47,13 @@ fi
 # -----------------------------------------------
 if [ -e ${NvmFile} ]; then
     case `ps -p $$ | grep -e zsh -e bash` in
-        *-bash*)
+        *-bash*|*\ bash*)
             source ${NvmFile}
             nvm use default
         ;;
-        *-zsh*)
+        *-zsh*|*\ zsh*)
             source ${NvmFile}
-            [ -s ~/.nvm/nvm.sh ] && . ~/.nvm/nvm.sh
+            [[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
             nvm use v0.10.22
         ;;
     esac
