@@ -46,7 +46,22 @@ fi
 # nvm
 # -----------------------------------------------
 if [ -e ${NvmFile} ]; then
-    source ${NvmFile}
-    #nvm use default
-    nvm use v0.10.21
+    case `ps -p $$ | grep -e zsh -e bash` in
+        *-bash*)
+            source ${NvmFile}
+            nvm use default
+        ;;
+        *-zsh*)
+            source ${NvmFile}
+            [ -s ~/.nvm/nvm.sh ] && . ~/.nvm/nvm.sh
+            nvm use v0.10.22
+        ;;
+    esac
 fi
+
+# -----------------------------------------------
+# tmuxinator
+# -----------------------------------------------
+[[ -s /Users/qurage/.tmuxinator/scripts/tmuxinator ]] && source /Users/qurage/.tmuxinator/scripts/tmuxinator
+
+
