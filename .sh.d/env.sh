@@ -3,8 +3,17 @@
 export LANG=ja_JP.UTF-8
 
 #export EDITOR=emacsclient
+export EDITOR=/usr/bin/vim
+if [ -s /usr/local/bin/zsh ]; then
+  export SHELL=/usr/local/bin/zsh
+else
+  export SHELL=/bin/zsh
+fi
+
 #export VISUAL=emacsclient
 #export ALTERNATE_EDITOR=emacs
+
+
 
 # PATH ----------------------------------------------------------------
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/bin:$PATH"
@@ -12,16 +21,10 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/bin:$PATH"
 # rbenv & phpenv --------------------------------
 # .rbenv ディレクトリが home にあればパスを通す
 # phpenv は rbenv を内部利用しているため先に rbenv に PATH を通す
-if [ -d $HOME/.rbenv/bin -o -d /usr/local/rbenv/bin ]; then
+if [ -d $HOME/.rbenv ]; then
 
-  if [ -d /usr/local/rbenv ]; then
-    export RBENV_ROOT=/usr/local/var/rbenv
-  else
-    export RBENV_ROOT=$HOME/.rbenv
-  fi
-
-  export PATH="$RBENV_ROOT/bin:$RBENV_ROOT/shims:$PATH"
-
+  export PATH="${HOME}/bin:${HOME}/shims:$PATH"
+  
   eval "$(rbenv init -)"
 
   # phpenv
