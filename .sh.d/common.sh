@@ -62,6 +62,6 @@ fi
 # -----------------------------------------------
 # tmuxinator
 # -----------------------------------------------
-[[ -s /Users/qurage/.tmuxinator/scripts/tmuxinator ]] && source /Users/qurage/.tmuxinator/scripts/tmuxinator
+[[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 
 
