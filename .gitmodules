@@ -34,3 +34,6 @@
 [submodule ".zsh.d/plugin/zaw"]
 	path = .zsh.d/plugin/zaw
 	url = git://github.com/zsh-users/zaw.git
+[submodule ".tmux.d/plugins/tmux-powerline"]
+	path = .tmux.d/plugins/tmux-powerline
+	url = git://github.com/erikw/tmux-powerline.git
