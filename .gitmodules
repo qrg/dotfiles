@@ -1,6 +1,6 @@
 [submodule ".zsh.d/plugin/auto-fu.zsh"]
 	path = .zsh.d/plugin/auto-fu.zsh
-	url = git://github.com/hchbaw/auto-fu.zsh.git
+	url = https://github.com/hchbaw/auto-fu.zsh.git
 [submodule ".zsh.d/plugin/zsh-completions"]
 	path = .zsh.d/plugin/zsh-completions
 	url = git://github.com/zsh-users/zsh-completions.git
@@ -37,3 +37,6 @@
 [submodule ".zsh.d/plugin/z"]
 	path = .zsh.d/plugin/z
 	url = https://github.com/rupa/z.git
+[submodule "auto-fu.zsh"]
+	path = auto-fu.zsh
+	url = https://github.com/hchbaw/auto-fu.zsh.git
