@@ -4,9 +4,6 @@
 [submodule ".zsh.d/plugin/zsh-completions"]
 	path = .zsh.d/plugin/zsh-completions
 	url = git://github.com/zsh-users/zsh-completions.git
-[submodule "neobundle.vim"]
-	path = neobundle.vim
-	url = https://github.com/Shougo/neobundle.vim
 [submodule ".vim/bundle/neobundle"]
 	path = .vim/bundle/neobundle
 	url = git://github.com/Shougo/neobundle.vim.git
@@ -37,6 +34,3 @@
 [submodule ".zsh.d/plugin/z"]
 	path = .zsh.d/plugin/z
 	url = https://github.com/rupa/z.git
-[submodule "auto-fu.zsh"]
-	path = auto-fu.zsh
-	url = https://github.com/hchbaw/auto-fu.zsh.git
