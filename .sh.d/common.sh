@@ -54,7 +54,7 @@ if [ -e ${NvmFile} ]; then
         *-zsh*|*\ zsh*)
             source ${NvmFile}
             [[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
-            nvm use v0.10.25
+            nvm use v0.10.26
         ;;
     esac
 fi
