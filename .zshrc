@@ -17,7 +17,7 @@ ZshHistFile=${ZshLocalDir}/zsh-history
 
 # ----------------------------------------------------------
 # plugin path
-ZawFile=${ZshPluginDir}/zaw/zaw.zsh
+#ZawFile=${ZshPluginDir}/zaw/zaw.zsh
 AutoFuFile=${ZshPluginDir}/auto-fu.zsh/auto-fu.zsh
 ZshSyntaxHighlightingFile=${ZshPluginDir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZshCompetionsDir=${ZshPluginDir}/zsh-completions
@@ -35,19 +35,19 @@ TwCompletionDir=${ZshPluginDir}/tw-zsh-completion
 # Trigger zaw by pressing Ctrl-x ; (^x;).
 
 # cdr
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-add-zsh-hook chpwd chpwd_recent_dirs
-zstyle ':chpwd:*' recent-dirs-max 5000
-zstyle ':chpwd:*' recent-dirs-default yes
-zstyle ':completion:*' recent-dirs-insert both
+#autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+#add-zsh-hook chpwd chpwd_recent_dirs
+#zstyle ':chpwd:*' recent-dirs-max 5000
+#zstyle ':chpwd:*' recent-dirs-default yes
+#zstyle ':completion:*' recent-dirs-insert both
 
 # disable case-sensitive
-zstyle ':filter-select' case-insensitive yes
+#zstyle ':filter-select' case-insensitive yes
 
 # load
-if [ -e ${ZawFile} ]; then
-    source ${ZawFile}
-fi
+#if [ -e ${ZawFile} ]; then
+#    source ${ZawFile}
+#fi
 
 # ----------------------------------------------------------
 # auto-fu.zsh
@@ -533,8 +533,8 @@ bindkey "^[[1;5A" cdup
 
 # zaw
 # auto-fu と併用する場合、^g を先に押す
-bindkey '^h'  zaw-history
-bindkey '^[f' zaw-git-files
+#bindkey '^h'  zaw-history
+#bindkey '^[f' zaw-git-files
 #bindkey '^r'  zaw-cdr
 
 
