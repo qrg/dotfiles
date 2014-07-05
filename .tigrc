@@ -1,5 +1,41 @@
-set show-date = relative
-set show-id = yes
 set split-view-height = 90%
 set diff-options = --patience
+
+set blob-view = line-number:yes,interval=10 \
+                text
+
+set diff-view = line-number:yes,interval=10 \
+                text
+
+set log-view = line-number:yes,interval=10 \
+               text
+
+set pager-view = line-number:yes,interval=10 \
+                 text
+
+set stage-view = line-number:yes,interval=10 \
+                 text
+
+set main-view = line-number:yes,interval=10 \
+                id:width=6 \
+                date:relative \
+                author \
+                commit-title:graph=yes,refs=yes
+
+set tree-view = author \
+                date \
+                id:width=6 \
+                file-name \
+                file-size:units \
+                line-number:yes,interval=10 \
+                mode:yes
+
+color date white default
+color line-number black default bold
+color main-head cyan default reverse
+color main-remote yellow default reverse
+color main-tracked blue default reverse
+color main-ref blue default reverse
+color diff-header yellow default reverse
+color diff-chunk cyan default reverse
 
