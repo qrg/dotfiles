@@ -14,6 +14,7 @@ mklink "%HOME%\.vimrc" "%HOME%\dotfiles\.vimrc"
 mklink "%HOME%\.gvimrc" "%HOME%\dotfiles\.gvimrc"
 mklink "%HOME%\.zshrc" "%HOME%\dotfiles\.zshrc"
 mklink "%HOME%\.tidyrc" "%HOME%\dotfiles\.tidyrc"
+mklink "%HOME%\.tidyrc" "%HOME%\dotfiles\.tigrc"
 
 
 pause

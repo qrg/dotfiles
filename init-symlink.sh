@@ -15,6 +15,7 @@ ln -Fisv $PWD/.vimrc $HOME
 ln -Fisv $PWD/.gvimrc $HOME
 ln -Fisv $PWD/.zshrc $HOME
 ln -Fisv $PWD/.tidyrc $HOME
+ln -Fisv $PWD/.tigrc $HOME
 
 # ln
 # -d, -F, --directory    スーパーユーザがディレクトリに対するハードリンクを

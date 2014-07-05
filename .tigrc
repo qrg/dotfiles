@@ -1,0 +1,5 @@
+set show-date = relative
+set show-id = yes
+set split-view-height = 90%
+set diff-options = --patience
+
