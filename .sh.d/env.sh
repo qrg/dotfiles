@@ -1,6 +1,13 @@
 # Common shell environment variable with bash and zsh --------------------------
 
 export LANG=ja_JP.UTF-8
+# see.) man setlocale
+export LC_COLLATE=ja_JP.UTF-8  # 正規表現のマッチング (範囲表現と等価クラスのマッチングを決定する) と文字列の照合 (collation)
+export LC_CTYPE=ja_JP.UTF-8    # 正規表現のマッチング、文字の分類、文字の変換、大文字小文字比較、 ワイド文字関数
+export LC_MESSAGES=ja_JP.UTF-8 # 地域化可能な自然言語メッセージ
+export LC_MONETARY=ja_JP.UTF-8 # 通貨の書式
+export LC_NUMERIC=ja_JP.UTF-8  # 数値の書式 (小数点や 3 桁ごとの区切り)
+export LC_TIME=en_US.UTF-8     # 時刻と日付けの書式
 
 #export EDITOR=emacsclient
 export EDITOR=/usr/bin/vim
