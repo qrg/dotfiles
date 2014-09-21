@@ -43,6 +43,13 @@ if [ -d $HOME/.rbenv ]; then
 fi
 
 
+
+# pyenv -----------------------------------------
+if [ -d $HOME/.pyenv ]; then
+  export PATH="${HOME}/.pyenv/shims:${PATH}"
+  eval "$(pyenv init -)"
+fi
+
 # cygwin --------------------------------------------------------------
 # cygwin の場合にだけ読み込む
 cygwin=false
