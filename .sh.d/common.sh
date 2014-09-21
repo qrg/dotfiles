@@ -6,7 +6,6 @@ EnvFile=${CommonDir}/env.sh
 AliasesFile=${CommonDir}/aliases.sh
 
 CommonPluginDir=${CommonDir}/plugin
-GitCompletionDir=${CommonPluginDir}/git-completion
 NvmFile=~/.nvm/nvm.sh
 
 # -----------------------------------------------
@@ -25,21 +24,6 @@ fi
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -e ${AliasesFile} ]; then
     source ${AliasesFile}
-fi
-
-# -----------------------------------------------
-# complement
-# -----------------------------------------------
-if [ -e ${GitCompletionDir} ]; then
-    case `ps -p $$ | grep -e zsh -e bash` in
-        *-bash*|*\ bash*)
-            source ${GitCompletionDir}/git-completion.bash
-        ;;
-        *-zsh*|*\ zsh*)
-            zstyle ':completion:*:*:git:*' script ${GitCompletionDir}/git-completion.bash
-            fpath=(${GitCompletionDir} $fpath)
-        ;;
-    esac
 fi
 
 # -----------------------------------------------

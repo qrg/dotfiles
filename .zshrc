@@ -663,3 +663,12 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+# -----------------------------------------------
+# git complement
+# -----------------------------------------------
+if [ -e "${GitCompletionDir}" ]; then
+    zstyle ':completion:*:*:git:*' script ${GitCompletionDir}/git-completion.bash
+    fpath=(${GitCompletionDir} $fpath)
+fi
+

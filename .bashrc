@@ -112,3 +112,10 @@ fi
 # common settings with bash and zsh
 [ -f ~/.sh.d/common.sh ] && . ~/.sh.d/common.sh
 
+# -----------------------------------------------
+# git complement
+# -----------------------------------------------
+if [ -e "${GitCompletionDir}" ]; then
+    . "${GitCompletionDir}"/git-completion.bash
+fi
+
