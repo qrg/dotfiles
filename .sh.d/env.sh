@@ -50,6 +50,13 @@ if [ -d $HOME/.pyenv ]; then
   eval "$(pyenv init -)"
 fi
 
+# Mac homebrew-cask
+if [ $(uname) = 'Darwin' ]; then
+  if type brew >/dev/null 2>&1; then
+    export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
+  fi
+fi
+
 # cygwin --------------------------------------------------------------
 # cygwin の場合にだけ読み込む
 cygwin=false
