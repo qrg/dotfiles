@@ -37,8 +37,8 @@ if [ -e ${NvmFile} ]; then
         ;;
         *-zsh*|*\ zsh*)
             source ${NvmFile}
-            [[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
-            nvm use v0.10.29
+            [[ -s ${HOME}/.nvm/nvm.sh ]] && . ${HOME}/.nvm/nvm.sh
+            nvm use v0.10.32
         ;;
     esac
 fi
