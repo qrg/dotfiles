@@ -16,7 +16,7 @@ fi
 
 
 # PATH ----------------------------------------------------------------
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/bin:$PATH"
+export PATH="${HOME}/scripts:/usr/local/bin:/usr/local/sbin:/usr/local/share/bin:$PATH"
 
 # rbenv & phpenv --------------------------------
 # .rbenv ディレクトリが home にあればパスを通す
