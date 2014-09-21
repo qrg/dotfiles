@@ -672,3 +672,9 @@ if [ -e "${GitCompletionDir}" ]; then
     fpath=(${GitCompletionDir} $fpath)
 fi
 
+# -----------------------------------------------
+# awscli complement
+# -----------------------------------------------
+if [ -e "${HOME}"/.pyenv/shims/aws_zsh_completer.sh ]; then
+    source "${HOME}"/.pyenv/versions/`pyenv global`/bin/aws_zsh_completer.sh
+fi

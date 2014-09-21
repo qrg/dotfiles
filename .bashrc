@@ -119,3 +119,10 @@ if [ -e "${GitCompletionDir}" ]; then
     . "${GitCompletionDir}"/git-completion.bash
 fi
 
+# -----------------------------------------------
+# awscli complement
+# -----------------------------------------------
+if [ -e "${HOME}"/.pyenv/shims/aws_zsh_completer.sh ]; then
+    complete -C aws_completer aws
+fi
+
