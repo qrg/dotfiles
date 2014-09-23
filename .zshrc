@@ -66,7 +66,6 @@ if [ -e ${ZshCompletionsDir} ]; then
     fpath=(${ZshCompletionsDir} $fpath)
 fi
 
-
 # ----------------------------------------------------------
 # z - jump around
 # https://github.com/rupa/z
@@ -678,3 +677,11 @@ fi
 if [ -e "${HOME}"/.pyenv/shims/aws_zsh_completer.sh ]; then
     source "${HOME}"/.pyenv/versions/`pyenv global`/bin/aws_zsh_completer.sh
 fi
+
+# -----------------------------------------------
+# nvm complement
+# -----------------------------------------------
+if [ -r "${NVM_DIR}"/bash_completion ]; then
+    source "${NVM_DIR}"/bash_completion
+fi
+

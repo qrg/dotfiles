@@ -120,6 +120,11 @@ if [ -e "${GitCompletionDir}" ]; then
 fi
 
 # -----------------------------------------------
+# nvm complement
+# -----------------------------------------------
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+
+# -----------------------------------------------
 # awscli complement
 # -----------------------------------------------
 if [ -e "${HOME}"/.pyenv/shims/aws_zsh_completer.sh ]; then
