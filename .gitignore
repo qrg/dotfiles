@@ -1,17 +1,15 @@
-vim/bundle
 */local/*
 *.elc
-emacs.d/.scratch-log*
-emacs.d/ac-comphist.dat
 *zcompdump
 zcompdump*
 .chpwd-recent-dirs
 vim/.netrwhist
 vim/local/
+vim/bundle/
 gvimwinpos
 
-!emacs.d/local/.gitkeep
-!zsh.d/local/.gitkeep
+!zsh/local/.gitkeep
+!vim/bundle/neobundle.vim
 !vim/local/backup/.gitkeep
 !vim/local/swap/.gitkeep
 !vim/local/undo/.gitkeep
