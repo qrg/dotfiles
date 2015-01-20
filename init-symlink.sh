@@ -1,27 +1,21 @@
 #!/bin/sh
 
-cd $(dirname $0)
+ln -sivfn dotfiles/sh/ ${HOME}/.sh
+ln -sivfn ${HOME}/dotfiles/bash_profile ${HOME}/.bash_profile
+ln -sivfn ${HOME}/dotfiles/bashrc ${HOME}/.bashrc
+ln -sivfn ${HOME}/dotfiles/zshrc ${HOME}/.zshrc
+ln -sivfn ${HOME}/dotfiles/zshenv ${HOME}/.zshenv
+ln -sivfn ${HOME}/dotfiles/zsh ${HOME}/.zsh
+ln -sivfn ${HOME}/dotfiles/tmux.conf ${HOME}/.tmux.conf
+ln -sivfn ${HOME}/dotfiles/tmux ${HOME}/.tmux
+ln -sivfn ${HOME}/dotfiles/vimrc ${HOME}/.vimrc
+ln -sivfn ${HOME}/dotfiles/gvimrc ${HOME}/.gvimrc
+ln -sivfn ${HOME}/dotfiles/vim ${HOME}/.vim
+ln -sivfn ${HOME}/dotfiles/emacs.d ${HOME}/.emacs.d
 
-ln -Fisv $PWD/.emacs.d $HOME
-ln -Fisv $PWD/.sh.d $HOME
-ln -Fisv $PWD/.vim $HOME
-ln -Fisv $PWD/.zsh.d $HOME
-ln -Fisv $PWD/.bashrc $HOME
-ln -Fisv $PWD/.gitignore_global $HOME
-ln -Fisv $PWD/.mayu $HOME
-ln -Fisv $PWD/.tmux.conf $HOME
-ln -Fisv $PWD/.tmux.d $HOME
-ln -Fisv $PWD/.vimrc $HOME
-ln -Fisv $PWD/.gvimrc $HOME
-ln -Fisv $PWD/.zshrc $HOME
-ln -Fisv $PWD/.tidyrc $HOME
-ln -Fisv $PWD/.tigrc $HOME
+mkdir -pv ${HOME}/config/git
+ln -sivfn ${HOME}/dotfiles/config/git/ignore ${HOME}/.config/git/ignore
 
-# ln
-# -d, -F, --directory    スーパーユーザがディレクトリに対するハードリンクを
-#                        作成することを許可する。(備考: スーパーユーザであっても
-#                        システムの制限で失敗することがある)
-# -i, --interactive      対象を削除するかどうか確認メッセージを表示する
-# -s, --symbolic         ハードリンクの代わりにシンボリックリンクを作成する
-# -v, --verbose          print name of each linked file
+ln -sivfn ${HOME}/dotfiles/tigrc ${HOME}/.tigrc
+#ln -Fisv ${HOME}/dotfiles/mayu ${HOME}/.mayu
 

@@ -1,0 +1,10 @@
+#! /bin/sh
+
+tmux save-buffer ${HOME}/.tmux/local/tmp/.tmux_to_pbcopy
+cat ${HOME}/.tmux/local/tmp/.tmux_to_pbcopy | pbcopy
+
+# display messages 
+HEAD=`head -1 ${HOME}/.tmux/local/tmp/.tmux_to_pbcopy`
+TAIL=`tail -1 ${HOME}/.tmux/local/tmp/.tmux_to_pbcopy`
+tmux display-message "Copy:  $HEAD  -  $TAIL"
+
