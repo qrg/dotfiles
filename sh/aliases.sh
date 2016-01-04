@@ -20,7 +20,7 @@ alias chown='chown -v'
 alias chmod='chmod -v'
 alias cat='cat -n'              # -n, --number    number all output lines
 alias pd='popd'
-alias tree='tree -Dghpu'
+alias tree='tree -Dghpua'
 
 alias cal='LANG=en_US.UTF-8 cal -3'
 alias man='LANG=ja_JP.UTF-8 man'
@@ -76,3 +76,4 @@ alias gsb='git show-branch'
 alias ghelp='git help'
 alias gpull='git pull'
 alias gpush='git push'
+

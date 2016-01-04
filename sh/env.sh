@@ -20,6 +20,13 @@ export EDITOR=vim
 # -----------------------------------------------------------------------------
 export PATH=${HOME}/scripts:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/bin:$PATH
 
+# macvim kaoriya
+if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+  export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
+  alias vi="/Applications/MacVim.app/Contents/MacOS/Vim $@"
+  alias vim="/Applications/MacVim.app/Contents/MacOS/Vim $@"
+fi
+
 # rbenv & phpenv
 # .rbenv/ が home にあればパスを通す
 # phpenv は rbenv を内部利用しているため先に rbenv に PATH を通す
@@ -41,42 +48,28 @@ if [ -d ${HOME}/.pyenv ]; then
   eval "$(pyenv init -)"
 fi
 
-# nvm
-# NVM の nvm.sh を遅延ロードしてシェルの起動を高速化する - Qiita
-# http://qiita.com/uasi/items/80865646607b966aedc8
-nvm() {
-    unset -f nvm
-    source "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
-    nvm "$@"
-}
 
-export PATH=${NVM_DIR:-${HOME}/.nvm}/default/bin:$PATH
-export MANPATH=${NVM_DIR:-${HOME}/.nvm}/default/share/man:$MANPATH
-export NODE_PATH=${NVM_DIR:-${HOME}/.nvm}/default/lib/node_modules
+if [ -s ${HOME}/.nvm/nvm.sh ]; then
+  source ${HOME}/.nvm/nvm.sh
+  nvm use stable
+  echo ${NVM_PATH}
+  export PATH=${NVM_PATH}:$PATH
+fi
 
-#if [ -e ~/.nvm/nvm.sh ]; then
-#    source ~/.nvm/nvm.sh
-#    nvm use stable
-#fi
+if [ -s ${HOME}/.ndenv/bin ]; then
+  export PATH="$HOME/.ndenv/bin:$PATH"
+  eval "$(ndenv init -)"
+fi
 
 # golang
-if [ -e ${HOME}/.go ]; then
+if [ -s ${HOME}/.go ]; then
    export GOPATH=${HOME}/.go
    #export GOROOT=/usr/local/opt/go/libexec
    export PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
 fi
 
-
 # tmuxinator
 [[ -s ${HOME}/.tmuxinator/scripts/tmuxinator ]] && source ${HOME}/.tmuxinator/scripts/tmuxinator
-
-# Mac homebrew-cask
-# -----------------------------------------------------------------------------
-if [ $(uname) = 'Darwin' ]; then
-  if type brew >/dev/null 2>&1; then
-    export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
-  fi
-fi
 
 # colorful man pages
 # -----------------------------------------------------------------------------

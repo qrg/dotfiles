@@ -4,12 +4,6 @@
 #
 
 # =============================================================================
-# path
-# =============================================================================
-zsh_dir=${HOME}/.zsh
-zsh_local_dir=${zsh_dir}/local
-
-# =============================================================================
 # completion
 # cf.) man zshcompsys
 #
@@ -24,6 +18,11 @@ zsh_local_dir=${zsh_dir}/local
 #
 # =============================================================================
 
+# zsh basic completion
+autoload -Uz compinit
+# -d オプションで zcompdump ファイルをに指定したパス,ファイル名で保存する
+compinit -u -d ${HOME}/.zsh/local/zcompdump.${HOST}.${USER}
+
 # enable complement with sudo
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
                               /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin \
@@ -37,12 +36,6 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # 補完の時に大文字小文字を区別しない
 # ただし大文字を打った場合は小文字に変換しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-
-# zsh basic completion
-autoload -U compinit
-# -d オプションで zcompdump ファイルをに指定したパス,ファイル名で保存する
-compinit -u -d ${zsh_local_dir}/zcompdump.${HOST}.${USER}
 
 # 補完除外対象
 # zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
@@ -141,7 +134,7 @@ zstyle ':completion:*:manuals' separate-sections true
 # =============================================================================
 # history
 # =============================================================================
-HISTFILE=${zsh_local_dir}/zsh-history
+HISTFILE=${HOME}/.zsh/local/zsh-history
 HISTSIZE=10000000
 SAVEHIST=1000000
 
@@ -164,8 +157,8 @@ setopt hist_reduce_blanks # 余分なスペースを削除
 # * antigen を利用する場合、zshenv も含めた zaw 読み込み前に `alias ls="ls -F"` を書かない
 # * auto-fu 併用の場合、zaw の設定を auto-fu の前に書く
 # * `setopt sh_word_split` は書かない
-if [[ -f ${zsh_dir}/plugins/antigen/antigen.zsh ]]; then
-  source ${zsh_dir}/plugins/antigen/antigen.zsh
+if [[ -f ${HOME}/.zsh/plugins/antigen/antigen.zsh ]]; then
+  source ${HOME}/.zsh/plugins/antigen/antigen.zsh
 
   # Load the oh-my-zsh's library.
   antigen use oh-my-zsh
@@ -262,11 +255,12 @@ fi
 # default PROMPT
 # %F{color} フォーマットについて
 # > http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Visual-effects
-#PROMPT="
-#%F{green}%n@%m %F{cyan}%f%~%F{gray} ---  %D{%m}.%D{%d} $(LANG=C date +'%a') %D{%T}$(LANG=ja_JP.UTF-8)%f
-#%(!.#.$) "
+PROMPT="
+%F{green}%n@%m %F{cyan}%f%~%F{gray} ---  %D{%m}.%D{%d} $(LANG=C date +'%a') %D{%T}$(LANG=ja_JP.UTF-8)%f
+%(!.#.$) "
 
-source ${HOME}/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#powerline-daemon -q
+#source ${HOME}/.pyenv/versions/2.7.9/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # ----------------------------------------------------------
 # Git PROMPT
@@ -464,6 +458,7 @@ stty stop undef
 # zaw
 # auto-fu と併用する場合、^g を先に押す
 bindkey '^r' zaw-history
+bindkey '^b' zaw-bookmark
 bindkey '^xgf' zaw-git-files
 bindkey '^xgs' zaw-git-status
 bindkey '^xgb' zaw-git-branches

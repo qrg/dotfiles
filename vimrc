@@ -1,6 +1,140 @@
-"===========================================================================
-" neobundle
-"===========================================================================
+" general "{{{
+set nocompatible
+set encoding=utf-8
+set fileencoding=utf-8
+set fileformat=unix
+set fileformats=unix,dos,mac
+"}}}
+
+" Echo startup time on start
+if has('vim_starting') && has('reltime')
+  let g:startuptime = reltime()
+  augroup MyAutoCmd
+    autocmd! VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
+          \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+  augroup END
+endif
+
+" functions "{{{
+function! g:RealodVimrc()
+  echomsg 'reloading ' . $MYVIMRC
+endfunction
+"}}}
+
+" path "{{{
+" vim history file dir
+set viminfo&vim viminfo+=n$HOME/.vim/local/viminfo
+" swap files dir
+set directory=$HOME/.vim/local/swap
+" backup files dir
+set backupdir=$HOME/.vim/local/backup
+" undo history file dir
+if has('persistent_undo')
+  set undodir=$HOME/.vim/local/undo
+endif
+"}}}
+
+" local files "{{{
+set history=100 " command and search history
+set undolevels=100000
+set swapfile
+set backup
+if has('persistent_undo')
+  set undofile
+endif
+"}}}
+
+" complement "{{{
+" command-line completion
+set wildmenu
+set wildmode=longest,full
+" 検索/補完時に大文字/小文字を区別しない
+set ignorecase
+" 検索語に大文字を含む場合、大文字/小文字を区別する
+set smartcase
+"}}}
+
+" search "{{{
+" enable incremental search
+set incsearch
+"}}}
+
+" edit "{{{
+" use clipboard
+set clipboard+=unnamed
+" 閉じ括弧が入力されたとき、対応する括弧を表示する
+set showmatch
+" バックスペースでインデントや改行を削除できるようにする
+set backspace=indent,eol,start
+" restore last cursor position when open a file
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"zz" | endif
+"}}}
+
+" tab "{{{
+" use space instead of tab
+set expandtab
+" 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする。
+set smarttab
+" Number of spaces to use for each step of (auto)indent. Used for |'cindent'|, |>>|, |<<|, etc.
+" indent幅の画面上の見た目の文字数
+" 'cindent' や shift operator (>>, <<) で挿入/削除される自動的に挿入される indent幅に適用される
+" ファイル中の<Tab>を画面上の見た目で何文字分に展開するかを指定する
+set tabstop=2
+" indent を 'shiftwidth' の値の倍数に丸める
+" command '>', '<' に適用される。
+" insert-mode の <C-t> と <C-d> では、indent は常に 'shiftwidth' の倍数に丸められる
+set shiftwidth=2
+set shiftround
+"}}}
+
+" view "{{{
+syntax on
+set t_Co=256
+set number
+set nowrap
+set notitle
+" display unprintable characters | e.g.) tab, end of each line, trailing space, etc
+set list
+"  extends  ウィンドウの幅を超えて省略された文字が右にある場合に表示
+"  precedes ウィンドウの幅を超えて省略された文字が左にある場合に表示
+"  nbsp     半角スペース
+set listchars=eol:↲,tab:⇀\ ,extends:»,precedes:«,nbsp:▯,trail:▯
+set hlsearch " highlight search words
+set nocursorline
+set nocursorcolumn
+set colorcolumn=80,120
+
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+"}}}
+
+" statusline "{{{
+set ruler
+"}}}
+
+" cmdline "{{{
+set cmdheight=3
+set wildmenu " enable cmdline tab completion
+set wildmode=list:longest,full
+set showcmd " 入力途中の command を cmdline (右側) に表示する
+"}}}
+
+" misc "{{{
+
+" switch buffers without saving
+set hidden
+" flash screen instead of sounding beep
+set visualbell t_vb=
+" support mouse
+set mouse=a
+set ttymouse=xterm2
+set mousehide " hide cursor when editing
+
+"}}}
+
+" neobundle "{{{
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
@@ -10,99 +144,144 @@ if has('vim_starting')
   endif
 
   " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath&vim runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('$HOME/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Plugin List:
-" vimproc {{{
+" vimproc "{{{
 NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows': 'tools\\update-dll-mingw',
-\     'cygwin': 'make -f make_cygwin.mak',
-\     'mac': 'make -f make_mac.mak',
-\     'linux': 'make',
-\     'unix': 'gmake',
-\    },
-\ }
-" }}}
+      \ 'build' : {
+      \     'windows': 'tools\\update-dll-mingw',
+      \     'cygwin': 'make -f make_cygwin.mak',
+      \     'mac': 'make -f make_mac.mak',
+      \     'linux': 'make',
+      \     'unix': 'gmake',
+      \    },
+      \ }
+"}}}
 
-" unite {{{
-NeoBundleLazy 'Shougo/unite.vim'
-NeoBundleLazy 'Shougo/neomru.vim'
-NeoBundleLazy 'Shougo/unite-outline'
-NeoBundleLazy 'Shougo/unite-help'
-" }}}
 
-" vimfiler {{{
-NeoBundleLazy 'Shougo/vimfiler'
-" }}}
+" unite "{{{
+NeoBundle 'Shougo/unite.vim', { 'depends' : [ 'Shougo/vimproc.vim' ] }
+NeoBundle 'Shougo/neomru.vim', { 'depends' : [ 'Shougo/unite.vim' ] }
+NeoBundle 'Shougo/unite-outline', { 'depends' : [ 'Shougo/unite.vim' ] }
+NeoBundle 'Shougo/unite-help', { 'depends' : [ 'Shougo/unite.vim' ] }
+NeoBundle 'ujihisa/unite-colorscheme', { 'depends' : [ 'Shougo/unite.vim' ] }
+NeoBundle 'thinca/vim-unite-history', { 'depends' : [ 'Shougo/unite.vim' ] }
+"}}}
 
-" vimshell {{{
-NeoBundleLazy 'Shougo/vimshell'
-" }}}
+" filer "{{{
+NeoBundle 'Shougo/vimfiler'
+"}}}
 
-" neocomplcache {{{
+" vimshell "{{{
+NeoBundle 'Shougo/vimshell'
+"}}}
+
+" neocomplcache "{{{
 if has('lua')
   NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload': {'insert': 1}}
 else
   NeoBundleLazy 'Shougo/neocomplcache', {'autoload': {'insert': 1}}
 end
-NeoBundleLazy 'Shougo/neosnippet'
-NeoBundleLazy 'Shougo/neosnippet-snippets'
-" }}}
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+"}}}
 
-" textobj {{{
-NeoBundleLazy 'kana/vim-textobj-user'
-NeoBundleLazy 'kana/vim-textobj-fold'
-NeoBundleLazy 'kana/vim-textobj-indent'
-NeoBundleLazy 'kana/vim-textobj-lastpat'
-NeoBundleLazy 'osyo-manga/vim-textobj-multiblock'
-NeoBundleLazy 'thinca/vim-textobj-between'
-NeoBundleLazy 'rhysd/vim-textobj-anyblock'
-" }}}
+" completions "{{{
+NeoBundle 'kana/vim-smartinput' " 対応する括弧やクオートを補完
+NeoBundle 'kana/vim-smartchr'   " 入力からの補完
+NeoBundle 'tpope/vim-surround'  " 選択範囲を括弧やクオートで囲む
+NeoBundle 'tyru/caw.vim'        " コメントアウト
+"}}}
 
-" operator {{{
-NeoBundleLazy 'kana/vim-operator-user'
-NeoBundleLazy 'rhysd/vim-operator-surround'
-" }}}
+" cursor "{{{
+NeoBundle 'terryma/vim-multiple-cursors'
+"}}}
 
-" formatting {{{
-NeoBundleLazy 'Align' " 特定文字ベースの文書整形
-NeoBundleLazy 'PreserveNoEOL' " EOL設定
-NeoBundleLazy 'editorconfig/editorconfig-vim' " エディタ設定共有
-" }}}
+" undo history "{{{
+NeoBundle 'sjl/gundo.vim'
+"}}}
 
-" highlight {{{
-NeoBundleLazy 'nathanaelkane/vim-indent-guides' " インデント
-NeoBundleLazy 'vim-scripts/AnsiEsc.vim' " ログファイル
-" }}}
+" textobj "{{{
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-fold'
+NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-lastpat'
+NeoBundle 'osyo-manga/vim-textobj-multiblock'
+NeoBundle 'thinca/vim-textobj-between'
+NeoBundle 'rhysd/vim-textobj-anyblock'
+"}}}
 
-" theme {{{
+" operator "{{{
+NeoBundle 'kana/vim-operator-user'
+NeoBundle 'rhysd/vim-operator-surround'
+"}}}
+
+" formatting "{{{
+NeoBundle 'Align' " 特定文字ベースの文書整形
+NeoBundle 'PreserveNoEOL' " EOL設定
+NeoBundle 'editorconfig/editorconfig-vim' " エディタ設定共有
+"}}}
+
+" highlight "{{{
+NeoBundle 'nathanaelkane/vim-indent-guides' " インデント
+NeoBundle 'vim-scripts/AnsiEsc.vim' " ログファイル
+NeoBundle 'osyo-manga/vim-anzu' " 検索位置表示
+NeoBundle 'ap/vim-css-color' " preview colors in source code while editing
+"}}}
+
+" colorscheme "{{{
 "NeoBundle 'morhetz/gruvbox'
-NeoBundle 'altercation/vim-colors-solarized'
-" }}}
+NeoBundle 'qrg/vim-colors-solarized'
+"NeoBundle 'w0ng/vim-hybrid'
+"NeoBundle 'chriskempson/vim-tomorrow-theme'
+"NeoBundle 'tomasr/molokai'
+"NeoBundle 'flazz/vim-colorschemes'
+"}}}
 
-" syntax highlight {{{
-NeoBundleLazy 'othree/html5.vim' " HTML5
-NeoBundleLazy 'digitaltoad/vim-jade' " Jade
-NeoBundleLazy 'cakebaker/scss-syntax.vim' " Sass
-NeoBundleLazy 'wavded/vim-stylus' " Stylus
-" NeoBundle 'KohPoll/vim-less'
-NeoBundleLazy 'kchmck/vim-coffee-script' " CoffeeScript
-NeoBundleLazy 'endel/actionscript.vim' " ActionScript
-" }}}
+" status line "{{{
+NeoBundle 'itchyny/lightline.vim'
+"}}}
 
-" external tools {{{
-NeoBundleLazy 'JarrodCTaylor/vim-js2coffee' " coffee2js
-NeoBundleLazy 'rizzatti/dash.vim' " Dash
-" }}}
+" scroll "{{{
+NeoBundle 'terryma/vim-smooth-scroll'
+"}}}
+
+" git "{{{
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
+"}}}
+
+" syntax highlight "{{{
+NeoBundle 'othree/html5.vim' " HTML5
+NeoBundle 'digitaltoad/vim-jade' " Jade
+
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
+
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'cakebaker/scss-syntax.vim' " Sass
+NeoBundle 'wavded/vim-stylus' " Stylus
+NeoBundle 'KohPoll/vim-less'
+"}}}
+
+" help "{{{
+NeoBundle 'vim-jp/vimdoc-ja'
+"}}}
+
+" external tools "{{{
+NeoBundle 'JarrodCTaylor/vim-js2coffee' " coffee2js
+NeoBundle 'rizzatti/dash.vim' " Dash
+NeoBundle 'neilagabriel/vim-geeknote' " Evernote
+"}}}
 
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
@@ -115,311 +294,117 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
+"}}}
 
-"===========================================================================
-" powerline
-"===========================================================================
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+" unite "{{{
+call unite#custom#profile('default', 'context', {
+      \  'start-insert' : 1,
+      \  'smartcase' : 1,
+      \  'prompt_direction': 'top',
+      \  'split' : 1,
+      \  'vertical' : 1,
+      \  'direction' : 'topleft',
+      \  'no-hide-icon': 1
+      \})
 
-set laststatus=2 " Always display the statusline in all windows
-set showtabline=2 " Always display the tabline, even if there is only one tab
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:unite_source_history_yank_enable=1
+let g:unite_enable_start_insert=1
 
-" vim-indent-guides
-let g:indent_guides_auto_colors=0
+if executable('ag')
+  let g:unite_source_grep_command='ag'
+  let g:unite_source_grep_default_opts='--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt=''
+endif
+"}}}
+
+" vim-indent-guides "{{{
+let g:indent_guides_auto_colors=1
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=black
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=darkgray
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=2
-
-
-"===========================================================================
-" debug
-"===========================================================================
-" set verbose=5
-" set verbosefile=~/vimdebug
-
-"===========================================================================
-" general
-"===========================================================================
-
-let $LANG='en'
-
-set encoding=utf-8
-set fileencoding=utf-8
-set fileformat=unix
-set fileformats=unix,dos,mac
-set nocompatible
-
-set helplang=ja 
-
-"===========================================================================
-" path
-"===========================================================================
-" Vim documentation: os_msdos
-" http://vim-jp.org/vimdoc-ja/os_msdos.html#msdos-linked-files
-
-" vim runtimepath
-set runtimepath^=~/.vim
-set runtimepath+=~/.vim/after
-
-" vim history file dir
-set viminfo+=n~/.vim/local/info.vim
-
-" vim swap files dir
-"set directory = g:SwapDir
-
-" vim backup files dir
-"set backupdir = g:BackupDir
-
-" undo history file dir
-if has('persistent_undo')
-    set undodir=~/.vim/local/undo
-endif
-
-"===========================================================================
-" local files
-"===========================================================================
-
-" history -------------------------------------------------------------
-set undolevels=99999999
-
-" swapfile ([no]bk) ---------------------------------------------------
-"set swapfile
-set noswapfile
-
-" backup --------------------------------------------------------------
-"set backup
-set nobackup
-
-" undo history -------------------------------------------------------
-if has('persistent_undo')
-  augroup vimrc-undofile
-    autocmd!
-    autocmd BufReadPre ~/* setlocal undofile
-  augroup END
-endif
-
-"===========================================================================
-" complement
-"===========================================================================
-" command-line completion operates in an enhanced mode
-set wildmenu
-" http://vimwiki.net/?%27wildmode%27
-set wildmode=longest,full
-
-" 検索/補完時に大文字/小文字を区別しない
-set ignorecase
-" 検索語に大文字を含む場合、大文字/小文字を区別する
-set smartcase
-
-"===========================================================================
-" search
-"===========================================================================
-" enable incremental search
-set incsearch
-
-" when search next/previows reaches end/beginning of file,
-" it wraps around to the beginning/end
-"set nowrapscan        " do not wrap around
-set wrapscan          " wrap around
-"set wrapscan!         " toggle wrap around on/off
-"set ws! ws?           " toggle and show value
-
-
-"===========================================================================
-" edit
-"===========================================================================
-
-" バックスペースでインデントや改行を削除できるようにする
-set backspace=indent,eol,start
-
-" 新しい行を作ったときに高度な自動インデントを行う
-set smartindent
-set autoindent
-set cindent
-
-" カーソルを行頭、行末で止まらないようにする
-set whichwrap=b,s,h,l,<,>,[,]
-
-
-"===========================================================================
-" tab
-"===========================================================================
-" use space instead of tab
-set expandtab
-
-" 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする。
-set smarttab
-
-" Number of spaces to use for each step of (auto)indent. Used for |'cindent'|, |>>|, |<<|, etc.
-" indent幅の画面上の見た目の文字数
-" 'cindent' や shift operator (>>, <<) で挿入/削除される自動的に挿入される indent幅に適用される
-set shiftwidth=2
-
-" ファイル中の<Tab>を画面上の見た目で何文字分に展開するかを指定する
-set tabstop=2
-
-" indent を 'shiftwidth' の値の倍数に丸める
-" command '>', '<' に適用される。
-" insert-mode の <C-t> と <C-d> では、indent は常に 'shiftwidth' の倍数に丸められる
-set shiftround
-
-
-" Apearance:
-
-" enable syntax highlight
-syntax on
-" show line numbers
-set number
-" show ruler in status-line
-" set ruler
-
-set background=dark
-colorscheme solarized
-" colorscheme gruvbox
-highlight LineNr ctermfg=243
-highlight CursorLineNr ctermfg=214
-
-if has('gui_running')
-    " highlight current line
-    set cursorline
-    " highlight current column
-    set cursorcolumn
-endif
-
-" 閉じ括弧が入力されたとき、対応する括弧を表示する
-set showmatch
-set cmdheight=2
-
-" show file name in title
-set title
-" set notitle
-
-highlight LineNr ctermfg=darkgrey guifg=Gray40
-highlight CursorColumn ctermbg=7 guibg=Grey90
-
-" http://vim-jp.org/vimdoc-ja/options.html#%27listchars%27
-highlight NonText ctermfg=1
-highlight NonText guifg=Gray
-highlight SpecialKey ctermfg=1
-"highlight SpecialKey ctermbg=7
-highlight SpecialKey guifg=Gray
-"highlight SpecialKey guibg=#012345 " GUI版での背景色指定
-
-" Show (partial) command in the last line of the screen.
-" 入力中のコマンドをステータスに表示 (sc)
-set showcmd
-
-set textwidth=80
-
-" display unprintable characters | e.g.) tab, end of each line, trailing space, etc
-set list
-" Listで表示される文字のフォーマットを指定する
-"  extends  ウィンドウの幅を超えて省略された文字が右にある場合に表示
-"  precedes ウィンドウの幅を超えて省略された文字が左にある場合に表示
-"  nbsp     半角スペース
-set listchars=eol:↲,tab:⇀\ ,extends:»,precedes:«,nbsp:▯,trail:▯
-
-" display multi-byte space
-highlight JpSpace cterm=underline ctermfg=Blue guifg=Blue
-au BufRead,BufNew * match JpSpace /　/
-
-" highlight search words
-set hlsearch
-" status-line
-"highlight statusline cterm=reverse
-" status-line format
-"set statusline=\ %F%m%r%h%w\ \|\ %{&fenc!=''?&fenc:&enc}\ \|\ %{&ff}\ \|\ type:%Y\ \|\ %04lL\ %04vC\ \|\ ascii:\%03.3b\ \|\ hex:\%02.2B\ \|\ %p%%\ \|\ total:%L
-
-"change status-line color when insert-mode
-"if has('syntax')
-"    augroup InsertHook
-"        autocmd!
-"        autocmd InsertEnter *
-"           \ highlight StatusLine
-"           \ guifg=gray30
-"           \ guibg=yellow
-"           \ gui=none
-"           \ ctermfg=black
-"           \ ctermbg=yellow
-"           \ cterm=none
-"        autocmd InsertLeave *
-"           \ highlight StatusLine
-"           \ guifg=gray60
-"           \ guibg=gray20
-"           \ gui=none
-"           \ ctermfg=black
-"           \ ctermbg=grey
-"           \ cterm=none
-"    augroup END
-"endif
-
-" =====================================================================
-" keymap
-" =====================================================================
-map q <Nop>
-
-" search same as general apps
-nnoremap <C-f> /
-
-" C-k delete from the current cursor position to the end of line, like Emacs
-noremap <C-k> D
-inoremap <expr> <C-k> "\<C-g>u".(col('.') == col('$') ? '<C-o>gJ' : '<C-o>D')
-cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
-
-" move next/previous buffer
-noremap <C-S-PageUp> :bprevious<CR>
-noremap <C-S-PageDown> :bnext<CR>
-noremap! <C-S-PageUp> <Esc>:bprevious<CR>
-noremap! <C-S-PageDown> <Esc>:bnext<CR>
-
-" emacs style canceling
-noremap <C-g> <C-c>
-"                                                                                                             test
-" Enter inserts line break in normal-mode
-nnoremap <Enter> i<Enter><Esc>
-" BackSpace deletes 1 letter before cursor in normal-mode
-nnoremap <BS> i<BS><Esc>
-
-nnoremap <C-Enter> <C-v>
-
-" move cursor center line of window after page scrolling (half scroll)
-noremap <PageUp> <PageUp>zz
-noremap <PageDown> <PageDown>zz
-noremap! <PageUp> <Esc><PageUp>zz
-noremap! <PageDown> <Esc><PageDown>zz
-
-noremap <C-a> <Home>
-noremap <C-e> <End>
-noremap! <C-a> <Home>
-noremap! <C-e> <End>
-
-
-"===========================================================================
-" misc
-"===========================================================================
-
-" http://vimwiki.net/?%27backupcopy%27
-" 編集したファイルが hardlink/symlinkなど
-" 特別な属性を持っているとき全て元のまま保つi
-
-"set backupcopy=yes
-
-" flash screen instead of sounding beep
-" abbreviated as 'vb'
-" 't_vb=
-set visualbell t_vb=
-
-"変更中のファイルでも、保存しないで他のファイルを表示
-set hidden
-
-set nowrap
-
-set laststatus=2
-
-" vim から感謝されないようにする
-set notitle
+"}}}
+
+" vimfiler "{{{
+let g:vimfiler_as_default_explorer=1
+let g:vimfiler_data_directory=expand("$HOME/.vim/local/vimfiler")
+"}}}
+
+" editorconfig "{{{
+let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
+"}}}
+
+" Gundo "{{{
+let g:gundo_close_on_revert=1
+"}}}
+
+" liteline.vim "{{{
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'active': {
+      \ 'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \ 'modified': 'MyModified',
+      \ 'readonly': 'MyReadonly',
+      \ 'fugitive': 'MyFugitive',
+      \ 'filename': 'MyFilename',
+      \ 'fileformat': 'MyFileformat',
+      \ 'filetype': 'MyFiletype',
+      \ 'fileencoding': 'MyFileencoding',
+      \ 'mode': 'MyMode',
+      \ },
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ }
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? "\ue0a2" : ''
+endfunction
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \ &ft == 'unite' ? unite#get_status_string() :
+        \ &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+function! MyFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    let _ = fugitive#head()
+    return strlen(_) ? "\ue0a0 " ._ : ''
+  endif
+  return ''
+endfunction
+function! MyFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+function! MyFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+function! MyMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+"}}}
+
+" vim-anzu "{{{
+" statusline
+set statusline=%{anzu#search_status()}
+"}}}
+
+" colorscheme "{{{
+source $HOME/.vim/rc/colorscheme.vim
+"}}}
+
+" keymap "{{{
+source $HOME/.vim/rc/keymap.vim
+"}}}
+
+" vim:foldmethod=marker:
 

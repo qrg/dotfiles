@@ -1,16 +1,28 @@
-set guifont=Sauce\ Code\ Powerline:h14
-set guifontwide=Sauce\ Code\ Powerline:h14
-"set antialias
-
-" -----------------------------------------------
+"Fira\ Mono\ Regular\ for\ Powerline:h15
+set guifont=FiraMonoTakaoEx\ for\ Powerline:h15
+set guifontwide=FiraMonoTakaoEx\ for\ Powerline:h15
+set antialias
+" テスト日本語
 " path
-" -----------------------------------------------
-let s:gvimwinpos="~/.vim/local/gvimwinpos"
+"let s:gvimwinpos="$HOME/.vim/local/gvim-window-position"
 
-" -----------------------------------------------
-" save/restore window size/position
-" -----------------------------------------------
-let g:save_window_file = expand(s:gvimwinpos)
+" Don't load MacVim Kaoriya's gvimrc
+let g:macvim_skip_colorscheme=1
+colorscheme solarized
+
+set guioptions?
+set guioptions+=a
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b
+" }}}
+
+" vim-jp » Hack #120: gVim でウィンドウの位置とサイズを記憶する
+" http://vim-jp.org/vim-users-jp/2010/01/28/Hack-120.html
+let g:save_window_file = expand('$HOME/.vim/local/.gvim-window-position')
+
 augroup SaveWindow
   autocmd!
   autocmd VimLeavePre * call s:save_window()
@@ -27,37 +39,4 @@ augroup END
 if filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif
-
-
-" guioptions (go)
-" default: "gmrLtT" (MS-Windows), "agimrLtT" (GTK, Motif and Athena)
-"
-" a  ビジュアルモードで選択した文字がシステムのクリップボードに入る。他のアプリケーションとクリップボードを共有するオプション
-" A  "a"に似ているが、command-line で選択したときか、ctrl + shift を押しながらマウスで選択したときに共有のクリップボードを使用する
-" c  簡単な質問をポップアップダイアログではなく、コンソールを使うようにする
-" e  tabをGUIで
-" f  シェルから実行されたときにfork()しない。-fオプションで起動したのと同じ
-" i  Vimのアイコンを使用する。
-" m  メニューを表示する。
-" M  "$VIMRUNTIME/menu.vim"を読み込まなくする
-" g  使用できないメニューをグレー表示する
-" t  メニューの切り離しを出来るようにする
-" T  ツールバーを表示する
-" r  ウィンドウの右側にスクロールバーを表示する
-" R  縦に分割されたウィンドウの右側にスクロールバーを表示する
-" l  ウィンドウの左にスクロールバーを表示する
-" L  縦に分割されたウィンドウの左側にスクロールバーを表示する
-" b  水平スクロールバーを表示する
-" v  ダイアログのボタンを縦に配置する
-" p  ポインタコールバックを使う
-" F  メッセージフッターを表示する
-set guioptions-=T
-set guioptions-=m
-
-
-" support mouse
-set mouse=a
-set ttymouse=xterm2
-set mousehide " hide cursor when editing
-set guioptions+=a
 
