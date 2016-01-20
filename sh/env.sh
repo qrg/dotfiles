@@ -16,64 +16,9 @@ export EDITOR=vim
 #export VISUAL=emacsclient
 #export ALTERNATE_EDITOR=emacs
 
-# PATH
-# -----------------------------------------------------------------------------
-export PATH=${HOME}/scripts:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/bin:$PATH
-
-# macvim kaoriya
-if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
-  export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
-  alias vi="/Applications/MacVim.app/Contents/MacOS/Vim $@"
-  alias vim="/Applications/MacVim.app/Contents/MacOS/Vim $@"
-fi
-
-# rbenv & phpenv
-# .rbenv/ が home にあればパスを通す
-# phpenv は rbenv を内部利用しているため先に rbenv に PATH を通す
-if [ -d ${HOME}/.rbenv ]; then
-  export PATH="${HOME}/.rbenv/bin:${HOME}/.rbenv/shims:$PATH"
-  
-  eval "$(rbenv init -)"
-
-  # phpenv
-  if [ -d ${HOME}/.phpenv/bin ]; then
-    export PATH=${HOME}/.phpenv/bin:$PATH
-    eval "$(phpenv init -)"
-  fi
-fi
-
-# pyenv
-if [ -d ${HOME}/.pyenv ]; then
-  export PATH="${HOME}/.pyenv/shims:${PATH}"
-  eval "$(pyenv init -)"
-fi
-
-
-if [ -s ${HOME}/.nvm/nvm.sh ]; then
-  source ${HOME}/.nvm/nvm.sh
-  nvm use stable
-  echo ${NVM_PATH}
-  export PATH=${NVM_PATH}:$PATH
-fi
-
-if [ -s ${HOME}/.ndenv/bin ]; then
-  export PATH="$HOME/.ndenv/bin:$PATH"
-  eval "$(ndenv init -)"
-fi
-
-# golang
-if [ -s ${HOME}/.go ]; then
-   export GOPATH=${HOME}/.go
-   #export GOROOT=/usr/local/opt/go/libexec
-   export PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
-fi
-
-# tmuxinator
-[[ -s ${HOME}/.tmuxinator/scripts/tmuxinator ]] && source ${HOME}/.tmuxinator/scripts/tmuxinator
-
 # colorful man pages
 # -----------------------------------------------------------------------------
-if [ `which source-highlight` ]; then
+if type source-highlight > /dev/null 2>&1; then
   export LESS='-R'
   export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 fi

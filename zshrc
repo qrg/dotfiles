@@ -131,6 +131,12 @@ zstyle ':completion:*' ignore-parents parent pwd ..''
 # man 補完でセクション番号別に表示
 zstyle ':completion:*:manuals' separate-sections true
 
+# ------------------------------------------------
+# path
+# ------------------------------------------------
+source "${HOME}"/.sh/path.sh
+
+
 # =============================================================================
 # history
 # =============================================================================
@@ -377,7 +383,7 @@ export MYSQL_PS1="\n$GRAY [MySQL] $GREEN\u$GRAY@$GREEN\h $CYAN\d $GRAY\v $GRAY -
 # =============================================================================
 # title
 # =============================================================================
-# user@host: current/dir/path を window title に表示
+# user@host: current/dir/Path を window title に表示
 case "${TERM}" in
   kterm*|xterm*|rxvt*)
     precmd() {

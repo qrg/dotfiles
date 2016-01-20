@@ -95,9 +95,9 @@ fi
 [[ -f "${HOME}"/.sh/aliases.sh ]] && . "${HOME}"/.sh/aliases.sh
 
 # -----------------------------------------------
-# nvm complement
+# path
 # -----------------------------------------------
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+source "${HOME}"/.sh/path.sh
 
 # -----------------------------------------------
 # awscli complement
