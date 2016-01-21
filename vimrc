@@ -240,7 +240,7 @@ NeoBundle 'ap/vim-css-color' " preview colors in source code while editing
 
 " colorscheme "{{{
 "NeoBundle 'morhetz/gruvbox'
-NeoBundle 'qrg/vim-colors-solarized'
+NeoBundle 'altercation/vim-colors-solarized'
 "NeoBundle 'w0ng/vim-hybrid'
 "NeoBundle 'chriskempson/vim-tomorrow-theme'
 "NeoBundle 'tomasr/molokai'
@@ -407,4 +407,3 @@ source $HOME/.vim/rc/keymap.vim
 "}}}
 
 " vim:foldmethod=marker:
-
