@@ -1,7 +1,6 @@
 *.pydevproject
 .project
 .metadata
-bin
 *.tmp
 *.bak
 *.swp
@@ -35,7 +34,6 @@ $RECYCLE.BIN/
 .DS_Store
 .AppleDouble
 .LSOverride
-Icon
 
 
 # Thumbnails
@@ -124,24 +122,7 @@ DocProject/Help/*.hhp
 DocProject/Help/Html2
 DocProject/Help/html
 
-# Click-Once directory
-publish
-
-# Publish Web Output
-*.Publish.xml
-
-# Others
-[Bb]in
-[Oo]bj
-TestResults
-[Tt]est[Rr]esult*
 *.Cache
-ClientBin
-[Ss]tyle[Cc]op.*
-~$*
-*.dbmdl
-
-*.[Pp]ublish.xml
 
 Generated_Code #added for RIA/Silverlight projects
 
@@ -220,4 +201,3 @@ tramp
 Session.vim
 .netrwhist
 *~
-
