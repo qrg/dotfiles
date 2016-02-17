@@ -102,3 +102,9 @@ if [ -e "${HOME}"/.pyenv/shims/aws_zsh_completer.sh ]; then
     complete -C aws_completer aws
 fi
 
+# -----------------------------------------------
+# # direnv
+# -----------------------------------------------
+if type direnv > /dev/null 2>&1; then
+  eval "$(direnv hook bash)"
+fi

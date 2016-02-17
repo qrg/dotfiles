@@ -617,9 +617,8 @@ if [ -e "${HOME}"/.pyenv/shims/aws_zsh_completer.sh ]; then
 fi
 
 # -----------------------------------------------
-# nvm complement
+# # direnv
 # -----------------------------------------------
-if [ -r "${NVM_DIR}"/bash_completion ]; then
-    source "${NVM_DIR}"/bash_completion
+if type direnv > /dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
 fi
-
