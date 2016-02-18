@@ -170,7 +170,6 @@ if [[ -f ${HOME}/.zsh/plugins/antigen/antigen.zsh ]]; then
   antigen bundle zsh-users/zaw
   antigen bundle zsh-users/zsh-syntax-highlighting
   antigen bundle zsh-users/zsh-completions src
-  # antigen bundle ollifier/anyframe
 
   antigen apply
 fi
