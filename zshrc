@@ -456,6 +456,8 @@ bindkey '^xgf' zaw-git-files
 bindkey '^xgs' zaw-git-status
 bindkey '^xgb' zaw-git-branches
 bindkey '^x^x' zaw-cdr
+bindkey '^xssh' zaw-hosts
+bindkey '^xa' zaw-aliases
 
 # enable case-insensitive search
 zstyle ':filter-select' case-insensitive yes
