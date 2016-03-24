@@ -76,3 +76,11 @@ fi
 
 # tmuxinator
 [[ -s ${HOME}/.tmuxinator/scripts/tmuxinator ]] && source ${HOME}/.tmuxinator/scripts/tmuxinator
+
+# osx
+# -----------------------------------------------------------------------------
+if [ "$(uname)" == 'Darwin' ]; then
+  export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOME}/.caskroom"
+fi
+
+
