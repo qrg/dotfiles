@@ -39,3 +39,6 @@ color main-ref blue default reverse
 color diff-header yellow default reverse
 color diff-chunk cyan default reverse
 
+# H で、コミットハッシュ値をコピーできるようにする
+bind generic H !@bash -c "cut -c-7 <<<%(commit) | xargs echo -n | pbcopy"
+
