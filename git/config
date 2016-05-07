@@ -1,0 +1,51 @@
+[include]
+  path = ~/.gitconfig.local
+
+[core]
+	excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+
+[color]
+	ui = true
+
+[merge]
+	ff = false
+
+[pull]
+	ff = only
+
+[alias]
+  s = status
+  c = commit
+  amend = commit --amend
+  br = branch
+  bra = branch -a
+  ch = checkout
+  co = checkout
+  ad = add
+  pushf = push --force-with-lease
+
+  df = diff
+	dff = diff --name-only
+	dfs = diff --cached
+
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+  required = true
+
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+  required = true
+
+[diff "exif"]
+	textconv = exiftool
+
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+
+[ghq]
+  root = ~/workspace/git

@@ -13,9 +13,9 @@ ln -sivfn ${HOME}/dotfiles/gvimrc ${HOME}/.gvimrc
 ln -sivfn ${HOME}/dotfiles/vim ${HOME}/.vim
 ln -sivfn ${HOME}/dotfiles/emacs.d ${HOME}/.emacs.d
 
-mkdir -pv ${HOME}/config/git
-ln -sivfn ${HOME}/dotfiles/config/git/ignore ${HOME}/.config/git/ignore
+ln -sivfn ${HOME}/dotfiles/git/config ${HOME}/.gitconfig
+ln -sivfn ${HOME}/dotfiles/git/ignore ${HOME}/.gitignore
+ln -sivfn ${HOME}/dotfiles/git/attributes ${HOME}/.gitattributes
 
 ln -sivfn ${HOME}/dotfiles/tigrc ${HOME}/.tigrc
 #ln -Fisv ${HOME}/dotfiles/mayu ${HOME}/.mayu
-

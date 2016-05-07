@@ -1,0 +1,4 @@
+# require exiftool
+*.gif diff=exif
+*.jpg diff=exif
+*.png diff=exif
