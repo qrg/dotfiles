@@ -280,7 +280,7 @@ if is-at-least 4.3.10; then
     zstyle ':vcs_info:*' actionformats '%R' '%S' '%b|%a' '%s' '%c' '%u'
 fi
 
-# zshのPTOMPTに渡す文字列は可読性があまり良くないため
+# zsh の PROMPT に渡す文字列は可読性があまり良くないため
 # 文字列を組み立てるのは関数で行う
 function echo_rprompt () {
     local repos branch st color
@@ -480,16 +480,22 @@ zstyle ':filter-select' case-insensitive yes
 # ==============================================================================
 # functions
 # ==============================================================================
+load_if_exists () {
+    if [ -e $1 ]; then
+        source $1
+    fi
+}
+
 # ターミナルアプリで利用できる256色を一覧表示する。256色正しく表示されるか確認用
 # `$ showcolors` として使う
 function showcolors() {
-    for ((f = 0; f < 255; f++)); do
-        printf "\e[38;5;%dm %3d#\e[m" $f $f
-        if [[ $f%8 -eq 7 ]] then
-            printf "\n"
-        fi
-    done
-    echo
+  for ((f = 0; f < 255; f++)); do
+    printf "\e[38;5;%dm %3d#\e[m" ${f} ${f}
+      if [[ ${f%8} -eq 7 ]]; then
+        printf "\n"
+      fi
+  done
+  echo
 }
 
 
@@ -606,14 +612,14 @@ fi
 # ==============================================================================
 # shell common settings
 # ==============================================================================
-[[ -s "${HOME}"/.sh/aliases.sh ]] && source ${HOME}/.sh/aliases.sh
-source "${HOME}"/.sh/env.sh
+load_if_exists ${HOME}/.sh/aliases.sh
+load_if_exists ${HOME}/.sh/env.sh
 
 # -----------------------------------------------
 # awscli complement
 # -----------------------------------------------
-if [ -e "${HOME}"/.pyenv/shims/aws_zsh_completer.sh ]; then
-    source "${HOME}"/.pyenv/versions/`pyenv global`/bin/aws_zsh_completer.sh
+if [ -e ${HOME}/.pyenv/shims/aws_zsh_completer.sh ]; then
+  source ${HOME}/.pyenv/versions/`pyenv global`/bin/aws_zsh_completer.sh
 fi
 
 # -----------------------------------------------
