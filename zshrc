@@ -615,6 +615,8 @@ fi
 load_if_exists ${HOME}/.sh/aliases.sh
 load_if_exists ${HOME}/.sh/env.sh
 
+compdef g=git # git の alias を使う場合にも git のサブコマンドの補完を有効にする
+
 # -----------------------------------------------
 # awscli complement
 # -----------------------------------------------
