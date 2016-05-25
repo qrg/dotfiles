@@ -2,9 +2,9 @@
   path = ~/.gitconfig.local
 
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
-	editor = vim -i NONE -N -c 'syntax on'
+  editor = vim -i NONE -N -c 'syntax on'
 
 [color]
   ui = true
@@ -31,10 +31,10 @@
   untracked = yellow
 
 [merge]
-	ff = false
+  ff = false
 
 [pull]
-	ff = only
+  ff = only
 
 [alias]
   s = status
@@ -48,26 +48,26 @@
   pushf = push --force-with-lease
 
   df = diff
-	dff = diff --name-only
-	dfs = diff --cached
+  dff = diff --name-only
+  dfs = diff --cached
 
 [filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
+  clean = git hawser clean %f
+  smudge = git hawser smudge %f
   required = true
 
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
   required = true
 
 [diff "exif"]
-	textconv = exiftool
+  textconv = exiftool
 
 [pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+  log = diff-highlight | less
+  show = diff-highlight | less
+  diff = diff-highlight | less
 
 [ghq]
   root = ~/workspace/git
