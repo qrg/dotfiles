@@ -4,6 +4,7 @@
 [core]
 	excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
+	editor = vim -i NONE -N -c 'syntax on'
 
 [color]
 	ui = true
