@@ -45,8 +45,6 @@ export PATH="${HOME}/scripts:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/
 # macvim kaoriya
 if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
   export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
-  alias vi="/Applications/MacVim.app/Contents/MacOS/Vim $@"
-  alias vim="/Applications/MacVim.app/Contents/MacOS/Vim $@"
 fi
 
 # rbenv
@@ -82,5 +80,3 @@ fi
 if [ "$(uname)" == 'Darwin' ]; then
   export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOME}/.caskroom"
 fi
-
-
