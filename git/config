@@ -7,7 +7,28 @@
 	editor = vim -i NONE -N -c 'syntax on'
 
 [color]
-	ui = true
+  ui = true
+  branch = auto
+  diff = auto
+  status = auto
+  showbranch = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = cyan bold
+
+[color "status"]
+  added = green
+  changed = cyan
+  untracked = yellow
 
 [merge]
 	ff = false
