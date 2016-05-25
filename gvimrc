@@ -8,7 +8,9 @@ set antialias
 
 " Don't load MacVim Kaoriya's gvimrc
 let g:macvim_skip_colorscheme=1
+
 colorscheme solarized
+set background=dark
 
 set guioptions?
 set guioptions+=a
@@ -17,7 +19,6 @@ set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 set guioptions-=b
-" }}}
 
 " vim-jp » Hack #120: gVim でウィンドウの位置とサイズを記憶する
 " http://vim-jp.org/vim-users-jp/2010/01/28/Hack-120.html
@@ -39,4 +40,3 @@ augroup END
 if filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif
-
