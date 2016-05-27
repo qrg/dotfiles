@@ -476,6 +476,26 @@ zstyle ':filter-select' case-insensitive yes
 #bindkey '^xe' anyframe-widget-insert-git-branch
 #bindkey '^x^e' anyframe-widget-insert-git-branch
 
+function ghq-src-peco () {
+  local selected=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected" ]; then
+    BUFFER="cd ${selected}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+
+function ghq-src-fzf() {
+    local selected
+    selected="$(ghq list | fzf-tmux --query="$LBUFFER")"
+    if [ -n "$(ghq root)/${selected}" ]; then
+        BUFFER="cd $(ghq root)/${selected}"
+        zle accept-line
+    fi
+    zle reset-prompt
+}
+zle -N ghq-src-fzf
+bindkey '^xgg' ghq-src-fzf
 
 # ==============================================================================
 # functions
