@@ -234,7 +234,6 @@ NeoBundle 'editorconfig/editorconfig-vim' " エディタ設定共有
 " highlight "{{{
 NeoBundle 'nathanaelkane/vim-indent-guides' " インデント
 NeoBundle 'vim-scripts/AnsiEsc.vim' " ログファイル
-NeoBundle 'osyo-manga/vim-anzu' " 検索位置表示
 NeoBundle 'ap/vim-css-color' " preview colors in source code while editing
 "}}}
 
@@ -389,11 +388,6 @@ endfunction
 function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
-"}}}
-
-" vim-anzu "{{{
-" statusline
-set statusline=%{anzu#search_status()}
 "}}}
 
 " colorscheme "{{{

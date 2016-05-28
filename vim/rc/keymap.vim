@@ -139,14 +139,6 @@ autocmd FileType gundo inoremap <silent> <buffer> <Esc><Esc> :<C-u>GundoHide<CR>
 autocmd FileType gundo nnoremap <silent> <buffer> q :<C-u>GundoHide<CR>
 "}}}
 
-" anzu "{{{
-nmap n <Plug>(anzu-mode-n)
-nmap N <Plug>(anzu-mode-N)
-"nmap n <Plug>(anzu-n-with-echo)
-"nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
-
 " clear status
 nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 
