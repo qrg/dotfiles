@@ -1,8 +1,10 @@
-*/local/*
+local
 *.elc
 *zcompdump
 zcompdump*
 .chpwd-recent-dirs
+tmux/plugins
+!tmux/tpm
 vim/.netrwhist
 vim/local/
 vim/bundle/
