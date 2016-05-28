@@ -196,7 +196,7 @@ NeoBundle 'Shougo/neosnippet-snippets'
 "}}}
 
 " completions "{{{
-NeoBundle 'kana/vim-smartinput' " 対応する括弧やクオートを補完
+"NeoBundle 'kana/vim-smartinput' " 対応する括弧やクオートを補完
 NeoBundle 'kana/vim-smartchr'   " 入力からの補完
 NeoBundle 'tpope/vim-surround'  " 選択範囲を括弧やクオートで囲む
 NeoBundle 'tyru/caw.vim'        " コメントアウト
