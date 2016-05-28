@@ -12,7 +12,7 @@
 " |============|=======|=======|========|========|
 
 let mapleader=','
-inoremap <C-j> <Esc>
+inoremap <C-i> <Esc>
 
 " disable some keymaps "{{{
 nnoremap q <Nop>
@@ -21,7 +21,7 @@ nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 nnoremap a <Nop>
 nnoremap A <Nop>
-nnoremap Q <Nop> 
+nnoremap Q <Nop>
 "nnoremap u <Nop>
 "nnoremap <C-r> <Nop>
 "}}}
@@ -60,10 +60,6 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-" カーソル前の文字削除
-inoremap <silent> <C-h> <C-g>u<C-h>
-" カーソル後の文字削除
-inoremap <silent> <C-d> <Del>
 " カーソルから行末まで削除
 inoremap <silent> <C-d>0 <Esc>lc$
 " カーソルから行頭までヤンク
@@ -145,4 +141,3 @@ nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 "}}}
 
 " vim:foldmethod=marker:foldlevel=0
-
