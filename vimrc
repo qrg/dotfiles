@@ -251,10 +251,6 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'itchyny/lightline.vim'
 "}}}
 
-" scroll "{{{
-NeoBundle 'terryma/vim-smooth-scroll'
-"}}}
-
 " git "{{{
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'

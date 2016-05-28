@@ -152,12 +152,5 @@ nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 
 "}}}
 
-" vim-smooth-scroll "{{{
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 16, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 16, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 16, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 16, 4)<CR>
-"}}}
-
 " vim:foldmethod=marker:foldlevel=0
 
