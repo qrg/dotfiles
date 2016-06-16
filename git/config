@@ -63,7 +63,8 @@
 
 [diff "exif"]
   textconv = exiftool
-
+[diff]
+  compactionHeuristic = true
 [pager]
   log = diff-highlight | less
   show = diff-highlight | less
@@ -71,3 +72,5 @@
 
 [ghq]
   root = ~/workspace/git
+
+
