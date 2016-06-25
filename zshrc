@@ -645,8 +645,15 @@ if [ -e ${HOME}/.pyenv/shims/aws_zsh_completer.sh ]; then
 fi
 
 # -----------------------------------------------
-# # direnv
+# direnv
 # -----------------------------------------------
 if type direnv > /dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
+
+# -----------------------------------------------
+# iterm2
+# https://www.iterm2.com/documentation-shell-integration.html
+# -----------------------------------------------
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
