@@ -65,6 +65,13 @@ if [ -s ${HOME}/.ndenv/bin ]; then
   eval "$(ndenv init -)"
 fi
 
+# nodenv
+if [ -s ${HOME}/.nodenv ]; then
+  export PATH="$HOME/.nodenv/bin:$PATH"
+  eval "$(nodenv init -)"
+fi
+
+
 # golang
 if [ -s ${HOME}/.go ]; then
    export GOPATH="${HOME}/.go"
