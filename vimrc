@@ -173,6 +173,7 @@ NeoBundle 'Shougo/unite.vim', { 'depends' : [ 'Shougo/vimproc.vim' ] }
 NeoBundle 'Shougo/neomru.vim', { 'depends' : [ 'Shougo/unite.vim' ] }
 NeoBundle 'Shougo/unite-outline', { 'depends' : [ 'Shougo/unite.vim' ] }
 NeoBundle 'Shougo/unite-help', { 'depends' : [ 'Shougo/unite.vim' ] }
+NeoBundle 'Shougo/neoyank.vim', {  'depends' : [ 'Shougo/unite.vim' ] }
 NeoBundle 'ujihisa/unite-colorscheme', { 'depends' : [ 'Shougo/unite.vim' ] }
 NeoBundle 'thinca/vim-unite-history', { 'depends' : [ 'Shougo/unite.vim' ] }
 "}}}
@@ -310,6 +311,10 @@ if executable('ag')
   let g:unite_source_grep_default_opts='--nogroup --nocolor --column'
   let g:unite_source_grep_recursive_opt=''
 endif
+"}}}
+
+" neoyank "{{{
+  let g:neoyank#file = expand("$HOME/.vim/local/yankring.txt")
 "}}}
 
 " vim-indent-guides "{{{
