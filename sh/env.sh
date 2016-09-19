@@ -82,6 +82,11 @@ fi
 # tmuxinator
 [[ -s ${HOME}/.tmuxinator/scripts/tmuxinator ]] && source ${HOME}/.tmuxinator/scripts/tmuxinator
 
+# git diff-hightlight
+if [ -s /usr/local/share/git-core/contrib/diff-highlight ]; then
+  export PATH="/usr/local/share/git-core/contrib/diff-highlight:${PATH}"
+fi
+
 # osx
 # -----------------------------------------------------------------------------
 if [ "$(uname)" == 'Darwin' ]; then
