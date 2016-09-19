@@ -506,19 +506,6 @@ load_if_exists () {
     fi
 }
 
-# ターミナルアプリで利用できる256色を一覧表示する。256色正しく表示されるか確認用
-# `$ showcolors` として使う
-function showcolors() {
-  for ((f = 0; f < 255; f++)); do
-    printf "\e[38;5;%dm %3d#\e[m" ${f} ${f}
-      if [[ ${f%8} -eq 7 ]]; then
-        printf "\n"
-      fi
-  done
-  echo
-}
-
-
 # Credits to npm's. Awesome completion utility.
 #
 # Bower completion script, based on npm completion script.
