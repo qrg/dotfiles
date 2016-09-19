@@ -131,6 +131,9 @@ zstyle ':completion:*' ignore-parents parent pwd ..''
 # man 補完でセクション番号別に表示
 zstyle ':completion:*:manuals' separate-sections true
 
+# enable case-insensitive search
+zstyle ':filter-select' case-insensitive yes
+
 # =============================================================================
 # history
 # =============================================================================
@@ -162,7 +165,6 @@ if [[ -f ${HOME}/.zsh/plugins/antigen/antigen.zsh ]]; then
 
   # Load the oh-my-zsh's library.
   antigen use oh-my-zsh
-
   antigen bundle brew
   antigen bundle git
   antigen bundle osx
@@ -173,7 +175,6 @@ if [[ -f ${HOME}/.zsh/plugins/antigen/antigen.zsh ]]; then
 
   antigen apply
 fi
-
 
 # ----------------------------------------------------------
 # auto-fu.zsh
@@ -459,9 +460,6 @@ bindkey '^x^x' zaw-cdr
 bindkey '^xssh' zaw-hosts
 bindkey '^xa' zaw-aliases
 
-# enable case-insensitive search
-zstyle ':filter-select' case-insensitive yes
-
 # anyframe
 #bindkey '^xb' anyframe-widget-cdr
 #bindkey '^x^b' anyframe-widget-checkout-git-branch
@@ -643,4 +641,3 @@ fi
 # https://www.iterm2.com/documentation-shell-integration.html
 # -----------------------------------------------
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
