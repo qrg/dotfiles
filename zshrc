@@ -162,16 +162,16 @@ setopt hist_reduce_blanks # 余分なスペースを削除
 # * `setopt sh_word_split` は書かない
 if [[ -f ${HOME}/.zsh/plugins/antigen/antigen.zsh ]]; then
   source ${HOME}/.zsh/plugins/antigen/antigen.zsh
+  #antigen init ${HOME}/.zsh/antigenrc
 
-  # Load the oh-my-zsh's library.
   antigen use oh-my-zsh
   antigen bundle brew
   antigen bundle git
   antigen bundle osx
   antigen bundle command-not-found
-  antigen bundle zsh-users/zaw
   antigen bundle zsh-users/zsh-syntax-highlighting
   antigen bundle zsh-users/zsh-completions src
+  antigen bundle zsh-users/zaw
 
   antigen apply
 fi
