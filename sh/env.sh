@@ -74,9 +74,9 @@ fi
 
 # golang
 if [ -s ${HOME}/.go ]; then
-   export GOPATH="${HOME}/.go"
-   #export GOROOT=/usr/local/opt/go/libexec
-   export PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
+  export GOPATH="${HOME}/.go"
+  #export GOROOT=/usr/local/opt/go/libexec
+  export PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
 fi
 
 # tmuxinator
@@ -92,3 +92,4 @@ fi
 if [ "$(uname)" == 'Darwin' ]; then
   export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOME}/.caskroom"
 fi
+

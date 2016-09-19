@@ -61,10 +61,12 @@
   smudge = git-lfs smudge %f
   required = true
 
-[diff "exif"]
-  textconv = exiftool
 [diff]
   compactionHeuristic = true
+
+[diff "exif"]
+  textconv = exiftool
+
 [pager]
   log = diff-highlight | less
   show = diff-highlight | less
