@@ -43,7 +43,7 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 export PATH="${HOME}/scripts:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/bin:$PATH"
 
 # macvim kaoriya
-if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+if [ -d /Applications/MacVim.app/Contents/MacOS ]; then
   export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
 fi
 

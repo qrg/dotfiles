@@ -36,6 +36,12 @@ alias wget='wget -cvS'
 #     Print the headers sent by HTTP servers and responses sent by FTP servers.
 
 alias vi='vim'
+
+if [ -d /Applications/MacVim.app/Contents/MacOS ]; then
+  alias vi='Vim'
+  alias vim='Vim'
+fi
+
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 # Emacs Server -----------------------------------------------------------------
