@@ -61,7 +61,12 @@ set incsearch
 
 " edit "{{{
 " use clipboard
-set clipboard+=unnamed
+set clipboard=unnamed,autoselect
+
+if has('unnamedplus')
+  set clipboard=unnamedplus,unnamed,autoselect
+endif
+
 " 閉じ括弧が入力されたとき、対応する括弧を表示する
 set showmatch
 " バックスペースでインデントや改行を削除できるようにする
