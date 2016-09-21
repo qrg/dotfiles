@@ -5,9 +5,7 @@ colorscheme default
 " colorscheme gruvbox
 " colorscheme solarized
 
-" ------------------------------------------------------------------
-" Solarized Colorscheme Config
-" ------------------------------------------------------------------
+"{{{ Solarized Colorscheme Config
 " let g:solarized_hitrail=1    "default 0
 
 " The following items are available options, but do not need to be
@@ -23,3 +21,11 @@ colorscheme default
 " let g:solarized_visibility="normal"
 " let g:solarized_diffmode="normal"
 " let g:solarized_menu=1
+"}}}
+
+"{{{ folding
+highlight Folded ctermbg=236
+"}}}
+
+" vim:foldmethod=marker:
+
