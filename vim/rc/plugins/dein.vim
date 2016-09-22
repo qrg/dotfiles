@@ -79,6 +79,7 @@ if dein#load_state(s:plugin_dir)
   call dein#add('nathanaelkane/vim-indent-guides')
   call dein#add('vim-scripts/AnsiEsc.vim')
   call dein#add('ap/vim-css-color')
+  call dein#add('osyo-manga/vim-over')
 
   " colorscheme
   call dein#add('morhetz/gruvbox')
