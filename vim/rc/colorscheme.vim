@@ -23,8 +23,12 @@ colorscheme default
 " let g:solarized_menu=1
 "}}}
 
-"{{{ folding
-highlight Folded ctermbg=236
+" highlight {{{
+hi TabLine ctermbg=black
+hi TabLineFill ctermbg=black
+hi LineNr ctermfg=black
+hi ColorColumn ctermbg=black
+hi Folded ctermbg=black
 "}}}
 
 " vim:foldmethod=marker:

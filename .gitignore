@@ -7,7 +7,7 @@ tmux/plugins
 !tmux/tpm
 vim/.netrwhist
 vim/local/
-vim/bundle/
+vim/dein/
 gvimwinpos
 
 !zsh/local/.gitkeep
