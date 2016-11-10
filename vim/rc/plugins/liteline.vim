@@ -1,3 +1,5 @@
+set ambiwidth=single
+
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'mode_map': { 'c': 'NORMAL' },

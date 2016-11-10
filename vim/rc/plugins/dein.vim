@@ -82,8 +82,9 @@ if dein#load_state(s:plugin_dir)
   call dein#add('osyo-manga/vim-over')
 
   " colorscheme
-  call dein#add('morhetz/gruvbox')
-  call dein#add('altercation/vim-colors-solarized')
+  call dein#add('lifepillar/vim-solarized8')
+  "call dein#add('morhetz/gruvbox')
+  "call dein#add('altercation/vim-colors-solarized')
   "call dein#add('w0ng/vim-hybrid')
   "call dein#add('chriskempson/vim-tomorrow-theme')
   "call dein#add('tomasr/molokai')

@@ -109,8 +109,7 @@ set shiftround
 "}}}
 
 " view "{{{
-syntax on
-set t_Co=256
+syntax enable
 set number
 set nowrap
 set notitle
