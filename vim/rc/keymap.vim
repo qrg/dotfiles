@@ -102,8 +102,8 @@ nnoremap <silent> [unite]x :<C-u>Unite command<CR>
 " change history
 vnoremap <silent> [unite]c :<C-u>Unite change<CR>
 " file list
-nnoremap <silent> [unite]f :<C-u>Unite file<CR>
-nnoremap <silent> [unite]ff : <C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]F :<C-u>Unite file<CR>
+nnoremap <silent> [unite]f : <C-u>Unite file_mru<CR>
 " grep
 nnoremap <silent> [unite]g :<C-u>Unite grep -buffer-name=grep-buffer<CR>
 " show last unite grep result

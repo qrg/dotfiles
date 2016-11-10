@@ -26,11 +26,13 @@ if dein#load_state(s:plugin_dir)
   " unite
   call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
   call dein#add('Shougo/unite.vim', { 'depends' : [ 'Shougo/vimproc.vim' ] })
+
   call dein#add('Shougo/unite-outline', { 'depends' : [ 'Shougo/unite.vim' ] })
   call dein#add('Shougo/unite-help', { 'depends' : [ 'Shougo/unite.vim' ] })
   call dein#add('Shougo/neoyank.vim', {  'depends' : [ 'Shougo/unite.vim' ] })
   call dein#add('ujihisa/unite-colorscheme', { 'depends' : [ 'Shougo/unite.vim' ] })
   call dein#add('thinca/vim-unite-history', { 'depends' : [ 'Shougo/unite.vim' ] })
+  call dein#add('Shougo/neomru.vim', { 'depends' : [ 'Shougo/unite.vim' ] })
 
   " filer
   call dein#add('Shougo/vimfiler')
