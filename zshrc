@@ -451,7 +451,7 @@ stty stop undef
 
 # zaw
 # auto-fu と併用する場合、^g を先に押す
-bindkey '^r' zaw-history
+# bindkey '^r' zaw-history
 bindkey '^b' zaw-bookmark
 bindkey '^xgf' zaw-git-files
 bindkey '^xgs' zaw-git-status
@@ -474,6 +474,16 @@ bindkey '^xa' zaw-aliases
 #bindkey '^xe' anyframe-widget-insert-git-branch
 #bindkey '^x^e' anyframe-widget-insert-git-branch
 
+function select-history-peco() {
+  local tac
+  ((($+commands[gtac])) && tac="gtac") || \
+    (($+commands[tac])) && tac="tac" || \
+    tac="tail -r"
+  BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle -R -c
+}
+
 function ghq-src-peco () {
   local selected=$(ghq list -p | peco --query "$LBUFFER")
   if [ -n "$selected" ]; then
@@ -492,8 +502,10 @@ function ghq-src-fzf() {
     fi
     zle reset-prompt
 }
-zle -N ghq-src-fzf
-bindkey '^xgg' ghq-src-fzf
+zle -N select-history-peco
+bindkey '^r' select-history-peco
+zle -N ghq-src-peco
+bindkey '^xgg' ghq-src-peco
 
 # ==============================================================================
 # functions
