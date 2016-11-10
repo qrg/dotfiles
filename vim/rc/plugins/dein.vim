@@ -100,6 +100,7 @@ if dein#load_state(s:plugin_dir)
   call dein#add('airblade/vim-gitgutter')
 
   " syntax
+  call dein#add('scrooloose/syntastic')
   call dein#add('othree/html5.vim')
   call dein#add('digitaltoad/vim-jade')
   call dein#add('pangloss/vim-javascript')

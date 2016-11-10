@@ -163,7 +163,8 @@ let s:plugin_config_files = [
   \ 'vimfiler.vim',
   \ 'editorconfig.vim',
   \ 'gundo.vim',
-  \ 'liteline.vim'
+  \ 'liteline.vim',
+  \ 'syntastic.vim'
   \ ]
 
 for s:file in s:plugin_config_files
