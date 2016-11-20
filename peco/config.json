@@ -1,0 +1,10 @@
+{
+  "Prompt": "peco >",
+  "Style": {
+    "Basic": ["on_default", "default"],
+    "Selected": ["on_black", "white"],
+    "Query": ["yellow"],
+    "Matched": ["yellow"]
+  }
+}
+
