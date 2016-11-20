@@ -455,7 +455,7 @@ stty stop undef
 bindkey '^b' zaw-bookmark
 bindkey '^xgf' zaw-git-files
 bindkey '^xgs' zaw-git-status
-bindkey '^xgb' zaw-git-branches
+#bindkey '^xgb' zaw-git-branches
 bindkey '^x^x' zaw-cdr
 bindkey '^xssh' zaw-hosts
 bindkey '^xa' zaw-aliases
@@ -473,6 +473,21 @@ bindkey '^xa' zaw-aliases
 #bindkey '^x^k' anyframe-widget-kill
 #bindkey '^xe' anyframe-widget-insert-git-branch
 #bindkey '^x^e' anyframe-widget-insert-git-branch
+
+function git-checkout-peco() {
+  local selected_branch_name="$(git branch -a | peco | tr -d ' ')"
+  case "$selected_branch_name" in
+    *-\>* )
+      selected_branch_name="$(echo ${selected_branch_name} | perl -ne 's/^.*->(.*?)\/(.*)$/\2/;print')";;
+    remotes* )
+      selected_branch_name="$(echo ${selected_branch_name} | perl -ne 's/^.*?remotes\/(.*?)\/(.*)$/\2/;print')";;
+  esac
+  if [ -n "$selected_branch_name" ]; then
+    BUFFER="git checkout ${selected_branch_name}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
 
 function select-history-peco() {
   local tac
@@ -506,6 +521,8 @@ zle -N select-history-peco
 bindkey '^r' select-history-peco
 zle -N ghq-src-peco
 bindkey '^xgg' ghq-src-peco
+zle -N git-checkout-peco
+bindkey '^xgb' git-checkout-peco
 
 # ==============================================================================
 # functions
