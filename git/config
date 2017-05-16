@@ -52,6 +52,8 @@
   dff = diff --name-only
   dfs = diff --cached
 
+  fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+
 [filter "hawser"]
   clean = git hawser clean %f
   smudge = git hawser smudge %f
