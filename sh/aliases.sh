@@ -68,6 +68,10 @@ alias w3m='w3m -B'
 alias tmux='tmux -2'
 alias mysql='mysql --pager="less -S"'
 
+alias mn='memo new'
+alias ml='memo list'
+alias me='memo edit'
+
 # Git --------------------------------------------------------------------------
 alias g='git'
 alias gs='git status'
