@@ -67,7 +67,7 @@
 
 [diff]
   compactionHeuristic = true
-	wsErrorHighlight = all
+  wsErrorHighlight = all
 
 [diff "exif"]
   textconv = exiftool
@@ -81,6 +81,6 @@
   root = ~/workspace/git
 
 [rebase]
-	autoStash = true
-	autoSquash = true
+  autoStash = true
+  autoSquash = true
 
