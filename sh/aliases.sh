@@ -72,6 +72,8 @@ alias mn='memo new'
 alias ml='memo list'
 alias me='memo edit'
 
+alias cdg='cd $(ghq list -p | peco)'
+
 # Git --------------------------------------------------------------------------
 alias g='git'
 alias gs='git status'
