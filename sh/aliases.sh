@@ -46,6 +46,8 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 alias readus='find . -regex "./node_modules/[^/]*/README.*" -type f | fzf --preview="less {}" --preview-window=right:60% --ansi --bind "enter:execute(open -a \"Marked 2\" {})" --delimiter=/ --with-nth=3 --header="open README"'
 
+alias rg='rg --hidden --follow --glob "!({.git,node_modules}/*|*.lock)"'
+
 # Emacs Server -----------------------------------------------------------------
 # if emacsserver was enable, use emacsclient, or not, use emacs
 #alias e='emacsclient -n -f ~/.emacs.d/local/server/server -a emacs '
