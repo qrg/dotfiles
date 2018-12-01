@@ -74,8 +74,7 @@ fi
 # golang
 if [ -s ${HOME}/.go ]; then
   export GOPATH="${HOME}/.go"
-  #export GOROOT=/usr/local/opt/go/libexec
-  export PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
+  export PATH="${GOPATH}/bin:${PATH}"
 fi
 
 # rust
