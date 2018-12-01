@@ -5,7 +5,8 @@
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
   editor = vim -i NONE -N -c 'syntax on'
-
+  autocrlf = input
+  safecrlf = false
 [color]
   ui = true
   branch = auto
