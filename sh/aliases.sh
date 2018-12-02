@@ -18,7 +18,6 @@ fi
 
 alias chown='chown -v'
 alias chmod='chmod -v'
-alias cat='cat -n'              # -n, --number    number all output lines
 alias pd='popd'
 alias tree='tree -Dghpua'
 
