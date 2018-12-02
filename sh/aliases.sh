@@ -84,6 +84,7 @@ alias gl='git log --pretty=format:"%C(red reverse)%d%Creset%C(white reverse) %h%
 alias glmin='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow reverse)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 alias ga='git add'
 alias gc='git commit -v'
+alias gca='git commit -v --amend'
 alias gco='git checkout'
 alias gd='git diff'
 alias gds='git diff --cached'
