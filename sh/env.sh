@@ -83,7 +83,9 @@ if [ -s ${HOME}/.cargo ]; then
 fi
 
 # tmuxinator
-[[ -s ${HOME}/.tmuxinator/scripts/tmuxinator ]] && source ${HOME}/.tmuxinator/scripts/tmuxinator
+if [ -s ${HOME}/.tmuxinator/scripts/tmuxinator ]; then
+  source ${HOME}/.tmuxinator/scripts/tmuxinator
+fi
 
 # git diff-hightlight
 if [ -s /usr/local/share/git-core/contrib/diff-highlight ]; then
@@ -92,7 +94,9 @@ fi
 
 # osx
 # -----------------------------------------------------------------------------
-if [ "$(uname)" == 'Darwin' ]; then
-  export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOME}/.caskroom"
-fi
-
+case ${OSTYPE} in
+  # macOS
+  darwin*)
+    export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOME}/.caskroom"
+    ;;
+esac

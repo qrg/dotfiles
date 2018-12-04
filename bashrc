@@ -93,7 +93,6 @@ fi
 # shell common settings
 # -----------------------------------------------
 [[ -f "${HOME}"/.sh/aliases.sh ]] && . "${HOME}"/.sh/aliases.sh
-source "${HOME}"/.sh/env.sh
 
 # -----------------------------------------------
 # awscli complement
@@ -106,5 +105,5 @@ fi
 # # direnv
 # -----------------------------------------------
 if type direnv > /dev/null 2>&1; then
-  eval "$(direnv hook bash)"
+    eval "$(direnv hook bash)"
 fi

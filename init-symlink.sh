@@ -3,6 +3,7 @@
 ln -sivfn dotfiles/sh/ ${HOME}/.sh
 ln -sivfn ${HOME}/dotfiles/bash_profile ${HOME}/.bash_profile
 ln -sivfn ${HOME}/dotfiles/bashrc ${HOME}/.bashrc
+ln -sivfn ${HOME}/dotfiles/zprofile ${HOME}/.zprofile
 ln -sivfn ${HOME}/dotfiles/zshrc ${HOME}/.zshrc
 ln -sivfn ${HOME}/dotfiles/zshenv ${HOME}/.zshenv
 ln -sivfn ${HOME}/dotfiles/zsh ${HOME}/.zsh
