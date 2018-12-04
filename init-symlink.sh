@@ -1,12 +1,13 @@
 #!/bin/sh
 
-ln -sivfn dotfiles/sh/ ${HOME}/.sh
+ln -sivfn ${HOME}/dotfiles/sh/ ${HOME}/.sh
 ln -sivfn ${HOME}/dotfiles/bash_profile ${HOME}/.bash_profile
 ln -sivfn ${HOME}/dotfiles/bashrc ${HOME}/.bashrc
-ln -sivfn ${HOME}/dotfiles/zprofile ${HOME}/.zprofile
-ln -sivfn ${HOME}/dotfiles/zshrc ${HOME}/.zshrc
-ln -sivfn ${HOME}/dotfiles/zshenv ${HOME}/.zshenv
-ln -sivfn ${HOME}/dotfiles/zsh ${HOME}/.zsh
+
+echo 'export ZDOTDIR="${HOME}"/.zsh\nsource "${ZDOTDIR}"/.zshenv' > "${HOME}"/.zshenv
+ln -Fisvn ${HOME}/dotfiles/zsh ${HOME}/.zsh
+ln -sivfn ${HOME}/dotfiles/zsh/.zshrc ${HOME}/.zshrc
+
 ln -sivfn ${HOME}/dotfiles/tmux.conf ${HOME}/.tmux.conf
 ln -sivfn ${HOME}/dotfiles/tmux ${HOME}/.tmux
 ln -sivfn ${HOME}/dotfiles/vimrc ${HOME}/.vimrc
