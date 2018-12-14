@@ -2,6 +2,7 @@
 # =============================================================================
 
 export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
 
 # man setlocale
 export LC_COLLATE=ja_JP.UTF-8  # 正規表現のマッチング (範囲表現と等価クラスのマッチングを決定する) と文字列の照合 (collation)
