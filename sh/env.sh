@@ -98,6 +98,6 @@ fi
 case ${OSTYPE} in
   # macOS
   darwin*)
-    export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOME}/.caskroom"
+    export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=${HOME}/Library/Fonts"
     ;;
 esac
