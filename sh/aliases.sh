@@ -66,7 +66,7 @@ alias emacsclient='emacsclient -n -a emacs '
 #     mode and try connecting again
 
 alias w3m='w3m -B'
-alias tmux='tmux -2'
+alias tmux='tmux -2u'
 alias mysql='mysql --pager="less -S"'
 
 alias mn='memo new'
