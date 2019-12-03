@@ -57,9 +57,6 @@ $RECYCLE.BIN/
 [Dd]ebug*/
 [Rr]elease/
 
-build/
-
-
 [Tt]est[Rr]esult
 [Bb]uild[Ll]og.*
 
@@ -113,7 +110,7 @@ _ReSharper*/
 [Ee]xpress
 
 # DocProject is a documentation generator add-in
-DocProject/buildhelp/
+DocProject/Buildhelp/
 DocProject/Help/*.HxT
 DocProject/Help/*.HxC
 DocProject/Help/*.hhc
@@ -204,7 +201,11 @@ Session.vim
 ### https://raw.github.com/github/gitignore/afbff9027d02ccfc680e031f6c295f79ad61662d/Global/VisualStudioCode.gitignore
 
 .vscode/*
-#!.vscode/settings.json
-#!.vscode/tasks.json
-#!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# IntelliJ WebStorm graphql plugin
+graphql.config.json
+graphql.schema.json
 
