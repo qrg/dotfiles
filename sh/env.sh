@@ -17,6 +17,8 @@ export EDITOR=vim
 #export VISUAL=emacsclient
 #export ALTERNATE_EDITOR=emacs
 
+export GPG_TTY=$(tty)
+
 # colorful man pages
 # -----------------------------------------------------------------------------
 if type source-highlight > /dev/null 2>&1; then
@@ -98,6 +100,8 @@ fi
 case ${OSTYPE} in
   # macOS
   darwin*)
+    export PATH="/usr/local/opt/curl/bin:/usr/local/opt/openssl/bin:$PATH"
     export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=${HOME}/Library/Fonts"
+    export HOMEBREW_INSTALL_CLEANUP=1
     ;;
 esac
