@@ -4,7 +4,7 @@
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
-  editor = vim -i NONE -N -c 'syntax on'
+  editor = code --wait
   autocrlf = input
   safecrlf = false
 [color]
@@ -84,4 +84,3 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
-
