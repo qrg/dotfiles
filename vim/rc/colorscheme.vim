@@ -3,7 +3,7 @@ set t_8b=[48;2;%lu;%lu;%lum
 "set t_Co=256
 set termguicolors
 
-" set background=dark
+set background=dark
 
 "{{{ gruvbox
 "colorscheme gruvbox
@@ -31,7 +31,7 @@ set termguicolors
 "{{{ Solarized 8
 
 " https://github.com/lifepillar/vim-solarized8#troubleshooting
-colorscheme solarized8_dark
+colorscheme solarized8_low
 let g:solarized_termtrans=1
 "let g:solarized_visibility="low"
 let g:solarized_term_italics=1

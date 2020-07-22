@@ -73,8 +73,8 @@ if dein#load_state(s:plugin_dir)
   call dein#add('rhysd/vim-operator-surround')
 
   " formatting
-  call dein#add('Align')
-  call dein#add('PreserveNoEOL')
+  call dein#add('vim-scripts/Align')
+  call dein#add('vim-scripts/PreserveNoEOL')
   call dein#add('editorconfig/editorconfig-vim')
 
   " highlighting
