@@ -48,7 +48,7 @@ color "CommitDate: " black default bold
 color "TaggerDate: " black default bold
 
 # H で、コミットハッシュ値をコピーできるようにする
-bind generic H !@bash -c "cut -c-7 <<<%(commit) | xargs echo -n | pbcopy"
+bind main H !@bash -c "cut -c-7 <<<%(commit) | xargs echo -n | pbcopy"
 
 # R で rebase -i
 bind main    R !git rebase -i %(commit)
