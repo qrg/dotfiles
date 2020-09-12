@@ -41,13 +41,16 @@ if dein#load_state(s:plugin_dir)
   call dein#add('Shougo/vimshell')
 
   " completion
-  call dein#add('Shougo/neocomplete.vim', {
-    \'if': has('lua'),
-    \'autoload': {'insert': 1}
-    \ })
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
 
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
+  let g:deoplete#enable_at_startup = 1
+
+  " snippet
+  call dein#add('Shougo/deoppet.nvim')
 
   call dein#add('kana/vim-smartchr')
   call dein#add('tpope/vim-surround')
