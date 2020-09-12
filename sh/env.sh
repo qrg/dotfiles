@@ -19,6 +19,8 @@ export EDITOR=vim
 
 export GPG_TTY=$(tty)
 
+export MANWIDTH=100
+
 # colorful man pages
 # -----------------------------------------------------------------------------
 if type source-highlight > /dev/null 2>&1; then
