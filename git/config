@@ -4,6 +4,7 @@
   editor = vim -i NONE -N -c 'syntax on'
   autocrlf = input
   safecrlf = false
+
 [color]
   ui = true
   branch = auto
@@ -34,7 +35,7 @@
 
 [pull]
   ff = only
-	rebase = true
+  rebase = true
 
 [alias]
   s = status
@@ -73,10 +74,11 @@
   autoSquash = true
 
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+
 [include]
   path = ~/.gitconfig.local
 
