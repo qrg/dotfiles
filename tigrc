@@ -1,5 +1,6 @@
 set split-view-height = 90%
 set diff-options = --patience
+set diff-highlight = true
 
 set blob-view = line-number:yes,interval=10 \
                 text
