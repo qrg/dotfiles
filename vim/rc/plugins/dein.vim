@@ -132,4 +132,3 @@ if dein#load_state(s:plugin_dir)
   endif
 endif
 
-" vim:foldmethod=marker:
