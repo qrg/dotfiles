@@ -106,5 +106,6 @@ case ${OSTYPE} in
     export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=${HOME}/Library/Fonts"
     export HOMEBREW_INSTALL_CLEANUP=1
     export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
+    export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
     ;;
 esac
