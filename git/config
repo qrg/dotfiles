@@ -1,7 +1,7 @@
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
-  editor = vim -i NONE -N -c 'syntax on'
+  editor = nvim -i NONE -N -c 'syntax on'
   autocrlf = input
   safecrlf = false
 
