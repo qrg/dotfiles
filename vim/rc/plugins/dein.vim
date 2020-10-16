@@ -35,56 +35,56 @@ if dein#load_state(s:plugin_dir)
   call dein#add('Shougo/neomru.vim', { 'depends' : [ 'Shougo/unite.vim' ] })
 
   " filer
-  call dein#add('Shougo/vimfiler')
+  " call dein#add('Shougo/vimfiler')
 
   " shell
   call dein#add('Shougo/vimshell')
 
   " completion
-  call dein#add('Shougo/deoplete.nvim')
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
+  " call dein#add('Shougo/deoplete.nvim')
+  " if !has('nvim')
+  "   call dein#add('roxma/nvim-yarp')
+  "   call dein#add('roxma/vim-hug-neovim-rpc')
+  " endif
+  " let g:deoplete#enable_at_startup = 1
 
-  let g:deoplete#enable_at_startup = 1
 
   " snippet
-  call dein#add('Shougo/deoppet.nvim')
+  " call dein#add('Shougo/deoppet.nvim')
 
-  call dein#add('kana/vim-smartchr')
-  call dein#add('tpope/vim-surround')
-  call dein#add('tyru/caw.vim')
+  " call dein#add('kana/vim-smartchr')
+  " call dein#add('tpope/vim-surround')
+  " call dein#add('tyru/caw.vim')
 
   " cursor
-  call dein#add('terryma/vim-multiple-cursors')
+  " call dein#add('terryma/vim-multiple-cursors')
 
   " undo history
-  call dein#add('sjl/gundo.vim')
+  " call dein#add('sjl/gundo.vim')
 
   " textobj
-  call dein#add('kana/vim-textobj-user')
-  call dein#add('kana/vim-textobj-fold')
-  call dein#add('kana/vim-textobj-indent')
-  call dein#add('kana/vim-textobj-lastpat')
-  call dein#add('osyo-manga/vim-textobj-multiblock')
-  call dein#add('thinca/vim-textobj-between')
-  call dein#add('rhysd/vim-textobj-anyblock')
+  " call dein#add('kana/vim-textobj-user')
+  " call dein#add('kana/vim-textobj-fold')
+  " call dein#add('kana/vim-textobj-indent')
+  " call dein#add('kana/vim-textobj-lastpat')
+  " call dein#add('osyo-manga/vim-textobj-multiblock')
+  " call dein#add('thinca/vim-textobj-between')
+  " call dein#add('rhysd/vim-textobj-anyblock')
 
   " operator
-  call dein#add('kana/vim-operator-user')
-  call dein#add('rhysd/vim-operator-surround')
+  " call dein#add('kana/vim-operator-user')
+  " call dein#add('rhysd/vim-operator-surround')
 
   " formatting
-  call dein#add('vim-scripts/Align')
-  call dein#add('vim-scripts/PreserveNoEOL')
+  " call dein#add('vim-scripts/Align')
+  " call dein#add('vim-scripts/PreserveNoEOL')
   call dein#add('editorconfig/editorconfig-vim')
 
   " highlighting
   call dein#add('nathanaelkane/vim-indent-guides')
   call dein#add('vim-scripts/AnsiEsc.vim')
   call dein#add('ap/vim-css-color')
-  call dein#add('osyo-manga/vim-over')
+  " call dein#add('osyo-manga/vim-over')
 
   " colorscheme
   call dein#add('lifepillar/vim-solarized8')
@@ -96,7 +96,7 @@ if dein#load_state(s:plugin_dir)
   "call dein#add('flazz/vim-colorschemes')
 
   " statusline
-  call dein#add('itchyny/lightline.vim')
+  "call dein#add('itchyny/lightline.vim')
 
   " git
   call dein#add('tpope/vim-fugitive')
@@ -115,7 +115,7 @@ if dein#load_state(s:plugin_dir)
 
   " help
   call dein#add('vim-jp/vimdoc-ja')
-  call dein#add('rizzatti/dash.vim')
+  " call dein#add('rizzatti/dash.vim')
 
   "}}}
 
