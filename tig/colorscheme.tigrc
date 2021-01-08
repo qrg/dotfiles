@@ -1,0 +1,16 @@
+color cursor default black bold
+color id black default bold
+color date black default bold
+color line-number black default bold
+
+color title-focus black white reverse
+color title-blur black white reverse
+
+color "Author: " black default bold
+color "Commit: " black default bold
+color "Tagger: " black default bold
+color "Merge: " black default bold
+color "Date: " black default bold
+color "AuthorDate: " black default bold
+color "CommitDate: " black default bold
+color "TaggerDate: " black default bold

@@ -20,5 +20,6 @@ ln -sivfn ${HOME}/dotfiles/git/ignore ${HOME}/.gitignore
 ln -sivfn ${HOME}/dotfiles/git/attributes ${HOME}/.gitattributes
 
 ln -sivfn ${HOME}/dotfiles/tigrc ${HOME}/.tigrc
+ln -Fisvn ${HOME}/dotfiles/tig ${HOME}/.tig
 ln -sivfn ${HOME}/dotfiles/peco ${HOME}/.peco
 #ln -Fisv ${HOME}/dotfiles/mayu ${HOME}/.mayu
