@@ -5,6 +5,9 @@
   autocrlf = input
   safecrlf = false
 
+[init]
+  defaultBranch = main
+
 [color]
   ui = true
   branch = auto
@@ -81,4 +84,3 @@
 
 [include]
   path = ~/.gitconfig.local
-
