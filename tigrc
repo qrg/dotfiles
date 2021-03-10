@@ -54,3 +54,7 @@ bind main H !@bash -c "cut -c-7 <<<%(commit) | xargs echo -n | pbcopy"
 # R で rebase -i
 bind main    R !git rebase -i %(commit)
 
+# 'O'pen Pull Request page includes a selected commit
+bind main O @tosa %(commit)
+bind blame O @tosa %(commit)
+
