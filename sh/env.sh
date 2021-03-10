@@ -85,6 +85,7 @@ fi
 # rust
 if [ -s ${HOME}/.cargo ]; then
   export PATH="$HOME/.cargo/bin:${PATH}"
+  source "$HOME/.cargo/env"
 fi
 
 # tmuxinator
