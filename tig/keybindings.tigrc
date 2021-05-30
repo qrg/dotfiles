@@ -1,5 +1,5 @@
-# H で、コミットハッシュ値をコピーできるようにする
+# copy commit hash
 bind main H @bash -c "echo -n %(commit) | cut -c 1-7 | xargs echo -n | clipboard-copy.sh"
 
-# R で rebase -i
-bind main    R !git rebase -i %(commit)
+# rebase -i
+bind main R !git rebase -i %(commit)
