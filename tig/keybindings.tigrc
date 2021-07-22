@@ -3,3 +3,6 @@ bind main H @bash -c "echo -n %(commit) | cut -c 1-7 | xargs echo -n | clipboard
 
 # rebase -i
 bind main R !git rebase -i %(commit)
+
+# fixup
+bind main X !git fixup %(commit)
