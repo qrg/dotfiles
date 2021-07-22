@@ -55,7 +55,7 @@
   dff = diff --name-only
   dfs = diff --cached
 
-  fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+  fixup = !bash -c 'COMMIT=`git rev-parse ${1:-HEAD}` && git commit --fixup=$COMMIT && GIT_EDITOR=: git rebase -i --autosquash ${COMMIT}^' -
 
 [diff]
   compactionHeuristic = true
