@@ -76,6 +76,12 @@ if [ -s ${HOME}/.nodenv ]; then
   eval "$(nodenv init -)"
 fi
 
+# volta
+if [ -s ${$HOME}/.volta ]; then
+  export VOLTA_HOME="$HOME/.volta"
+  export PATH="$VOLTA_HOME/bin:$PATH"
+fi
+
 # golang
 if [ -s ${HOME}/.go ]; then
   export GOPATH="${HOME}/.go"
