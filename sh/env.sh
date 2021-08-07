@@ -109,6 +109,9 @@ fi
 case ${OSTYPE} in
   # macOS
   darwin*)
+    if [ -s /opt/homebrew/bin/brew ]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
     export PATH="/usr/local/opt/curl/bin:/usr/local/opt/openssl/bin:$PATH"
     export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=${HOME}/Library/Fonts"
     export HOMEBREW_INSTALL_CLEANUP=1
