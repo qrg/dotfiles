@@ -1,4 +1,4 @@
-color cursor default black bold
+color cursor default default reverse
 color id black default bold
 color date black default bold
 color line-number black default bold
