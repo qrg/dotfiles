@@ -77,7 +77,7 @@ if [ -s ${HOME}/.nodenv ]; then
 fi
 
 # volta
-if [ -s ${$HOME}/.volta ]; then
+if [ -s ${HOME}/.volta ]; then
   export VOLTA_HOME="$HOME/.volta"
   export PATH="$VOLTA_HOME/bin:$PATH"
 fi
