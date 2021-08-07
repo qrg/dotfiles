@@ -21,6 +21,8 @@ export GPG_TTY=$(tty)
 
 export MANWIDTH=100
 
+export FISH_SHELL_PATH=`which fish`
+
 # colorful man pages
 # -----------------------------------------------------------------------------
 if type source-highlight > /dev/null 2>&1; then
