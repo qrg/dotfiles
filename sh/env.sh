@@ -117,6 +117,10 @@ case ${OSTYPE} in
     export HOMEBREW_INSTALL_CLEANUP=1
     export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
     export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
-    export NODE_BUILD_DEFINITIONS=$(brew --prefix node-build-update-defs)/share/node-build
+
+    if [ -s ${HOME}/.nodenv ]; then
+      export NODE_BUILD_DEFINITIONS=$(brew --prefix node-build-update-defs)/share/node-build
+    fi
+
     ;;
 esac
