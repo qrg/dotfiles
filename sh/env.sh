@@ -83,8 +83,8 @@ if [ -s ${HOME}/.volta ]; then
 fi
 
 # golang
-if [ -s ${HOME}/.go ]; then
-  export GOPATH="${HOME}/.go"
+if [ -s ${HOME}/go ]; then
+  export GOPATH="${HOME}/go"
   export PATH="${GOPATH}/bin:${PATH}"
 fi
 
