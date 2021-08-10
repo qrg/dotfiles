@@ -49,6 +49,25 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 # -----------------------------------------------------------------------------
 export PATH="${HOME}/scripts:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
+case ${OSTYPE} in
+  # macOS
+  darwin*)
+    if [ -s /opt/homebrew/bin/brew ]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+    export PATH="/usr/local/opt/curl/bin:/usr/local/opt/openssl/bin:$PATH"
+    export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=${HOME}/Library/Fonts"
+    export HOMEBREW_INSTALL_CLEANUP=1
+    export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
+    export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
+
+    if [ -s ${HOME}/.nodenv ]; then
+      export NODE_BUILD_DEFINITIONS=$(brew --prefix node-build-update-defs)/share/node-build
+    fi
+
+    ;;
+esac
+
 # macvim kaoriya
 if [ -d /Applications/MacVim.app/Contents/MacOS ]; then
   export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
@@ -105,24 +124,3 @@ fi
 if [ -s /usr/local/share/git-core/contrib/diff-highlight ]; then
   export PATH="/usr/local/share/git-core/contrib/diff-highlight:${PATH}"
 fi
-
-# osx
-# -----------------------------------------------------------------------------
-case ${OSTYPE} in
-  # macOS
-  darwin*)
-    if [ -s /opt/homebrew/bin/brew ]; then
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
-    export PATH="/usr/local/opt/curl/bin:/usr/local/opt/openssl/bin:$PATH"
-    export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=${HOME}/Library/Fonts"
-    export HOMEBREW_INSTALL_CLEANUP=1
-    export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
-    export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
-
-    if [ -s ${HOME}/.nodenv ]; then
-      export NODE_BUILD_DEFINITIONS=$(brew --prefix node-build-update-defs)/share/node-build
-    fi
-
-    ;;
-esac
