@@ -40,6 +40,9 @@
   ff = only
   rebase = true
 
+[push]
+	default = current
+
 [alias]
   s = status
   c = commit
