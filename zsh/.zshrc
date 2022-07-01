@@ -37,9 +37,6 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # ただし大文字を打った場合は小文字に変換しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# 補完除外対象
-# zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
-
 # 補完候補を arrow key, C-f, C-b で選択
 # Tab (C-i) を何度か押すと選択モードになり、arrow key, C-f, C-b で移動できる
 # この設定を有効化する場合 C-i 選択, C-m 補完決定, を繰り返すのが楽。補完キャンセルは C-c
@@ -154,50 +151,6 @@ setopt hist_reduce_blanks # 余分なスペースを削除
 # =============================================================================
 # plugins
 # =============================================================================
-# "Solve conflict of zsh zaw plugin"
-# http://myfuturesightforpast.blogspot.jp/2014/07/solve-conflict-of-zsh-zaw-plugin.html
-# zaw の読み込みは以下の点に注意
-# * antigen を利用する場合、zshenv も含めた zaw 読み込み前に `alias ls="ls -F"` を書かない
-# * auto-fu 併用の場合、zaw の設定を auto-fu の前に書く
-# * `setopt sh_word_split` は書かない
-if [[ -f ${HOME}/.zsh/plugins/antigen/antigen.zsh ]]; then
-  source ${HOME}/.zsh/plugins/antigen/antigen.zsh
-
-  antigen use oh-my-zsh
-  antigen bundle brew
-  antigen bundle git
-  antigen bundle osx
-  antigen bundle command-not-found
-  antigen bundle zsh-users/zsh-syntax-highlighting
-  antigen bundle zsh-users/zsh-completions src
-  antigen bundle zsh-users/zaw
-
-  antigen apply
-fi
-
-# ----------------------------------------------------------
-# auto-fu.zsh
-# C-g で toggle auto-fu on/off
-#if [ -e ${AutoFuFile} ]; then
-#    source ${AutoFuFile}
-#    function zle-line-init (){ auto-fu-init }
-#    zle -N zle-line-init
-#    zstyle ':completion:*' completer _oldlist _complete _history _expand _prefix _match _approximate _list
-#    zstyle ':auto-fu:var' postdisplay ''
-#fi
-
-# ----------------------------------------------------------
-# z - jump around
-# https://github.com/rupa/z
-# z keyword で keyword に match する dir に移動
-# cd history を _Z_DATA に自動保存
-#_Z_CMD=j
-#
-#source ${ZjumpAroundFile}
-#precmd() {
-#    _z --add "$(pwd -P)"
-#}
-#_Z_DATA=${ZshLocalDir}/zjumpdata
 
 # =============================================================================
 # prompt
@@ -251,9 +204,6 @@ fi
 PROMPT="
 %F{green}%n@%m %F{cyan}%f%~%F{gray} ---  %D{%m}.%D{%d} $(LANG=C date +'%a') %D{%T}$(LANG=ja_JP.UTF-8)%f
 %(!.#.$) "
-
-#powerline-daemon -q
-#source ${HOME}/.pyenv/versions/2.7.9/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # ----------------------------------------------------------
 # Git PROMPT
@@ -426,52 +376,12 @@ bindkey "^N" history-beginning-search-forward-end
 bindkey -r "^D"
 setopt ignoreeof
 
-
 bindkey '^R' history-incremental-search-backward
 
 # ^S で stop しない
 # ^S は ^R で command history から incremental search する機能の forward
 # として使いたい
 stty stop undef
-
-# 履歴から補完機能を on/off
-#bindkey '^xp' predict-on
-#bindkey '^x^p' predict-off
-
-# すぐ上のディレクトリ移動にキーバインド
-#function cdup() {
-#    echo
-#    cd ..
-#    zle reset-prompt
-#}
-#zle -N cdup
-# ctrl + up
-#bindkey "^[[1;5A" cdup
-
-# zaw
-# auto-fu と併用する場合、^g を先に押す
-# bindkey '^r' zaw-history
-bindkey '^b' zaw-bookmark
-bindkey '^xgf' zaw-git-files
-bindkey '^xgs' zaw-git-status
-#bindkey '^xgb' zaw-git-branches
-bindkey '^x^x' zaw-cdr
-bindkey '^xssh' zaw-hosts
-bindkey '^xa' zaw-aliases
-
-# anyframe
-#bindkey '^xb' anyframe-widget-cdr
-#bindkey '^x^b' anyframe-widget-checkout-git-branch
-#bindkey '^xr' anyframe-widget-execute-history
-#bindkey '^x^r' anyframe-widget-execute-history
-#bindkey '^xi' anyframe-widget-put-history
-#bindkey '^x^i' anyframe-widget-put-history
-#bindkey '^xg' anyframe-widget-cd-ghq-repository
-#bindkey '^x^g' anyframe-widget-cd-ghq-repository
-#bindkey '^xk' anyframe-widget-kill
-#bindkey '^x^k' anyframe-widget-kill
-#bindkey '^xe' anyframe-widget-insert-git-branch
-#bindkey '^x^e' anyframe-widget-insert-git-branch
 
 function git-checkout-peco() {
   local selected_branch_name="$(git branch -a | peco | tr -d ' ')"
@@ -561,4 +471,3 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f "${HOME}/.zsh/fzf.zsh" ] && source "${HOME}/.zsh/fzf.zsh"
-

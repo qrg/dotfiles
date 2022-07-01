@@ -52,7 +52,7 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 
 # PATH
 # -----------------------------------------------------------------------------
-export PATH="${HOME}/scripts:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 case ${OSTYPE} in
   # macOS
@@ -84,18 +84,6 @@ if [ -d ${HOME}/.rbenv ]; then
   eval "$(rbenv init -)"
 fi
 
-# pyenv
-if [ -d ${HOME}/.pyenv ]; then
-  export PATH="${HOME}/.pyenv/shims:${PATH}"
-  eval "$(pyenv init -)"
-fi
-
-# ndenv
-if [ -s ${HOME}/.ndenv/bin ]; then
-  export PATH="$HOME/.ndenv/bin:$PATH"
-  eval "$(ndenv init -)"
-fi
-
 # nodenv
 if [ -s ${HOME}/.nodenv ]; then
   export PATH="$HOME/.nodenv/bin:$PATH"
@@ -118,11 +106,6 @@ fi
 if [ -s ${HOME}/.cargo ]; then
   export PATH="$HOME/.cargo/bin:${PATH}"
   source "$HOME/.cargo/env"
-fi
-
-# tmuxinator
-if [ -s ${HOME}/.tmuxinator/scripts/tmuxinator ]; then
-  source ${HOME}/.tmuxinator/scripts/tmuxinator
 fi
 
 # git diff-hightlight

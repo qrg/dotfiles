@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ln -sivfn ${HOME}/dotfiles/sh/ ${HOME}/.sh
+ln -sivfn ${HOME}/dotfiles/shell/ ${HOME}/.sh
 ln -sivfn ${HOME}/dotfiles/bash_profile ${HOME}/.bash_profile
 ln -sivfn ${HOME}/dotfiles/bashrc ${HOME}/.bashrc
 
@@ -22,4 +22,3 @@ ln -sivfn ${HOME}/dotfiles/git/attributes ${HOME}/.gitattributes
 ln -sivfn ${HOME}/dotfiles/tigrc ${HOME}/.tigrc
 ln -Fisvn ${HOME}/dotfiles/tig ${HOME}/.tig
 ln -sivfn ${HOME}/dotfiles/peco ${HOME}/.peco
-#ln -Fisv ${HOME}/dotfiles/mayu ${HOME}/.mayu
