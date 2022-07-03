@@ -2,7 +2,7 @@
 # cf.) man zshoptions
 # cf.) http://www.gentei.org/~yuuji/rec/pc/zsh/zshcompsys.txt
 #
-
+source "${HOME}/.config/shell/env.sh"
 # =============================================================================
 # completion
 # cf.) man zshcompsys
@@ -17,11 +17,14 @@
 #   _prefix       カーソルの位置で補完を行う
 #
 # =============================================================================
-fpath=(${HOME}/.zsh/site-functions $fpath)
+FPATH="${XDG_DATA_HOME}/zsh/site-functions:${FPATH}"
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
 # zsh basic completion
 autoload -Uz compinit
-# -d オプションで zcompdump ファイルをに指定したパス,ファイル名で保存する
-compinit -u -d ${HOME}/.zsh/local/zcompdump.${HOST}.${USER}
+# -d オプションで zcompdump ファイルを指定したパス,ファイル名で保存する
+compinit -u -d ${XDG_DATA_HOME}/zsh/zcompdump
 
 # enable complement with sudo
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
@@ -134,7 +137,7 @@ zstyle ':filter-select' case-insensitive yes
 # =============================================================================
 # history
 # =============================================================================
-HISTFILE=${HOME}/.zsh/local/zsh-history
+HISTFILE=${XDG_DATA_HOME}/zsh/zsh-history
 HISTSIZE=10000000
 SAVEHIST=1000000
 
@@ -147,10 +150,6 @@ setopt share_history      # share command history data
 setopt extended_history   # add timestamp with history
 setopt inc_append_history # 履歴をすぐに反映
 setopt hist_reduce_blanks # 余分なスペースを削除
-
-# =============================================================================
-# plugins
-# =============================================================================
 
 # =============================================================================
 # prompt
@@ -340,49 +339,9 @@ setopt nolistbeep
 # 処理所用時間, CPU使用率 など
 REPORTTIME=3
 
-
-# ==============================================================================
-# keybind
-#
-# `$ bindkey` コマンドでキーバインド一覧表示
-# ^   -> Ctrl
-# ^[  -> Meta
-# auto-fu.zsh を使う場合は、一旦 off にしないと使えないキーバインドがある
-# C-g で toggle auto-fu on/off
-# ==============================================================================
-
-# like emacs keybindings
-bindkey -e
-
-# Shift-Tab 補完候補を逆順する ("\e[Z"でも動作する)
-bindkey "\e[Z" reverse-menu-complete
-
-# undo, redo
-bindkey "^[U" undo
-bindkey "^[R" redo
-
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-
-# 前方一致履歴検索
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
-
-# IGNOREEOF forces the user to type exit or logout, instead of just pressing ^D.
-# ^D で logout させない(ミスタイプによる意図しないログアウト防止).
-# ただし10回連続で ^D すると logout.
-# auto-fu.zsh を利用する場合 IGNOREEOF の設定が無視される
-bindkey -r "^D"
-setopt ignoreeof
-
-bindkey '^R' history-incremental-search-backward
-
-# ^S で stop しない
-# ^S は ^R で command history から incremental search する機能の forward
-# として使いたい
-stty stop undef
-
+# =============================================================================
+# functions
+# =============================================================================
 function git-checkout-peco() {
   local selected_branch_name="$(git branch -a | peco | tr -d ' ')"
   case "$selected_branch_name" in
@@ -426,48 +385,62 @@ function ghq-src-fzf() {
     fi
     zle reset-prompt
 }
+
+# ==============================================================================
+# keybind
+#
+# `$ bindkey` コマンドでキーバインド一覧表示
+# ^   -> Ctrl
+# ^[  -> Meta
+# auto-fu.zsh を使う場合は、一旦 off にしないと使えないキーバインドがある
+# C-g で toggle auto-fu on/off
+# ==============================================================================
+
+# like emacs keybindings
+bindkey -e
+
+# Shift-Tab 補完候補を逆順する ("\e[Z"でも動作する)
+bindkey "\e[Z" reverse-menu-complete
+
+# undo, redo
+bindkey "^[U" undo
+bindkey "^[R" redo
+
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+
+# 前方一致履歴検索
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
+
+# IGNOREEOF forces the user to type exit or logout, instead of just pressing ^D.
+# ^D で logout させない(ミスタイプによる意図しないログアウト防止).
+# ただし10回連続で ^D すると logout.
+# auto-fu.zsh を利用する場合 IGNOREEOF の設定が無視される
+bindkey -r "^D"
+setopt ignoreeof
+
+bindkey '^R' history-incremental-search-backward
+
+# ^S で stop しない
+# ^S は ^R で command history から incremental search する機能の forward
+# として使いたい
+stty stop undef
+
 zle -N select-history-peco
 bindkey '^r' select-history-peco
 zle -N ghq-src-peco
-bindkey '^xgg' ghq-src-peco
+bindkey '^g' ghq-src-peco
 zle -N git-checkout-peco
 bindkey '^xgb' git-checkout-peco
 
-# ==============================================================================
-# functions
-# ==============================================================================
-load_if_exists () {
-    if [ -e $1 ]; then
-        source $1
-    fi
-}
 
 # ==============================================================================
-# shell common settings
+# aliases
 # ==============================================================================
-load_if_exists "${HOME}"/.sh/env.sh
-load_if_exists ${HOME}/.sh/aliases.sh
+source ${XDG_CONFIG_HOME}/shell/aliases.sh
 
 compdef g=git # git の alias を使う場合にも git のサブコマンドの補完を有効にする
 
-# -----------------------------------------------
-# awscli complement
-# -----------------------------------------------
-if [ -e ${HOME}/.pyenv/shims/aws_zsh_completer.sh ]; then
-  source ${HOME}/.pyenv/versions/`pyenv global`/bin/aws_zsh_completer.sh
-fi
-
-# -----------------------------------------------
-# direnv
-# -----------------------------------------------
-if type direnv > /dev/null 2>&1; then
-  eval "$(direnv hook zsh)"
-fi
-
-# -----------------------------------------------
-# iterm2
-# https://www.iterm2.com/documentation-shell-integration.html
-# -----------------------------------------------
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-[ -f "${HOME}/.zsh/fzf.zsh" ] && source "${HOME}/.zsh/fzf.zsh"
+# ==============================================================================

@@ -31,5 +31,5 @@ set tree-view = author \
                 line-number:yes,interval=10 \
                 mode:yes
 
-source ~/.tig/colorscheme.tigrc
-source ~/.tig/keybindings.tigrc
+source ~/.config/tig/colorscheme.tigrc
+source ~/.config/tig/keybindings.tigrc

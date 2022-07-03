@@ -2,9 +2,18 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# -----------------------------------------------
+# environment variables
+# -----------------------------------------------
+if [ -s "${HOME}"/.config/shell/env.sh ]; then
+  source "${HOME}"/.config/shell/env.sh
+fi
+
+# -----------------------------------------------
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+HISTFILE="${XDG_DATA_HOME}/bash/bash-history"
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -69,13 +78,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# -----------------------------------------------
-# environment variables
-# -----------------------------------------------
-if [ -s "${HOME}"/.sh/env.sh ]; then
-  source "${HOME}"/.sh/env.sh
-fi
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -95,11 +97,8 @@ fi
 # -----------------------------------------------
 # shell common settings
 # -----------------------------------------------
-[[ -f "${HOME}"/.sh/aliases.sh ]] && . "${HOME}"/.sh/aliases.sh
+if [ -f ${XDG_CONFIG_HOME}/shell/aliases.sh ]; then
+    . ${XDG_CONFIG_HOME}/shell/aliases.sh
+fi
 
 # -----------------------------------------------
-# # direnv
-# -----------------------------------------------
-if type direnv > /dev/null 2>&1; then
-    eval "$(direnv hook bash)"
-fi

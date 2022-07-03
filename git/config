@@ -1,6 +1,4 @@
 [core]
-  excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
   editor = nvim -i NONE -N -c 'syntax on'
   autocrlf = input
   safecrlf = false
@@ -86,4 +84,4 @@
   clean = git-lfs clean -- %f
 
 [include]
-  path = ~/.gitconfig.local
+  path = ~/.config/git/config.local

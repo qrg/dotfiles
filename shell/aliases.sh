@@ -34,36 +34,12 @@ alias wget='wget -cvS'
 # -S, --server-response
 #     Print the headers sent by HTTP servers and responses sent by FTP servers.
 
-alias vi='vim'
-
-if [ -d /Applications/MacVim.app/Contents/MacOS ]; then
-  alias vi='Vim'
-  alias vim='Vim'
-fi
-
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+alias vi='nvim'
+alias vim='nvim'
 
 alias readus='find . -regex "./node_modules/[^/]*/README.*" -type f | fzf --preview="less {}" --preview-window=right:60% --ansi --bind "enter:execute(open -a \"Marked 2\" {})" --delimiter=/ --with-nth=3 --header="open README"'
 
 alias rg='rg --hidden --follow --glob "!({.git,node_modules}/*|*.lock)"'
-
-# Emacs Server -----------------------------------------------------------------
-# if emacsserver was enable, use emacsclient, or not, use emacs
-#alias e='emacsclient -n -f ~/.emacs.d/local/server/server -a emacs '
-#alias emacsclient='emacsclient -n -f ~/.emacs.d/local/server/server -a emacs '
-alias e='emacsclient -n -a emacs '
-alias emacsclient='emacsclient -n -a emacs '
-
-# -n, --no-wait
-#     Don't wait for the server to return
-#
-# -f SERVER, --server-file=SERVER
-#     Set filename of the TCP authentication file
-#
-# -a EDITOR, --alternate-editor=EDITOR
-#     Editor to fallback to if the server is not running
-#     If EDITOR is the empty string, start Emacs in daemon
-#     mode and try connecting again
 
 alias w3m='w3m -B'
 alias tmux='tmux -2u'
@@ -94,4 +70,3 @@ alias gsb='git show-branch'
 alias ghelp='git help'
 alias gpull='git pull'
 alias gpush='git push'
-
