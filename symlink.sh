@@ -34,6 +34,7 @@ ln -Fisvh "${_repo}/shell/aliases.sh" "${XDG_CONFIG_HOME}/shell/aliases.sh"
 ln -Fisvh "${_repo}/shell/env.sh" "${XDG_CONFIG_HOME}/shell/env.sh"
 
 mkdir -p "${XDG_CONFIG_HOME}/tig"
+mkdir -p "${XDG_DATA_HOME}/tig"
 ln -Fisvh "${_repo}/tig/colorscheme.tigrc" "${XDG_CONFIG_HOME}/tig/colorscheme.tigrc"
 ln -Fisvh "${_repo}/tig/config" "${XDG_CONFIG_HOME}/tig/config"
 ln -Fisvh "${_repo}/tig/keybindings.tigrc" "${XDG_CONFIG_HOME}/tig/keybindings.tigrc"
