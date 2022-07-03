@@ -162,9 +162,6 @@ abbr --add tree 'tree -Dghpua'
 abbr --add cal 'env LANG=en_US.UTF-8 cal -3'
 abbr --add man 'env LANG=ja_JP.UTF-8 man'
 
-# enable aliases with sudo
-abbr --add sudo 'sudo env PATH=$PATH'
-
 abbr --add wget 'wget -cvS'
 # -c, --continue
 #   Continue getting a partially-downloaded file.
