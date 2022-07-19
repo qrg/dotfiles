@@ -280,67 +280,67 @@ colors:
   #  background: CellForeground
 
   # Normal colors
-  #normal:
-  #  black:   '#1d1f21'
-  #  red:     '#cc6666'
-  #  green:   '#b5bd68'
-  #  yellow:  '#f0c674'
-  #  blue:    '#81a2be'
-  #  magenta: '#b294bb'
-  #  cyan:    '#8abeb7'
-  #  white:   '#c5c8c6'
   normal:
-    black: "#092833"
-    red: "#d24B50"
-    green: "#4fab70"
-    yellow: "#efeb54"
-    blue: "#5093ce"
-    magenta: "#e480d4"
-    cyan: "#4daea4"
-    white: "#ede8d5"
+    black:   '#1d1f21'
+    red:     '#cc6666'
+    green:   '#b5bd68'
+    yellow:  '#f0c674'
+    blue:    '#81a2be'
+    magenta: '#b294bb'
+    cyan:    '#8abeb7'
+    white:   '#c5c8c6'
+  # normal:
+  #   black: "#092833"
+  #   red: "#d24B50"
+  #   green: "#4fab70"
+  #   yellow: "#efeb54"
+  #   blue: "#5093ce"
+  #   magenta: "#e480d4"
+  #   cyan: "#4daea4"
+  #   white: "#ede8d5"
 
   # Bright colors
-  #bright:
-  #  black:   '#666666'
-  #  red:     '#d54e53'
-  #  green:   '#b9ca4a'
-  #  yellow:  '#e7c547'
-  #  blue:    '#7aa6da'
-  #  magenta: '#c397d8'
-  #  cyan:    '#70c0b1'
-  #  white:   '#eaeaea'
   bright:
-    black: "#68717a"
-    red: "#c14a1e"
-    green: "#00a66e"
-    yellow: "#c7c679"
-    blue: "#79afc5"
-    magenta: "#e17ba8"
-    cyan: "#8acecd"
-    white: "#fffef6"
+    black:   '#666666'
+    red:     '#d54e53'
+    green:   '#b9ca4a'
+    yellow:  '#e7c547'
+    blue:    '#7aa6da'
+    magenta: '#c397d8'
+    cyan:    '#70c0b1'
+    white:   '#eaeaea'
+  # bright:
+  #   black: "#68717a"
+  #   red: "#c14a1e"
+  #   green: "#00a66e"
+  #   yellow: "#c7c679"
+  #   blue: "#79afc5"
+  #   magenta: "#e17ba8"
+  #   cyan: "#8acecd"
+  #   white: "#fffef6"
 
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
-  #dim:
-  #  black:   '#131415'
-  #  red:     '#864343'
-  #  green:   '#777c44'
-  #  yellow:  '#9e824c'
-  #  blue:    '#556a7d'
-  #  magenta: '#75617b'
-  #  cyan:    '#5b7d78'
-  #  white:   '#828482'
   dim:
-    black: "#333333"
-    red: "#f2777a"
-    green: "#99cc99"
-    yellow: "#ffcc66"
-    blue: "#6699cc"
-    magenta: "#cc99cc"
-    cyan: "#66cccc"
-    white: "#dddddd"
+    black:   '#131415'
+    red:     '#864343'
+    green:   '#777c44'
+    yellow:  '#9e824c'
+    blue:    '#556a7d'
+    magenta: '#75617b'
+    cyan:    '#5b7d78'
+    white:   '#828482'
+  # dim:
+  #   black: "#333333"
+  #   red: "#f2777a"
+  #   green: "#99cc99"
+  #   yellow: "#ffcc66"
+  #   blue: "#6699cc"
+  #   magenta: "#cc99cc"
+  #   cyan: "#66cccc"
+  #   white: "#dddddd"
 
   # Indexed Colors
   #
