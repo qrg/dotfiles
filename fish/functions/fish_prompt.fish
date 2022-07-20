@@ -27,6 +27,24 @@ function fish_prompt
   # Configure __fish_git_prompt
   set -g __fish_git_prompt_show_informative_status true
   set -g __fish_git_prompt_showcolorhints true
+  set -g __fish_git_prompt_showdirtystate true
+  set -g __fish_git_prompt_showstashstate true
+  set -g __fish_git_prompt_showupstream 'auto'
+  set -g __fish_git_prompt_showuntrackedfiles true
+  set -g __fish_git_prompt_describe_style 'branch'
+
+  # https://github.com/fish-shell/fish-shell/blob/e93e85f3ce97c4f0256020b5cef4c0df2d349735/share/functions/fish_git_prompt.fish#L534-L550
+  __fish_git_prompt_set_char __fish_git_prompt_char_dirtystate '*' '*'
+  __fish_git_prompt_set_char __fish_git_prompt_char_invalidstate '#' '✖'
+  __fish_git_prompt_set_char __fish_git_prompt_char_stagedstate '+' '●'
+  __fish_git_prompt_set_char __fish_git_prompt_char_stashstate '$' '⚑'
+  __fish_git_prompt_set_char __fish_git_prompt_char_stateseparator ' ' ' '
+  __fish_git_prompt_set_char __fish_git_prompt_char_untrackedfiles '%' '…'
+  __fish_git_prompt_set_char __fish_git_prompt_char_upstream_ahead '>' '↑'
+  __fish_git_prompt_set_char __fish_git_prompt_char_upstream_behind '<' '↓'
+  __fish_git_prompt_set_char __fish_git_prompt_char_upstream_diverged '<>'
+  __fish_git_prompt_set_char __fish_git_prompt_char_upstream_equal '='
+  __fish_git_prompt_set_char __fish_git_prompt_char_upstream_prefix ' '
 
   # Color prompt char red for non-zero exit status
   set -l pcolor $bpurple
@@ -46,4 +64,25 @@ end
 
 function fish_right_prompt
   echo -n (date +'%m.%d %a %H:%M:%S')
+end
+
+# https://github.com/fish-shell/fish-shell/blob/e93e85f3ce97c4f0256020b5cef4c0df2d349735/share/functions/fish_git_prompt.fish#L514-L532
+function __fish_git_prompt_set_char
+  set -l user_variable_name "$argv[1]"
+  set -l char $argv[2]
+
+  if set -q argv[3]
+    and begin
+      set -q __fish_git_prompt_show_informative_status
+      or set -q __fish_git_prompt_use_informative_chars
+    end
+    set char $argv[3]
+  end
+
+  set -l variable _$user_variable_name
+  set -l variable_done "$variable"_done
+
+  if not set -q $variable
+    set -g $variable (set -q $user_variable_name; and echo $$user_variable_name; or echo $char)
+  end
 end
