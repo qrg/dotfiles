@@ -210,3 +210,9 @@ abbr --add gsb 'git show-branch'
 abbr --add ghelp 'git help'
 abbr --add gpull 'git pull'
 abbr --add gpush "git push (git branch -a | grep -E '^\*' | sed -e 's/^\* //')"
+
+# tabtab source for packages
+# uninstall by removing these lines
+if test -f $XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish
+  source $XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish
+end

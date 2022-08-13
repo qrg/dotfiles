@@ -152,3 +152,15 @@ export LESS_TERMCAP_ZN=$(tput ssubm)
 export LESS_TERMCAP_ZV=$(tput rsubm)
 export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
+
+# completion
+# -----------------------------------------------------------------------------
+# tabtab source for packages
+# uninstall by removing these lines
+if [ -f ${XDG_CONFIG_HOME}/tabtab/zsh/__tabtab.zsh ] && [ -n "$ZSH_VERSION" ]; then
+  source ${XDG_CONFIG_HOME}/tabtab/zsh/__tabtab.zsh
+fi
+
+if [ -f ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.zsh ] && [ -n "$BASH_VERSION" ]; then
+  source ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.zsh
+fi
