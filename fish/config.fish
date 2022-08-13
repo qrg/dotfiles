@@ -52,6 +52,12 @@ if test -e "$XDG_DATA_HOME/volta"
   fish_add_path "$VOLTA_HOME/bin"
 end
 
+# pnpm
+if test -e "$XDG_DATA_HOME/pnpm"
+  set --global --export PNPM_HOME "$XDG_DATA_HOME/pnpm"
+  set --global --export PATH "$PNPM_HOME" $PATH
+end
+
 # rbenv
 if test -e "$XDG_DATA_HOME/rbenv"
   fish_add_path "$XDG_DATA_HOME/rbenv/shims"

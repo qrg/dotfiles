@@ -66,6 +66,12 @@ if [ -s ${XDG_DATA_HOME}/volta ]; then
   _path="${VOLTA_HOME}/bin:${_path}"
 fi
 
+# pnpm
+if [ -s ${XDG_DATA_HOME}/pnpm ]; then
+  export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
+  _path="${PNPM_HOME}:${_path}"
+fi
+
 # golang
 if [ -s ${XDG_DATA_HOME}/go ]; then
   export GOPATH="${XDG_DATA_HOME}/go"
