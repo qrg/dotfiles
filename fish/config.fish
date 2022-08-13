@@ -211,6 +211,9 @@ abbr --add ghelp 'git help'
 abbr --add gpull 'git pull'
 abbr --add gpush "git push (git branch -a | grep -E '^\*' | sed -e 's/^\* //')"
 
+# pnpm
+abbr --add p "pnpm"
+
 # tabtab source for packages
 # uninstall by removing these lines
 if test -f $XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish
