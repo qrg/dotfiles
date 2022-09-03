@@ -18,15 +18,24 @@ function fish_prompt
   # Setup colors
   set -l normal (set_color normal)
   set -l cyan (set_color cyan)
+  set -l green (set_color green)
+  set -l blue (set_color blue)
   set -l yellow (set_color yellow)
+  set -l white (set_color white)
+  set -l black (set_color black)
   set -l bpurple (set_color -o purple)
+  set -l bgreen (set_color -o green)
   set -l bred (set_color -o red)
   set -l bcyan (set_color -o cyan)
+  set -l bblue (set_color -o blue)
   set -l bwhite (set_color -o white)
+  set -l bblack (set_color -o black)
+  set -l muted (set_color 426773)
+  set -l muted2 (set_color 648995)
 
   # Configure __fish_git_prompt
   set -g __fish_git_prompt_show_informative_status true
-  set -g __fish_git_prompt_showcolorhints true
+  set -g __fish_git_prompt_showcolorhints false
   set -g __fish_git_prompt_showdirtystate true
   set -g __fish_git_prompt_showstashstate true
   set -g __fish_git_prompt_showupstream 'auto'
@@ -53,8 +62,9 @@ function fish_prompt
   end
 
   # Top
-  echo -n $cyan$USER$normal at $yellow$__fish_prompt_hostname$normal in $bred(prompt_pwd)$normal
-  __fish_git_prompt
+  echo
+  echo $muted(date +'%H:%M:%S %m.%d %a') - $USER.$__fish_prompt_hostname$normal(__fish_git_prompt)
+  echo -n $muted2(prompt_pwd)$normal
 
   echo
 
@@ -63,7 +73,7 @@ function fish_prompt
 end
 
 function fish_right_prompt
-  echo -n (date +'%m.%d %a %H:%M:%S')
+  #echo -n (date +'%m.%d %a %H:%M:%S')
 end
 
 # https://github.com/fish-shell/fish-shell/blob/e93e85f3ce97c4f0256020b5cef4c0df2d349735/share/functions/fish_git_prompt.fish#L514-L532
