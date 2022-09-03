@@ -18,14 +18,14 @@ set stage-view = line-number:yes,interval=10 \
                  text
 
 set main-view = line-number:yes,interval=10 \
-                id:width=6 \
+                id \
                 date:relative-compact \
                 author \
                 commit-title:graph=yes,refs=yes
 
 set tree-view = author \
                 date \
-                id:width=6 \
+                id \
                 file-name \
                 file-size:units \
                 line-number:yes,interval=10 \
