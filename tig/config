@@ -19,7 +19,7 @@ set stage-view = line-number:yes,interval=10 \
 
 set main-view = line-number:yes,interval=10 \
                 id:width=6 \
-                date:relative \
+                date:relative-compact \
                 author \
                 commit-title:graph=yes,refs=yes
 
