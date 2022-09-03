@@ -1,6 +1,9 @@
 # copy commit hash
 bind main H @bash -c "echo -n %(commit) | cut -c 1-7 | xargs echo -n | clipboard-copy.sh"
 
+# copy full commit hash
+bind main <C-H> @bash -c "echo -n %(commit) | xargs echo -n | clipboard-copy.sh"
+
 # rebase -i
 bind main R !git rebase -i %(commit)
 
