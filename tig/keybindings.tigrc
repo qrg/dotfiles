@@ -9,3 +9,7 @@ bind main R !git rebase -i %(commit)
 
 # fixup
 bind main X !git fixup %(commit)
+
+# GitHub URL
+bind main <C-G> @bash -c "gh browse %(commit) --no-browser | clipboard-copy.sh"
+
