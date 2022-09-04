@@ -140,6 +140,16 @@ function _copy_multi_git_logs_as_markdown -d 'copy multiple git log messages to 
 end
 
 function _fzf_search_git_log --description "Search the output of git log and preview commits. Replace the current token with the selected commit hash."
+  if not type -q gh
+    echo 'Missing dependencies GitHub cli/cli.'
+    echo 'https://cli.github.com/'
+    return 1
+  end
+  if not type -q clipboard-copy.sh
+    echo 'Missing dependencies clipboard-copy.sh'
+    return 1
+  end
+
   if not git rev-parse --git-dir >/dev/null 2>&1
     echo '_fzf_search_git_log: Not in a git repository.' >&2
   else
