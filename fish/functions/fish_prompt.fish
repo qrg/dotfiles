@@ -2,20 +2,12 @@ function fish_prompt
   # Cache exit status
   set -l last_status $status
 
-  # Just calculate these once, to save a few cycles when displaying the prompt
-  if not set -q __fish_prompt_hostname
-    set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
-  end
-  if not set -q __fish_prompt_char
-    switch (id -u)
-      case 0
-        set -g __fish_prompt_char \u276f\u276f
-      case '*'
-        set -g __fish_prompt_char »
-    end
-  end
 
   # Setup colors
+  set -l base1_color 426773
+  set -l base2_color 648995
+  set -l base3_color 97acb3
+
   set -l normal (set_color normal)
   set -l cyan (set_color cyan)
   set -l green (set_color green)
@@ -30,8 +22,68 @@ function fish_prompt
   set -l bblue (set_color -o blue)
   set -l bwhite (set_color -o white)
   set -l bblack (set_color -o black)
-  set -l muted (set_color 426773)
-  set -l muted2 (set_color 648995)
+  set -l base1 (set_color $base1_color)
+  set -l base2 (set_color $base2_color)
+
+  if not set -q __prompt_char
+    switch (id -u)
+      case 0
+        set -g __prompt_char \u276f\u276f
+      case '*'
+        set -g __prompt_char »
+    end
+  end
+
+  # Adds a badge if we're in an SSH session (first letter of hostname, uppercased)
+  function __ssh_badge
+    if test -n "$SSH_CLIENT$SSH2_CLIENT$SSH_TTY"
+      set_color -b 1f363c -o 475d63
+      echo -n " "(string upper (string sub -s 1 -l 1 (hostname -s)))" "
+      set_color normal
+      echo -n " "
+    end
+  end
+
+  # only display a host name if we're in an ssh session
+  function __ssh_host
+    if test -n "$SSH_CLIENT$SSH2_CLIENT$SSH_TTY"
+      set_color -d white
+      echo -n $USER@
+      set_color normal
+      set_color -d -o brmagenta
+      echo -n (hostname -s)
+      set_color normal
+    end
+  end
+
+  function __user_host
+    if test (id -u) -eq 0
+      set_color --bold red
+    else
+      set_color $base1_color
+    end
+    echo -n $USER "at "
+
+    if test -n "$SSH_CLIENT$SSH2_CLIENT$SSH_TTY"
+      set_color -d -o white
+      echo -n (hostname -s)
+      set_color normal
+    else
+      echo -n (hostname -s)
+      set_color normal
+    end
+  end
+
+  function __current_path
+    # Replace HOME with ~
+    set -l path (string replace "$HOME" (set_color purple)"~"(set_color -d white) (pwd))
+    # Highlight last path element
+    set -l parts (string split "/" $path)
+    set parts[-1] (set_color normal)(set_color -o white)$parts[-1](set_color normal)
+    set path (string join "/" $parts)
+
+    echo -n $path(set_color normal)
+  end
 
   # Configure __fish_git_prompt
   set -g __fish_git_prompt_show_informative_status true
@@ -63,13 +115,13 @@ function fish_prompt
 
   # Top
   echo
-  echo $muted(date +'%H:%M:%S %m.%d %a') - $USER.$__fish_prompt_hostname$normal(__fish_git_prompt)
-  echo -n $muted2(prompt_pwd)$normal
+  echo (__ssh_badge)$base1(date +'%H:%M:%S %m.%d %a') - (__user_host)$normal(__fish_git_prompt)
+  echo -n (__current_path)
 
   echo
 
   # Bottom
-  echo -n $pcolor$__fish_prompt_char $normal
+  echo -n $pcolor$__prompt_char $normal
 end
 
 function fish_right_prompt
