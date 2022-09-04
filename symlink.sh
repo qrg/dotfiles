@@ -2,6 +2,7 @@
 
 XDG_CONFIG_HOME="${HOME}/.config"
 XDG_DATA_HOME="${HOME}/.local/share"
+LOCAL_EXECUTABLE_DIR="${HOME}/.local/bin"
 
 _repo="${HOME}/workspace/git/github.com/qrg/dotfiles"
 
@@ -47,5 +48,8 @@ mkdir -p "${XDG_CONFIG_HOME}/zsh"
 ln -isvn "${_repo}/zsh/.zshenv" "${HOME}/.zshenv"
 ln -isvn "${_repo}/zsh/.zprofile" "${XDG_CONFIG_HOME}/zsh/.zprofile"
 ln -isvn "${_repo}/zsh/.zshrc" "${XDG_CONFIG_HOME}/zsh/.zshrc"
+
+mkdir -p $LOCAL_EXECUTABLE_DIR
+ln -isvn "${_repo}/bin/clipboard-copy.sh" "${LOCAL_EXECUTABLE_DIR}/clipboard-copy.sh"
 
 unset _repo
