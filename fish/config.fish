@@ -94,7 +94,9 @@ set --global --export PATH $_path
 # ------------------------------------------------------------------------------
 
 # https://github.com/fish-shell/fish-shell/issues/7701#issuecomment-775719271
-if test "$COLORTERM" = truecolor; or test "$TERM" = "alacritty"
+if test "$COLORTERM" = truecolor; \
+  or test "$TERM" = "alacritty"; \
+  or string match --all --ignore-case --quiet "*-256color" "$TERM"
   set -g fish_term24bit 1
 end
 
