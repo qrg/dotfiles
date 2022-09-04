@@ -182,7 +182,6 @@ abbr --add readus 'find . -regex "./node_modules/[^/]*/README.*" -type f | fzf -
 
 abbr --add rg 'rg --hidden --follow --glob "!({.git,node_modules}/*|*.lock)"'
 
-abbr --add tmux 'tmux -2'
 abbr --add mysql 'mysql --pager="less -S"'
 
 abbr --add mn 'memo new'
