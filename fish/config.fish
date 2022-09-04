@@ -92,6 +92,12 @@ set --global --export PATH $_path
 
 # Enviroment variables
 # ------------------------------------------------------------------------------
+
+# https://github.com/fish-shell/fish-shell/issues/7701#issuecomment-775719271
+if test "$COLORTERM" = truecolor; or test "$TERM" = "alacritty"
+  set -g fish_term24bit 1
+end
+
 set --global --export EDITOR nvim
 set --global --export GPG_TTY (tty)
 set --global --export GNUPGHOME "$XDG_DATA_HOME/gnupg"
