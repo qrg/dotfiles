@@ -42,6 +42,7 @@ function fish_prompt
       set_color normal
       echo -n " "
     end
+    echo -n ''
   end
 
   # only display a host name if we're in an ssh session
@@ -54,6 +55,7 @@ function fish_prompt
       echo -n (hostname -s)
       set_color normal
     end
+    echo -n ''
   end
 
   function __user_host
@@ -72,6 +74,7 @@ function fish_prompt
       echo -n (hostname -s)
       set_color normal
     end
+    echo -n ''
   end
 
   function __current_path
@@ -115,7 +118,7 @@ function fish_prompt
 
   # Top
   echo
-  echo (__ssh_badge)$base1(date +'%H:%M:%S %m.%d %a') - (__user_host)$normal(__fish_git_prompt)
+  echo (__ssh_badge)(set_color $base1_color)(date +'%H:%M:%S %m.%d %a') - (__user_host)$normal(__fish_git_prompt)
   echo -n (__current_path)
 
   echo
