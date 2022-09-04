@@ -4,6 +4,9 @@ bind main H @bash -c "echo -n %(commit) | cut -c 1-7 | xargs echo -n | clipboard
 # copy full commit hash
 bind main <C-H> @bash -c "echo -n %(commit) | xargs echo -n | clipboard-copy.sh"
 
+# copy commit message
+bind main T @bash -c 'git log --format=%B --max-count=1 %(commit) | clipboard-copy.sh'
+
 # rebase -i
 bind main R !git rebase -i %(commit)
 
@@ -12,4 +15,5 @@ bind main X !git fixup %(commit)
 
 # GitHub URL
 bind main <C-G> @bash -c "gh browse %(commit) --no-browser | clipboard-copy.sh"
+
 
