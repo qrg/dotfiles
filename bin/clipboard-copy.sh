@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
+_args=${@}
+
 pass() {
-  if [ -p /dev/stdin -a  "`echo ${@}`" == "" ]; then
+  if [ -p /dev/stdin ] && [ "`echo $_args`" == "" ]; then
+    # input from pipe
     cat -
   else
-    echo -n "${@}"
+    # input from arguments
+    echo -e $_args
   fi
 }
 
