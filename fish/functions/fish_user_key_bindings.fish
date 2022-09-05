@@ -10,8 +10,9 @@ function fish_user_key_bindings
 
   #bind \cgf peco_select_git_file
   #bind \cgs peco_select_git_file_with_status
-  bind \cgl _fzf_search_git_log
+  #bind \cgl _fzf_search_git_log
   bind \cgs _fzf_search_git_status
+  bind \cgl _fzf_select_git_log
   #bind \cgt peco_select_git_tag
   #bind \cgh peco_select_git_hash
 
@@ -118,7 +119,7 @@ function _copy_multi_git_logs_as_markdown -d 'copy multiple git log messages to 
     #set -l items (string split "\n\n\n" (string trim (git log --format=%B --max-count=1 $hash_full)))
     set -l items (\
       git log --format=%B --max-count=1 $hash_full \
-      | string trim --chars "\n\t " \
+      | string replace --regex '^[\n\t\r ]*(.+)[\n\t\r ]*$' '$1' \
       | string join "\n" \
       | string split "\n\n" \
     )
@@ -130,8 +131,8 @@ function _copy_multi_git_logs_as_markdown -d 'copy multiple git log messages to 
     for text in $texts
       set --append msg "    - "(\
         echo -n $text \
-        | string trim --chars "\n\t " \
-        | string replace --all "\n" "\n      "\
+        | string replace --regex '^[\n\t\r ]*(.+)[\n\t\r ]*$' '$1' \
+        | string replace --all "\n" "\n      " \
       )
     end
     set --append messages $msg
@@ -139,7 +140,7 @@ function _copy_multi_git_logs_as_markdown -d 'copy multiple git log messages to 
   echo -e (printf "%s\n" $messages | string join "\n") | clipboard-copy.sh
 end
 
-function _fzf_search_git_log --description "Search the output of git log and preview commits. Replace the current token with the selected commit hash."
+function _fzf_select_git_log --description "Select the output of git log and preview commits. Replace the current token with the selected commit hash."
   if not type -q gh
     echo 'Missing dependencies GitHub cli/cli.'
     echo 'https://cli.github.com/'
@@ -151,7 +152,7 @@ function _fzf_search_git_log --description "Search the output of git log and pre
   end
 
   if not git rev-parse --git-dir >/dev/null 2>&1
-    echo '_fzf_search_git_log: Not in a git repository.' >&2
+    echo '_fzf_select_git_log: Not in a git repository.' >&2
   else
     # see documentation for git format placeholders at https://git-scm.com/docs/git-log#Documentation/git-log.txt-emnem
     # %h gives you the abbreviated commit hash, which is useful for saving screen space, but we will have to expand it later below
@@ -176,6 +177,6 @@ function _fzf_search_git_log --description "Search the output of git log and pre
     end
   end
   commandline --replace ''
-  _copy_multi_git_logs_as_markdown $commit_hashes
   commandline --function repaint
+  _copy_multi_git_logs_as_markdown $commit_hashes
 end
