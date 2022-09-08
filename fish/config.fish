@@ -111,6 +111,8 @@ set --global --export LESSHISTFILE "$XDG_DATA_HOME/less/history"
 set --global --export FISH_SHELL_PATH (which fish)
 set --global --export GIBO_BOILERPLATES "$XDG_DATA_HOME/gibo-boilerplates"
 
+set --global --export NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/config"
+
 # man pages
 # ------------------------------------------------------------------------------
 if type -q source-highlight

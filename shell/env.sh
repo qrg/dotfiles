@@ -131,6 +131,8 @@ export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
 export GIBO_BOILERPLATES="${XDG_DATA_HOME}/gibo-boilerplates"
 export FISH_SHELL_PATH=`which fish`
 
+export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME}/npm/config
+
 # man pages
 # -----------------------------------------------------------------------------
 if type source-highlight > /dev/null 2>&1; then
