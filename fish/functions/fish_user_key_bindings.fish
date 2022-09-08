@@ -106,14 +106,17 @@ end
 
 function _copy_multi_git_logs_as_markdown -d 'copy multiple git log messages to clipboard'
   set -l hashes
+
   for hash in $argv
     if test -n (string trim $hash)
       set --append hashes $hash
     end
   end
 
+  set -l reversed_hashes $hashes[-1..1]
+
   set -l messages
-  for hash in $hashes
+  for hash in $reversed_hashes
     set -l hash_full (git log --pretty=%H --max-count=1 $hash)
     set -l url (string trim (gh browse $hash_full --no-browser))
     #set -l items (string split "\n\n\n" (string trim (git log --format=%B --max-count=1 $hash_full)))
