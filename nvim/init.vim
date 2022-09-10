@@ -52,7 +52,7 @@ set listchars=eol:↲,tab:⇀\ ,extends:»,precedes:«,nbsp:▯,trail:▯
 set hlsearch
 set nocursorline
 set nocursorcolumn
-set colorcolumn=80,120
+"set colorcolumn=80,120
 
 set laststatus=2
 set showtabline=2
@@ -69,3 +69,16 @@ set hidden
 set visualbell t_vb=
 set mouse=a
 set mousehide
+
+function! s:on_yank(msg) abort
+  if filewritable(expand("~/.local/run/clipper/clipper.sock"))
+    call system('nc -NU ~/.local/run/clipper/clipper.sock', a:msg)
+  endif
+endfunction
+
+augroup clipboard_copy
+  autocmd!
+  "autocmd TextYankPost * call system("clipboard-copy.sh", @")
+  autocmd TextYankPost * if v:event.visual | call s:on_yank(@0)
+augroup END
+
