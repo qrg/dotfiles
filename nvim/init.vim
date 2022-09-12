@@ -52,7 +52,7 @@ set listchars=eol:↲,tab:⇀\ ,extends:»,precedes:«,nbsp:▯,trail:▯
 set hlsearch
 set nocursorline
 set nocursorcolumn
-"set colorcolumn=80,120
+set colorcolumn=80,120
 
 set laststatus=2
 set showtabline=2
@@ -82,3 +82,8 @@ augroup clipboard_copy
   autocmd TextYankPost * if v:event.visual | call s:on_yank(@0)
 augroup END
 
+call plug#begin()
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+call plug#end()
+
+colorscheme tokyonight
