@@ -46,12 +46,6 @@ if test -e "$XDG_DATA_HOME/nodenv"
   end
 end
 
-# volta
-if test -e "$XDG_DATA_HOME/volta"
-  set --global --export VOLTA_HOME "$XDG_DATA_HOME/volta"
-  fish_add_path "$VOLTA_HOME/bin"
-end
-
 # pnpm
 if test -e "$XDG_DATA_HOME/pnpm"
   set --global --export PNPM_HOME "$XDG_DATA_HOME/pnpm"

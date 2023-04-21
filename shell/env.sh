@@ -60,12 +60,6 @@ if type direnv > /dev/null 2>&1; then
   fi
 fi
 
-# volta
-if [ -s ${XDG_DATA_HOME}/volta ]; then
-  export VOLTA_HOME="${XDG_DATA_HOME}/volta"
-  _path="${VOLTA_HOME}/bin:${_path}"
-fi
-
 # pnpm
 if [ -s ${XDG_DATA_HOME}/pnpm ]; then
   export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
