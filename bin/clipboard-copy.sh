@@ -17,13 +17,11 @@ if [ ! -z "${WSLENV}" ]; then
 elif [ "$(uname)" == "Darwin" ]; then
   pass | pbcopy
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  # pass | xclip
-  # pass | wl-copy
-  # pass | xsel -bi
   if test -S "${HOME}/.local/run/clipper/clipper.sock"; then
     pass | nc -NU ~/.local/run/clipper/clipper.sock
   else
     pass | xsel --clipboard --input
+    # pass | xclip
+    # pass | wl-copy
   fi
 fi
-
