@@ -18,23 +18,13 @@ export LC_TIME=en_US.UTF-8     # 時刻と日付けの書式
 # -----------------------------------------------------------------------------
 local _path="${HOME}/workspace/scripts:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin"
 
-case "${OSTYPE}" in
-  # macOS
-  darwin*)
-    if [ -s /opt/homebrew/bin/brew ]; then
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
-    export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=${HOME}/Library/Fonts"
-    # https://formulae.brew.sh/formula/gnutls
-    export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
-  ;;
-esac
-
-# rbenv
-if [ -d ${XDG_DATA_HOME}/rbenv ]; then
-  export RBENV_ROOT="${XDG_DATA_HOME}/rbenv"
-  _path="${RBENV_ROOT}/bin:${_path}"
-  eval "$(rbenv init -)"
+# direnv
+if type direnv > /dev/null 2>&1; then
+  if [ -n "$ZSH_VERSION" ]; then
+    eval "$(direnv hook zsh)"
+  elif [ -n "$BASH_VERSION" ]; then
+    eval "$(direnv hook bash)"
+  fi
 fi
 
 # nodenv
@@ -51,13 +41,11 @@ if [ -s ${XDG_DATA_HOME}/nodenv ]; then
   eval "$(nodenv init -)"
 fi
 
-# direnv
-if type direnv > /dev/null 2>&1; then
-  if [ -n "$ZSH_VERSION" ]; then
-    eval "$(direnv hook zsh)"
-  elif [ -n "$BASH_VERSION" ]; then
-    eval "$(direnv hook bash)"
-  fi
+# rbenv
+if [ -d ${XDG_DATA_HOME}/rbenv ]; then
+  export RBENV_ROOT="${XDG_DATA_HOME}/rbenv"
+  _path="${RBENV_ROOT}/bin:${_path}"
+  eval "$(rbenv init -)"
 fi
 
 # pnpm
@@ -127,7 +115,17 @@ export FISH_SHELL_PATH=`which fish`
 
 export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME}/npm/config
 
-# man pages
+# homebrew
+if [[ $(uname) == 'Darwin' ]]; then
+  if [ -s /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+  export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=${HOME}/Library/Fonts"
+  # https://formulae.brew.sh/formula/gnutls
+  export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
+fi
+
+# Man pages
 # -----------------------------------------------------------------------------
 if type source-highlight > /dev/null 2>&1; then
   export LESS='-R'
@@ -149,7 +147,7 @@ export LESS_TERMCAP_ZV=$(tput rsubm)
 export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
 
-# completion
+# Initialize
 # -----------------------------------------------------------------------------
 # tabtab source for packages
 # uninstall by removing these lines

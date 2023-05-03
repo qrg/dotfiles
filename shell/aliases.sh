@@ -6,7 +6,7 @@ alias mv='mv -iv'                # -i, --interactive  prompt before overwrite
 alias mkdir='mkdir -v'
 alias rmdir='rmdir -v'
 
-if [ $(uname) = 'Darwin' ]; then
+if [ $(uname) == 'Darwin' ]; then
     alias ls='ls -G'
     alias ll='ls -lG'
     alias la='ls -lapG'

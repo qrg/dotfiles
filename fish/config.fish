@@ -30,11 +30,6 @@ if type -q direnv
   eval (direnv hook fish)
 end
 
-# yarn
-if type -q yarn
-  fish_add_path (yarn global bin)
-end
-
 # nodenv
 if test -e "$XDG_DATA_HOME/nodenv"
   fish_add_path "$XDG_DATA_HOME/nodenv/bin" "$XDG_DATA_HOME/nodenv/shims"
@@ -46,16 +41,16 @@ if test -e "$XDG_DATA_HOME/nodenv"
   end
 end
 
-# pnpm
-if test -e "$XDG_DATA_HOME/pnpm"
-  set --global --export PNPM_HOME "$XDG_DATA_HOME/pnpm"
-  set --global --export PATH "$PNPM_HOME" $PATH
-end
-
 # rbenv
 if test -e "$XDG_DATA_HOME/rbenv"
   fish_add_path "$XDG_DATA_HOME/rbenv/shims"
   status --is-interactive; and source (rbenv init - | psub)
+end
+
+# pnpm
+if test -e "$XDG_DATA_HOME/pnpm"
+  set --global --export PNPM_HOME "$XDG_DATA_HOME/pnpm"
+  set --global --export PATH "$PNPM_HOME" $PATH
 end
 
 # golang
@@ -67,11 +62,6 @@ end
 # rust
 if test -e "$XDG_DATA_HOME/cargo"
   fish_add_path "$XDG_DATA_HOME/cargo/bin"
-end
-
-# docker-sync
-if type -q ruby && type -q gem
-  fish_add_path "(ruby -r rubygems -e 'puts Gem.user_dir')/bin"
 end
 
 # unique $PATH
@@ -107,7 +97,7 @@ set --global --export GIBO_BOILERPLATES "$XDG_DATA_HOME/gibo-boilerplates"
 
 set --global --export NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/config"
 
-# man pages
+# Man pages
 # ------------------------------------------------------------------------------
 if type -q source-highlight
   set --global --export LESS -R
@@ -130,13 +120,11 @@ set --global --export LESS_TERMCAP_ZO (tput ssupm)
 set --global --export LESS_TERMCAP_ZW (tput rsupm)
 
 # starship
-# ------------------------------------------------------------------------------
 # if type -q starship
 #  starship init fish | source
 # end
 
 # Homebrew
-# ------------------------------------------------------------------------------
 switch (uname)
   case Darwin
     set --global --export HOMEBREW_CASK_OPTS "--appdir=$HOME/Applications --fontdir=$HOME/Library/Fonts"
@@ -144,7 +132,7 @@ switch (uname)
     set --global --export GUILE_TLS_CERTIFICATE_DIRECTORY /usr/local/etc/gnutls/
 end
 
-# aliases
+# Aliases
 # ------------------------------------------------------------------------------
 
 abbr --add rm 'rm -iv' # -i, --interactive  prompt before any removal
@@ -192,7 +180,7 @@ abbr --add mn 'memo new'
 abbr --add ml 'memo list'
 abbr --add me 'memo edit'
 
-# Git --------------------------------------------------------------------------
+# Git
 abbr --add g git
 abbr --add gs 'git status'
 #abbr --add gll 'git log --color-words --color --graph --name-status --abbrev-commit --decorate --branches'
@@ -216,6 +204,9 @@ abbr --add gpush "git push (git branch -a | grep -E '^\*' | sed -e 's/^\* //')"
 
 # pnpm
 abbr --add p "pnpm"
+
+# Initialize
+# ------------------------------------------------------------------------------
 
 # tabtab source for packages
 # uninstall by removing these lines
