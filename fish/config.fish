@@ -33,6 +33,18 @@ if test "$_os" = Darwin; and type -q brew
   set --global --export GUILE_TLS_CERTIFICATE_DIRECTORY /usr/local/etc/gnutls/ # https://formulae.brew.sh/formula/gnutls
 end
 
+# asdf
+# https://asdf-vm.com/guide/getting-started.html#official-download
+# git clone https://github.com/asdf-vm/asdf.git ${XDG_DATA_HOME}/asdf --branch v0.x.y
+if test -e "$XDG_DATA_HOME/asdf"
+  set --global --export ASDF_CONFIG_FILE "$XDG_CONFIG_HOME/asdf/.asdfrc"
+  set --global --export ASDF_DIR "$XDG_DATA_HOME/asdf"
+  set --global --export ASDF_DATA_DIR "$ASDF_DIR"
+
+  source "$ASDF_DIR/asdf.fish"
+  mkdir -p "$XDG_CONFIG_HOME/fish/completions"; and ln -sf "$ASDF_DIR/completions/asdf.fish" "$XDG_CONFIG_HOME/fish/completions"
+end
+
 # direnv
 if type -q direnv
   eval (direnv hook fish)
