@@ -155,6 +155,6 @@ if [ -f ${XDG_CONFIG_HOME}/tabtab/zsh/__tabtab.zsh ] && [ -n "$ZSH_VERSION" ]; t
   source ${XDG_CONFIG_HOME}/tabtab/zsh/__tabtab.zsh
 fi
 
-if [ -f ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.zsh ] && [ -n "$BASH_VERSION" ]; then
-  source ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.zsh
+if [ -f ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.bash ] && [ -n "$BASH_VERSION" ]; then
+  source ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.bash
 fi
