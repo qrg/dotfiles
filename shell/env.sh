@@ -149,6 +149,7 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 
 # Initialize
 # -----------------------------------------------------------------------------
+
 # tabtab source for packages
 # uninstall by removing these lines
 if [ -f ${XDG_CONFIG_HOME}/tabtab/zsh/__tabtab.zsh ] && [ -n "$ZSH_VERSION" ]; then
@@ -157,4 +158,15 @@ fi
 
 if [ -f ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.bash ] && [ -n "$BASH_VERSION" ]; then
   source ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.bash
+fi
+
+# zoxide
+# https://github.com/ajeetdsouza/zoxide
+if [ -x "$(command -v zoxide)" ]; then
+  if [ -n "$ZSH_VERSION" ]; then
+    eval "$(zoxide init zsh)"
+  fi
+  if [ -n "$BASH_VERSION" ]; then
+    eval "$(zoxide init bash)"
+  fi
 fi

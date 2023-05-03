@@ -213,3 +213,9 @@ abbr --add p "pnpm"
 if test -f $XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish
   source $XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish
 end
+
+# zoxide
+# https://github.com/ajeetdsouza/zoxide
+if type -q zoxide
+  zoxide init fish | source
+end
