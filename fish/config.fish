@@ -1,3 +1,5 @@
+set --local _os (uname)
+
 # remove greeting message
 set fish_greeting
 # show cwd as full path in a prompt
@@ -22,8 +24,14 @@ set --global --export LC_TIME 'en_US.UTF-8' # 時刻と日付けの書式
 # PATH
 # ------------------------------------------------------------------------------
 
-
 fish_add_path "$HOME/workspace/scripts" "$HOME/.local/bin" /usr/local/bin /usr/local/sbin
+
+if test "$_os" = Darwin; and type -q brew
+  # add executable pathes that was installed with Homebrew
+  eval (brew shellenv)
+  set --global --export HOMEBREW_CASK_OPTS "--appdir=$HOME/Applications --fontdir=$HOME/Library/Fonts"
+  set --global --export GUILE_TLS_CERTIFICATE_DIRECTORY /usr/local/etc/gnutls/ # https://formulae.brew.sh/formula/gnutls
+end
 
 # direnv
 if type -q direnv
@@ -124,12 +132,11 @@ set --global --export LESS_TERMCAP_ZW (tput rsupm)
 #  starship init fish | source
 # end
 
-# Homebrew
-switch (uname)
-  case Darwin
-    set --global --export HOMEBREW_CASK_OPTS "--appdir=$HOME/Applications --fontdir=$HOME/Library/Fonts"
-    # https://formulae.brew.sh/formula/gnutls
-    set --global --export GUILE_TLS_CERTIFICATE_DIRECTORY /usr/local/etc/gnutls/
+# zoxide
+# https://github.com/ajeetdsouza/zoxide
+if type -q zoxide
+  set --global --export _ZO_DATA_DIR $XDG_DATA_HOME
+  zoxide init fish | source
 end
 
 # Aliases
@@ -141,7 +148,7 @@ abbr --add mv 'mv -iv' # -i, --interactive  prompt before overwrite
 abbr --add mkdir 'mkdir -v'
 abbr --add rmdir 'rmdir -v'
 
-switch (uname)
+switch "$_os"
   case Darwin
     abbr --add ls 'ls -G'
     abbr --add ll 'ls -lG'
@@ -212,10 +219,4 @@ abbr --add p "pnpm"
 # uninstall by removing these lines
 if test -f $XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish
   source $XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish
-end
-
-# zoxide
-# https://github.com/ajeetdsouza/zoxide
-if type -q zoxide
-  zoxide init fish | source
 end
