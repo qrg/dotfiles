@@ -51,7 +51,7 @@ if type -q direnv
 end
 
 # nodenv
-if test -e "$XDG_DATA_HOME/nodenv"
+if type -q nodenv
   fish_add_path "$XDG_DATA_HOME/nodenv/bin" "$XDG_DATA_HOME/nodenv/shims"
   status --is-interactive; and source (nodenv init - | psub)
   if type -q brew
