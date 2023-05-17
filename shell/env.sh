@@ -192,6 +192,25 @@ function configure_shell_env() {
   if [ -f ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.bash ] && [ -n "$BASH_VERSION" ]; then
     source ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.bash
   fi
+
+  # WSL
+  if [ -n "$WSLENV" ]; then
+    # https://github.com/microsoft/WSL/issues/4401
+    function isWinDir {
+      case $PWD/ in
+        /mnt/*) return $(true);;
+        *) return $(false);;
+      esac
+    }
+    function git {
+      if isWinDir
+      then
+        git.exe "$@"
+      else
+        /usr/bin/git "$@"
+      fi
+    }
+  fi
 }
 
 configure_shell_env

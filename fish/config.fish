@@ -237,3 +237,25 @@ abbr --add p "pnpm"
 if test -f $XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish
   source $XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish
 end
+
+# WSL
+if test -n $WSLENV
+
+  # https://github.com/microsoft/WSL/issues/4401
+  function isWinDir
+    switch (pwd -P)
+    case '/mnt/*'
+      return 0
+    case '*'
+      return 1
+      end
+  end
+  function git
+    if isWinDir
+      git.exe $argv
+    else
+      /usr/bin/git $argv
+    end
+  end
+
+end
