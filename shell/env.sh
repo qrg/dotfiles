@@ -195,6 +195,7 @@ function configure_shell_env() {
 
   # WSL
   if [ -n "$WSLENV" ]; then
+
     # https://github.com/microsoft/WSL/issues/4401
     function isWinDir {
       case $PWD/ in
@@ -210,6 +211,13 @@ function configure_shell_env() {
         /usr/bin/git "$@"
       fi
     }
+
+    # open
+    export BROWSER="powershell.exe /c start"
+    function open {
+      powershell.exe /c start "$1"
+    }
+
   fi
 }
 

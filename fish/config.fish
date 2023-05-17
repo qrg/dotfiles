@@ -258,4 +258,10 @@ if test -n $WSLENV
     end
   end
 
+  # open
+  set --global --export BROWSER "powershell.exe /c start"
+  function open
+    powershell.exe /c start $argv[1]
+  end
+
 end
