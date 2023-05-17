@@ -91,6 +91,11 @@ function configure_shell_env() {
     source "${CARGO_HOME}/env"
   fi
 
+  # Visual Studio Code on WSL
+  if [ -n "$WSLENV" ]; then
+    _path=${_path}:"/mnt/c/Users/${USER}/AppData/Local/Programs/Microsoft VS Code/bin"
+  fi
+
   case ":$PATH:" in
     *":$_path:"*)
       export PATH="${PATH}"

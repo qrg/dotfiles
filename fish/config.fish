@@ -84,6 +84,11 @@ if test -e "$XDG_DATA_HOME/cargo"
   fish_add_path "$XDG_DATA_HOME/cargo/bin"
 end
 
+# Visual Studio Code on WSL
+if test -n $WSLENV
+  fish_add_path "/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"
+end
+
 # unique $PATH
 set --local _path
 for p in $PATH
