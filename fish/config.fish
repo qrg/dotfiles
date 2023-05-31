@@ -81,7 +81,9 @@ end
 
 # rust
 if test -e "$XDG_DATA_HOME/cargo"
-  fish_add_path "$XDG_DATA_HOME/cargo/bin"
+  set --global --export CARGO_HOME "$XDG_DATA_HOME/cargo"
+  set --global --export RUSTUP_HOME "$XDG_DATA_HOME/rustup"
+  fish_add_path "$CARGO_HOME/bin"
 end
 
 # Visual Studio Code on WSL

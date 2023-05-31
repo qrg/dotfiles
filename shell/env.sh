@@ -87,8 +87,8 @@ function configure_shell_env() {
   # rust
   if [ -s ${XDG_DATA_HOME}/cargo ]; then
     export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+    export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
     _path="${CARGO_HOME}/bin:${_path}"
-    source "${CARGO_HOME}/env"
   fi
 
   # Visual Studio Code on WSL
