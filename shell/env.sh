@@ -52,7 +52,7 @@ function configure_shell_env() {
   fi
 
   # nodenv
-  if [ -s ${XDG_DATA_HOME}/nodenv ]; then
+  if [ -d ${XDG_DATA_HOME}/nodenv ]; then
     export NODENV_ROOT="${XDG_DATA_HOME}/nodenv"
     _path="${NODENV_ROOT}/bin:${_path}"
 
@@ -73,19 +73,19 @@ function configure_shell_env() {
   fi
 
   # pnpm
-  if [ -s ${XDG_DATA_HOME}/pnpm ]; then
+  if [ -d ${XDG_DATA_HOME}/pnpm ]; then
     export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
     _path="${PNPM_HOME}:${_path}"
   fi
 
   # golang
-  if [ -s ${XDG_DATA_HOME}/go ]; then
+  if [ -d ${XDG_DATA_HOME}/go ]; then
     export GOPATH="${XDG_DATA_HOME}/go"
     _path="${GOPATH}/bin:${_path}"
   fi
 
   # rust
-  if [ -s ${XDG_DATA_HOME}/cargo ]; then
+  if [ -d ${XDG_DATA_HOME}/cargo ]; then
     export CARGO_HOME="${XDG_DATA_HOME}/cargo"
     export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
     _path="${CARGO_HOME}/bin:${_path}"
