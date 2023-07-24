@@ -963,6 +963,11 @@ key_bindings:
 
   # type backslash with JIS keyboard
   - { key: Backslash, mods: Alt, chars: "\\" }
+    
+  # font size
+  - { key: Key0, mods: Control, action: ResetFontSize    }
+  - { key: Up,   mods: Control, action: IncreaseFontSize }
+  - { key: Down, mods: Control, action: DecreaseFontSize }
 #debug:
 # Display the time it takes to redraw each frame.
 #render_timer: false
