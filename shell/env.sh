@@ -91,6 +91,13 @@ function configure_shell_env() {
     _path="${CARGO_HOME}/bin:${_path}"
   fi
 
+  # fzf
+  if [ -n "$ZSH_VERSION" ] && [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
+  elif [ -n "$BASH_VERSION" ] && [ -f ~/.fzf.bash ]; then
+    source ~/.fzf.bash
+  fi
+
   # Visual Studio Code on WSL
   if [ -n "$WSLENV" ]; then
     _path=${_path}:"/mnt/c/Users/${USER}/AppData/Local/Programs/Microsoft VS Code/bin"
