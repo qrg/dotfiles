@@ -231,6 +231,12 @@ abbr --add gpush "git push (git branch -a | grep -E '^\*' | sed -e 's/^\* //')"
 # pnpm
 abbr --add p "pnpm"
 
+# eza
+if type -q eza
+  abbr la 'eza --all --git --long --group --header'
+  abbr ls 'eza'
+end
+
 # Initialize
 # ------------------------------------------------------------------------------
 

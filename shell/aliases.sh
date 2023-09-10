@@ -16,6 +16,12 @@ else
     alias la='ls -lap --color=auto'
 fi
 
+# eza
+if type direnv > /dev/null 2>&1; then
+    alias ls='eza'
+    alias la='eza --all --git --long --group --header'
+fi
+
 alias chown='chown -v'
 alias chmod='chmod -v'
 alias pd='popd'
