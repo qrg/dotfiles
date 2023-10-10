@@ -247,7 +247,7 @@ if test -f $XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish
 end
 
 # WSL
-if test -n $WSLENV
+if test -n "$WSLENV"
 
   # https://github.com/microsoft/WSL/issues/4401
   function isWinDir
