@@ -214,8 +214,8 @@ abbr --add gl 'git log --pretty=format:"%C(red reverse)%d%Creset%C(white reverse
 abbr --add glmin 'git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow reverse)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 abbr --add ga 'git add'
 abbr --add gap 'git add --patch'
-abbr --add gc 'git commit -v'
-abbr --add gca 'git commit -v --amend'
+abbr --add gc 'git commit --verbose'
+abbr --add gca 'git commit --verbose --amend'
 
 abbr --add gco 'git checkout'
 abbr --add gsw 'git switch'
@@ -224,13 +224,13 @@ abbr --add gswc 'git switch --create'
 abbr --add gd 'git diff'
 abbr --add gdh 'git diff HEAD'
 abbr --add gds 'git diff --cached'
-abbr --add gdt 'git difftool -y'
+abbr --add gdt 'git difftool --no-prompt'
 abbr --add gbr 'git branch'
-abbr --add gbra 'git branch -a'
+abbr --add gbra 'git branch --all'
 abbr --add gsb 'git show-branch'
 abbr --add ghelp 'git help'
 abbr --add gpull 'git pull'
-abbr --add gpush "git push (git branch -a | grep -E '^\*' | sed -e 's/^\* //')"
+abbr --add gpush "git push (git branch --all | grep -E '^\*' | sed -e 's/^\* //')"
 
 # pnpm
 abbr --add p "pnpm"

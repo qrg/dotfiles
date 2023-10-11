@@ -46,7 +46,7 @@
   c = commit
   amend = commit --amend
   br = branch
-  bra = branch -a
+  bra = branch --all
   co = checkout
   sw = switch
   swc = switch --create
