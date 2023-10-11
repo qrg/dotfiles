@@ -216,7 +216,11 @@ abbr --add ga 'git add'
 abbr --add gap 'git add --patch'
 abbr --add gc 'git commit -v'
 abbr --add gca 'git commit -v --amend'
+
 abbr --add gco 'git checkout'
+abbr --add gsw 'git switch'
+abbr --add gswc 'git switch --create'
+
 abbr --add gd 'git diff'
 abbr --add gdh 'git diff HEAD'
 abbr --add gds 'git diff --cached'

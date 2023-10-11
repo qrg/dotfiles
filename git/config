@@ -47,8 +47,9 @@
   amend = commit --amend
   br = branch
   bra = branch -a
-  ch = checkout
   co = checkout
+  sw = switch
+  swc = switch --create
   ad = add
   pushf = push --force-with-lease
 
