@@ -217,7 +217,10 @@ abbr --add gap 'git add --patch'
 abbr --add gc 'git commit --verbose'
 abbr --add gca 'git commit --verbose --amend'
 
-abbr --add gco 'git checkout'
+abbr --add gch 'git checkout'
+
+abbr --add gco 'git switch'
+abbr --add gcoc 'git switch --create'
 abbr --add gsw 'git switch'
 abbr --add gswc 'git switch --create'
 

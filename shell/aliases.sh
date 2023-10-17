@@ -67,7 +67,10 @@ alias ga='git add'
 alias gc='git commit --verbose'
 alias gca='git commit --verbose --amend'
 
-alias gco='git checkout'
+alias gch='git checkout'
+alias gco='git switch'
+alias gcoc='git switch --create'
+
 alias gsw='git switch'
 alias gswc='git switch --create'
 
