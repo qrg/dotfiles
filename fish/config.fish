@@ -235,6 +235,11 @@ abbr --add ghelp 'git help'
 abbr --add gpull 'git pull'
 abbr --add gpush "git push (git branch --all | grep -E '^\*' | sed -e 's/^\* //')"
 
+# gh
+
+# e.g. fdpr ${COMMIT_HASH}
+abbr --add fdpr "gh pr list --state all --web --search"
+
 # pnpm
 abbr --add p "pnpm"
 

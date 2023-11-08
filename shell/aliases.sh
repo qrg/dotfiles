@@ -83,3 +83,8 @@ alias gsb='git show-branch'
 alias ghelp='git help'
 alias gpull='git pull'
 alias gpush='git push'
+
+# gh ---------------------------------------------------------------------------
+
+# e.g. fdpr ${COMMIT_HASH}
+alias fdpr='gh pr list --state all --web --search'
