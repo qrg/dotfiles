@@ -10,7 +10,6 @@ function fish_user_key_bindings
 
   #bind \cgf peco_select_git_file
   #bind \cgs peco_select_git_file_with_status
-  #bind \cgl _fzf_search_git_log
   bind \cgs _fzf_search_git_status
   bind \cgl _fzf_select_git_log
   #bind \cgt peco_select_git_tag
