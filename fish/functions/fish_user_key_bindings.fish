@@ -6,7 +6,7 @@ function fish_user_key_bindings
   bind \cg\cg __ghq_repository_search
 
   #bind \cgb peco_select_git_branch
-  bind \cgb _fzf_git_branch
+  bind \cg\cb _fzf_git_branch_switch
 
   #bind \cgf peco_select_git_file
   #bind \cgs peco_select_git_file_with_status
@@ -72,10 +72,10 @@ function _fzf_kill
     or echo $pid | xargs kill $signal
 end
 
-function _fzf_git_branch -d 'fzf: checkout git branch, sorted by most recent commit, 30 latest branches'
+function _fzf_git_branch_switch -d 'fzf: switch git branch, sorted by most recent commit, 30 latest branches'
     set -l branches (git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)')
     and set -l branch (string replace -a ' ' '\n' $branches | fzf-tmux -d (math 2 + (count $branches)) +m)
-    and git checkout (echo $branch | sed -e 's/.* //' -e '#remotes/[^/]*/##')
+    and git switch (echo $branch | sed -e 's/.* //' -e '#remotes/[^/]*/##')
 end
 
 function _fzf_is_in_git_repo
