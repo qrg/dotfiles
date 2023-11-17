@@ -872,3 +872,7 @@ tags
 # Persistent undo
 
 [._]\*.un~
+
+### qrg
+
+.tmp-qrg
