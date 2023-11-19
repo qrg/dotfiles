@@ -71,6 +71,12 @@ end
 if test -e "$XDG_DATA_HOME/pnpm"
   set --global --export PNPM_HOME "$XDG_DATA_HOME/pnpm"
   set --global --export PATH "$PNPM_HOME" $PATH
+
+  # tabtab source for packages
+  # uninstall by removing these lines
+  if test -f "$XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish"
+    source "$XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish"
+  end
 end
 
 # golang
