@@ -26,23 +26,16 @@ set --global --export LC_TIME 'en_US.UTF-8' # 時刻と日付けの書式
 
 fish_add_path "$HOME/workspace/scripts" "$HOME/.local/bin" /usr/local/bin /usr/local/sbin
 
+# Visual Studio Code on WSL
+if test -n $WSLENV
+  fish_add_path "/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"
+end
+
 if test "$_os" = Darwin; and type -q brew
   # add executable pathes that was installed with Homebrew
   eval (brew shellenv)
   set --global --export HOMEBREW_CASK_OPTS "--appdir=$HOME/Applications --fontdir=$HOME/Library/Fonts"
   set --global --export GUILE_TLS_CERTIFICATE_DIRECTORY /usr/local/etc/gnutls/ # https://formulae.brew.sh/formula/gnutls
-end
-
-# asdf
-# https://asdf-vm.com/guide/getting-started.html#official-download
-# git clone https://github.com/asdf-vm/asdf.git ${XDG_DATA_HOME}/asdf --branch v0.x.y
-if test -e "$XDG_DATA_HOME/asdf"
-  set --global --export ASDF_CONFIG_FILE "$XDG_CONFIG_HOME/asdf/.asdfrc"
-  set --global --export ASDF_DIR "$XDG_DATA_HOME/asdf"
-  set --global --export ASDF_DATA_DIR "$ASDF_DIR"
-
-  source "$ASDF_DIR/asdf.fish"
-  mkdir -p "$XDG_CONFIG_HOME/fish/completions"; and ln -sf "$ASDF_DIR/completions/asdf.fish" "$XDG_CONFIG_HOME/fish/completions"
 end
 
 # direnv
@@ -92,9 +85,29 @@ if test -e "$XDG_DATA_HOME/cargo"
   fish_add_path "$CARGO_HOME/bin"
 end
 
-# Visual Studio Code on WSL
-if test -n $WSLENV
-  fish_add_path "/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"
+# asdf
+# https://asdf-vm.com/guide/getting-started.html#official-download
+# git clone https://github.com/asdf-vm/asdf.git ${XDG_DATA_HOME}/asdf --branch v0.x.y
+if test -e "$XDG_DATA_HOME/asdf"
+  set --global --export ASDF_CONFIG_FILE "$XDG_CONFIG_HOME/asdf/.asdfrc"
+  set --global --export ASDF_DIR "$XDG_DATA_HOME/asdf"
+  set --global --export ASDF_DATA_DIR "$ASDF_DIR"
+
+  source "$ASDF_DIR/asdf.fish"
+  mkdir -p "$XDG_CONFIG_HOME/fish/completions"; and ln -sf "$ASDF_DIR/completions/asdf.fish" "$XDG_CONFIG_HOME/fish/completions"
+
+  # same process as `source "$ASDF_DIR/asdf.fish"`, but asdf paths must be set first in order
+  set --local _asdf_bin "$ASDF_DIR/bin"
+  if test -z $ASDF_DATA_DIR
+      set _asdf_shims "$HOME/.asdf/shims"
+  else
+      set _asdf_shims "$ASDF_DATA_DIR/shims"
+  end
+
+  set --global --export --prepend PATH $_asdf_bin
+  set --global --export --prepend PATH $_asdf_shims
+  set --erase _asdf_bin
+  set --erase _asdf_shims
 end
 
 # unique $PATH
