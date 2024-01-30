@@ -1,5 +1,6 @@
 [colors]
 draw_bold_text_with_bright_colors = true
+primary = { background = "#092833", foreground = "#8c8380" }
 
 [colors.bright]
 black = "#666666"
@@ -31,27 +32,16 @@ red = "#cc6666"
 white = "#c5c8c6"
 yellow = "#f0c674"
 
-[colors.primary]
-background = "#092833"
-foreground = "#8c8380"
-
 [env]
 TERM = "alacritty"
 
 [font]
 size = 14.0
+bold = { family = "JetBrains Mono" }
+bold_italic = { family = "JetBrains Mono" }
+italic = { family = "JetBrains Mono" }
+normal = { family = "JetBrains Mono" }
 
-[font.bold]
-family = "JetBrains Mono"
-
-[font.bold_italic]
-family = "JetBrains Mono"
-
-[font.italic]
-family = "JetBrains Mono"
-
-[font.normal]
-family = "JetBrains Mono"
 
 [[keyboard.bindings]]
 chars = "\u001Ba"
@@ -453,7 +443,4 @@ save_to_clipboard = false
 decorations = "none"
 dynamic_title = true
 startup_mode = "Maximized"
-
-[window.padding]
-x = 16
-y = 16
+padding = { x = 16, y = 16 }
