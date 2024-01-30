@@ -444,3 +444,5 @@ decorations = "none"
 dynamic_title = true
 startup_mode = "Maximized"
 padding = { x = 16, y = 16 }
+opacity = 0.96
+blur = true
