@@ -32,6 +32,10 @@ red = "#cc6666"
 white = "#c5c8c6"
 yellow = "#f0c674"
 
+[colors.search]
+matches = { foreground = "#cfd1cf", background = "#008be2" }
+focused_match = { foreground = "#3d4a66", background = "#e0d40a" }
+
 [env]
 TERM = "alacritty"
 
