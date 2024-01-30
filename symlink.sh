@@ -7,7 +7,7 @@ LOCAL_EXECUTABLE_DIR="${HOME}/.local/bin"
 _repo="${HOME}/workspace/git/github.com/qrg/dotfiles"
 
 mkdir -p "${XDG_CONFIG_HOME}/alacritty"
-ln -isvn "${_repo}/alacritty/alacritty.yml" "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
+ln -isvn "${_repo}/alacritty/alacritty.toml" "${XDG_CONFIG_HOME}/alacritty/alacritty.toml"
 
 mkdir -p "${XDG_CONFIG_HOME}/bash"
 ln -isvn "${_repo}/bash/bashrc" "${HOME}/.bashrc"
