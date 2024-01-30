@@ -1,3 +1,7 @@
+import = [
+"~/.config/alacritty/alacritty-local.toml",
+]
+
 [colors]
 draw_bold_text_with_bright_colors = true
 primary = { background = "#092833", foreground = "#8c8380" }
@@ -450,14 +454,3 @@ startup_mode = "Maximized"
 padding = { x = 16, y = 16 }
 opacity = 0.96
 blur = true
-
-[[hints.enabled]]
-# command = "xdg-open" # On Linux/BSD
-command = "open" # On macOS
-# command = { program = "cmd", args = [ "/c", "start", "" ] } # On Windows
-hyperlinks = true
-post_processing = true
-persist = false
-mouse = { enabled = true, mods = "Control|Shift" }
-binding = { key = "U", mods = "Control|Shift" }
-regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
