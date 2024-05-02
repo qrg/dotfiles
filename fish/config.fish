@@ -85,6 +85,11 @@ if test -e "$XDG_DATA_HOME/cargo"
   fish_add_path "$CARGO_HOME/bin"
 end
 
+# java
+if test -e "$HOMEBREW_PREFIX/opt/openjdk/bin/java"
+  fish_add_path "$HOMEBREW_PREFIX/opt/openjdk/bin"
+end
+
 # asdf
 # https://asdf-vm.com/guide/getting-started.html#official-download
 # git clone https://github.com/asdf-vm/asdf.git ${XDG_DATA_HOME}/asdf --branch v0.x.y
