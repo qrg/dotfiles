@@ -873,6 +873,12 @@ tags
 
 [._]\*.un~
 
+### mise
+# https://mise.jdx.dev/configuration.html#mise-toml
+.mise.toml
+.mise/config.toml
+.mise.*.toml
+
 ### qrg
 
 .tmp-qrg

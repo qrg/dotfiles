@@ -38,11 +38,6 @@ if test "$_os" = Darwin; and type -q brew
   set --global --export GUILE_TLS_CERTIFICATE_DIRECTORY /usr/local/etc/gnutls/ # https://formulae.brew.sh/formula/gnutls
 end
 
-# direnv
-if type -q direnv
-  eval (direnv hook fish)
-end
-
 # nodenv
 if type -q nodenv
   fish_add_path "$XDG_DATA_HOME/nodenv/bin" "$XDG_DATA_HOME/nodenv/shims"
@@ -90,29 +85,11 @@ if test -e "$HOMEBREW_PREFIX/opt/openjdk/bin/java"
   fish_add_path "$HOMEBREW_PREFIX/opt/openjdk/bin"
 end
 
-# asdf
-# https://asdf-vm.com/guide/getting-started.html#official-download
-# git clone https://github.com/asdf-vm/asdf.git ${XDG_DATA_HOME}/asdf --branch v0.x.y
-if test -e "$XDG_DATA_HOME/asdf"
-  set --global --export ASDF_CONFIG_FILE "$XDG_CONFIG_HOME/asdf/.asdfrc"
-  set --global --export ASDF_DIR "$XDG_DATA_HOME/asdf"
-  set --global --export ASDF_DATA_DIR "$ASDF_DIR"
 
-  source "$ASDF_DIR/asdf.fish"
-  mkdir -p "$XDG_CONFIG_HOME/fish/completions"; and ln -sf "$ASDF_DIR/completions/asdf.fish" "$XDG_CONFIG_HOME/fish/completions"
-
-  # same process as `source "$ASDF_DIR/asdf.fish"`, but asdf paths must be set first in order
-  set --local _asdf_bin "$ASDF_DIR/bin"
-  if test -z $ASDF_DATA_DIR
-      set _asdf_shims "$HOME/.asdf/shims"
-  else
-      set _asdf_shims "$ASDF_DATA_DIR/shims"
-  end
-
-  set --global --export --prepend PATH $_asdf_bin
-  set --global --export --prepend PATH $_asdf_shims
-  set --erase _asdf_bin
-  set --erase _asdf_shims
+# mice
+# https://mise.jdx.dev/
+if type -q nodenv or "$XDG_CONFIG_HOME/mise/config.toml"
+  mise activate fish | source
 end
 
 # unique $PATH
