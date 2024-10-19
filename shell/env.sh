@@ -1,5 +1,8 @@
+# shellcheck shell=bash
+
 function configure_shell_env() {
-  local _os=$(uname)
+  local _os
+  _os=$(uname)
 
   # Base environment variable
   # =============================================================================
@@ -39,13 +42,14 @@ function configure_shell_env() {
   fi
 
   # nodenv
-  if [ -d ${XDG_DATA_HOME}/nodenv ]; then
+  if [ -d "${XDG_DATA_HOME}"/nodenv ]; then
     export NODENV_ROOT="${XDG_DATA_HOME}/nodenv"
     _path="${NODENV_ROOT}/bin:${_path}"
 
     if type brew > /dev/null 2>&1; then
-      if [ -e $(brew --prefix node-build-update-defs) ]; then
-        export NODE_BUILD_DEFINITIONS=$(brew --prefix node-build-update-defs)/share/node-build
+      if [ -e "$(brew --prefix node-build-update-defs)" ]; then
+        NODE_BUILD_DEFINITIONS=$(brew --prefix node-build-update-defs)/share/node-build
+        export NODE_BUILD_DEFINITIONS
       fi
     fi
 
@@ -53,26 +57,26 @@ function configure_shell_env() {
   fi
 
   # rbenv
-  if [ -d ${XDG_DATA_HOME}/rbenv ]; then
+  if [ -d "${XDG_DATA_HOME}"/rbenv ]; then
     export RBENV_ROOT="${XDG_DATA_HOME}/rbenv"
     _path="${RBENV_ROOT}/bin:${_path}"
     eval "$(rbenv init -)"
   fi
 
   # pnpm
-  if [ -d ${XDG_DATA_HOME}/pnpm ]; then
+  if [ -d "${XDG_DATA_HOME}"/pnpm ]; then
     export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
     _path="${PNPM_HOME}:${_path}"
   fi
 
   # golang
-  if [ -d ${XDG_DATA_HOME}/go ]; then
+  if [ -d "${XDG_DATA_HOME}"/go ]; then
     export GOPATH="${XDG_DATA_HOME}/go"
     _path="${GOPATH}/bin:${_path}"
   fi
 
   # rust
-  if [ -d ${XDG_DATA_HOME}/cargo ]; then
+  if [ -d "${XDG_DATA_HOME}"/cargo ]; then
     export CARGO_HOME="${XDG_DATA_HOME}/cargo"
     export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
     _path="${CARGO_HOME}/bin:${_path}"
@@ -80,8 +84,10 @@ function configure_shell_env() {
 
   # fzf
   if [ -n "$ZSH_VERSION" ] && [ -f ~/.fzf.zsh ]; then
+    # shellcheck source=/home/yourusername/.fzf.zsh
     source ~/.fzf.zsh
   elif [ -n "$BASH_VERSION" ] && [ -f ~/.fzf.bash ]; then
+    # shellcheck source=/home/yourusername/.fzf.bash
     source ~/.fzf.bash
   fi
 
@@ -100,7 +106,7 @@ function configure_shell_env() {
   esac
 
   uniq_path(){
-    local _paths=($(echo $PATH | tr ':' ' '))
+    local _paths=($(echo "$PATH" | tr ':' ' '))
     local _from
     local _to
     local _uniq_paths
@@ -134,7 +140,7 @@ function configure_shell_env() {
   export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
 
   export GIBO_BOILERPLATES="${XDG_DATA_HOME}/gibo-boilerplates"
-  export FISH_SHELL_PATH=`which fish`
+  export FISH_SHELL_PATH=$(which fish)
 
   export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME}/npm/config
 
@@ -179,12 +185,12 @@ function configure_shell_env() {
 
   # tabtab source for packages
   # uninstall by removing these lines
-  if [ -f ${XDG_CONFIG_HOME}/tabtab/zsh/__tabtab.zsh ] && [ -n "$ZSH_VERSION" ]; then
-    source ${XDG_CONFIG_HOME}/tabtab/zsh/__tabtab.zsh
+  if [ -f "${XDG_CONFIG_HOME}"/tabtab/zsh/__tabtab.zsh ] && [ -n "$ZSH_VERSION" ]; then
+    source "${XDG_CONFIG_HOME}"/tabtab/zsh/__tabtab.zsh
   fi
 
-  if [ -f ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.bash ] && [ -n "$BASH_VERSION" ]; then
-    source ${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.bash
+  if [ -f "${XDG_CONFIG_HOME}"/tabtab/bash/__tabtab.bash ] && [ -n "$BASH_VERSION" ]; then
+    source "${XDG_CONFIG_HOME}"/tabtab/bash/__tabtab.bash
   fi
 
   # WSL
