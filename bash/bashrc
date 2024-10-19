@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -84,6 +86,7 @@ esac
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
+    # shellcheck source=${HOME}/.bash_aliases
     . ~/.bash_aliases
 fi
 
@@ -97,8 +100,8 @@ fi
 # -----------------------------------------------
 # shell common settings
 # -----------------------------------------------
-if [ -f ${XDG_CONFIG_HOME}/shell/aliases.sh ]; then
-    . ${XDG_CONFIG_HOME}/shell/aliases.sh
+if [ -f "${XDG_CONFIG_HOME}"/shell/aliases.sh ]; then
+    . "${XDG_CONFIG_HOME}"/shell/aliases.sh
 fi
 
 # -----------------------------------------------
