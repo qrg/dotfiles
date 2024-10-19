@@ -28,26 +28,13 @@ function configure_shell_env() {
     export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/ # https://formulae.brew.sh/formula/gnutls
   fi
 
-  # asdf
-  # https://asdf-vm.com/guide/getting-started.html#official-download
-  # git clone https://github.com/asdf-vm/asdf.git ${XDG_DATA_HOME}/asdf --branch v0.x.y
-  if [ -d "${XDG_DATA_HOME}/asdf" ]; then
-    export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/.asdfrc"
-    export ASDF_DIR="${XDG_DATA_HOME}/asdf"
-    export ASDF_DATA_DIR="${ASDF_DIR}"
-
-    source "${ASDF_DIR}/asdf.sh"
-    if [ -n "$BASH_VERSION" ]; then
-      source "${ASDF_DIR}/completions/asdf.bash"
-    fi
-  fi
-
-  # direnv
-  if type direnv > /dev/null 2>&1; then
+  # mise
+  # https://mise.jdx.dev/
+  if [ -f "${XDG_CONFIG_HOME}/mise/config.toml" ]; then
     if [ -n "$ZSH_VERSION" ]; then
-      eval "$(direnv hook zsh)"
+      eval "$(mise activate bash)"
     elif [ -n "$BASH_VERSION" ]; then
-      eval "$(direnv hook bash)"
+      eval "$(mise activate zsh)"
     fi
   fi
 
