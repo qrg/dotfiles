@@ -17,7 +17,7 @@ else
 fi
 
 # eza
-if type direnv > /dev/null 2>&1; then
+if type eza > /dev/null 2>&1; then
     alias ls='eza'
     alias la='eza --all --git --long --group --header'
 fi
