@@ -42,6 +42,8 @@ if test "$_os" = Darwin; and type -q brew
   eval (brew shellenv)
   set --global --export HOMEBREW_CASK_OPTS "--appdir=$HOME/Applications --fontdir=$HOME/Library/Fonts"
   set --global --export GUILE_TLS_CERTIFICATE_DIRECTORY /usr/local/etc/gnutls/ # https://formulae.brew.sh/formula/gnutls
+  set --global --export LIBRARY_PATH /opt/homebrew/lib:$LIBRARY_PATH
+  set --global --export CPATH /opt/homebrew/include:$CPATH
 end
 
 # nodenv
