@@ -4,26 +4,9 @@ function fish_prompt
 
 
   # Setup colors
-  set -l base1_color 426773
-  set -l base2_color 648995
+  set -l base1_color '426773'
+  set -l base2_color '648995'
   set -l base3_color 97acb3
-
-  set -l normal (set_color normal)
-  set -l cyan (set_color cyan)
-  set -l green (set_color green)
-  set -l blue (set_color blue)
-  set -l yellow (set_color yellow)
-  set -l white (set_color white)
-  set -l black (set_color black)
-  set -l bpurple (set_color -o purple)
-  set -l bgreen (set_color -o green)
-  set -l bred (set_color -o red)
-  set -l bcyan (set_color -o cyan)
-  set -l bblue (set_color -o blue)
-  set -l bwhite (set_color -o white)
-  set -l bblack (set_color -o black)
-  set -l base1 (set_color $base1_color)
-  set -l base2 (set_color $base2_color)
 
   if not set -q __prompt_char
     switch (id -u)
@@ -79,13 +62,12 @@ function fish_prompt
 
   function __current_path
     # Replace HOME with ~
-    set -l path (string replace "$HOME" (set_color purple)"~"(set_color -d white) (pwd))
+    set -l path (string replace "$HOME" "~" (pwd))
     # Highlight last path element
     set -l parts (string split "/" $path)
-    set parts[-1] (set_color normal)(set_color -o white)$parts[-1](set_color normal)
+    set parts[-1] (set_color --bold blue)$parts[-1](set_color normal)
     set path (string join "/" $parts)
-
-    echo -n $path(set_color normal)
+    echo $path
   end
 
   # Configure __fish_git_prompt
@@ -110,21 +92,15 @@ function fish_prompt
   __fish_git_prompt_set_char __fish_git_prompt_char_upstream_equal '='
   __fish_git_prompt_set_char __fish_git_prompt_char_upstream_prefix ' '
 
-  # Color prompt char red for non-zero exit status
-  set -l pcolor $bpurple
-  if [ $last_status -ne 0 ]
-    set pcolor $bred
-  end
-
   # Top
   echo
-  echo (__ssh_badge)(set_color $base1_color)(date +'%H:%M:%S %m.%d %a') - (__user_host)$normal(__fish_git_prompt)
-  echo -n (__current_path)
-
+  echo
+  echo (set_color $base1_color)(date +'%Y-%m-%d %a %H:%M:%S')
+  echo (__current_path) (set_color $base1_color)(__fish_git_prompt)
   echo
 
   # Bottom
-  echo -n $pcolor$__prompt_char $normal
+  echo -n (set_color purple)$__prompt_char (set_color normal)
 end
 
 function fish_right_prompt
