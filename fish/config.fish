@@ -21,6 +21,12 @@ set --global --export LC_MONETARY 'ja_JP.UTF-8' # 通貨の書式
 set --global --export LC_NUMERIC 'ja_JP.UTF-8' # 数値の書式 (小数点や 3 桁ごとの区切り)
 set --global --export LC_TIME 'en_US.UTF-8' # 時刻と日付けの書式
 
+# local config
+# ------------------------------------------------------------------------------
+if test -f "$XDG_CONFIG_HOME/fish/config.local.fish"
+  source "$XDG_CONFIG_HOME/fish/config.local.fish"
+end
+
 # PATH
 # ------------------------------------------------------------------------------
 
