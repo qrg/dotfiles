@@ -38,9 +38,9 @@ function configure_shell_env() {
   # https://mise.jdx.dev/
   if [ -f "${XDG_CONFIG_HOME}/mise/config.toml" ]; then
     if [ -n "$ZSH_VERSION" ]; then
-      eval "$(mise activate bash)"
-    elif [ -n "$BASH_VERSION" ]; then
       eval "$(mise activate zsh)"
+    elif [ -n "$BASH_VERSION" ]; then
+      eval "$(mise activate bash)"
     fi
   fi
 
