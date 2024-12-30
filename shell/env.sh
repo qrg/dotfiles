@@ -30,6 +30,8 @@ function configure_shell_env() {
     eval "$(/opt/homebrew/bin/brew shellenv)"
     export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=${HOME}/Library/Fonts"
     export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/ # https://formulae.brew.sh/formula/gnutls
+    export LIBRARY_PATH="/opt/homebrew/lib:$LIBRARY_PATH"
+    export CPATH="/opt/homebrew/include:$CPATH"
   fi
 
   # mise
