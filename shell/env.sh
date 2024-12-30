@@ -87,16 +87,16 @@ function configure_shell_env() {
 
   # fzf
   if [ -n "$ZSH_VERSION" ] && [ -f ~/.fzf.zsh ]; then
-    # shellcheck source=/home/yourusername/.fzf.zsh
-    source ~/.fzf.zsh
+    # shellcheck source=/dev/null
+    source "${HOME}/.fzf.zsh"
   elif [ -n "$BASH_VERSION" ] && [ -f ~/.fzf.bash ]; then
-    # shellcheck source=/home/yourusername/.fzf.bash
-    source ~/.fzf.bash
+    # shellcheck source=/dev/null
+    source "${HOME}/.fzf.bash"
   fi
 
   # Visual Studio Code on WSL
   if [ -n "$WSLENV" ]; then
-    _path=${_path}:"/mnt/c/Users/${USER}/AppData/Local/Programs/Microsoft VS Code/bin"
+    _path="${_path}":"/mnt/c/Users/${USER}/AppData/Local/Programs/Microsoft VS Code/bin"
   fi
 
   case ":$PATH:" in
@@ -109,41 +109,50 @@ function configure_shell_env() {
   esac
 
   uniq_path(){
-    local _paths=($(echo "$PATH" | tr ':' ' '))
+    local _paths
     local _from
     local _to
-    local _uniq_paths
+    local _uniq_paths=()
 
     if [ -n "$ZSH_VERSION" ]; then
+      IFS=':' read -r -A _paths <<< "$PATH"
       _from=${#_paths[@]}
       _to=1
     elif [ -n "$BASH_VERSION" ]; then
-      _from=${#_paths[@]}-1
+      IFS=':' read -r -a _paths <<< "$PATH"
+      _from=$(( ${#_paths[@]}-1 ))
       _to=0
     fi
 
-    for (( idx=$_from ; idx>=$_to ; idx-- )) ; do
-      if [[ ! " ${_uniq_paths[*]} " =~ " ${_paths[idx]} " ]]; then
-        _uniq_paths=(${_paths[idx]} ${_uniq_paths[*]})
+    for (( idx=_from ; idx>=_to ; idx-- )) ; do
+      if [[ ! " ${_uniq_paths[*]} " = " ${_paths[idx]} " ]]; then
+        _uniq_paths=("${_paths[idx]}" "${_uniq_paths[@]}")
       fi
     done
-    echo $(echo "${_uniq_paths[*]}" | tr " " ":")
+
+    echo "${_uniq_paths[*]}" | tr " " ":"
   }
 
   # Environment variables
   # -----------------------------------------------------------------------------
-  export PATH=$(uniq_path)
+  local new_path
+  new_path=$(uniq_path)
+  export PATH="${new_path}"
 
   export EDITOR=nvim
-  export GPG_TTY=$(tty)
+
+  GPG_TTY=$(tty)
+  export GPG_TTY
+
   export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 
   export MANWIDTH=100
   export LESSCHARSET=utf-8
   export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
-
   export GIBO_BOILERPLATES="${XDG_DATA_HOME}/gibo-boilerplates"
-  export FISH_SHELL_PATH=$(which fish)
+
+  FISH_SHELL_PATH=$(which fish)
+  export FISH_SHELL_PATH
 
   export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME}/npm/config
 
@@ -169,19 +178,32 @@ function configure_shell_env() {
   fi
 
   export MANPAGER='less -R'
-  export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
-  export LESS_TERMCAP_md=$(tput bold; tput setaf 6) # cyan
-  export LESS_TERMCAP_me=$(tput sgr0)
-  export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-  export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # yellow on blue
-  export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
-  export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7) # white
-  export LESS_TERMCAP_mr=$(tput rev)
-  export LESS_TERMCAP_mh=$(tput dim)
-  export LESS_TERMCAP_ZN=$(tput ssubm)
-  export LESS_TERMCAP_ZV=$(tput rsubm)
-  export LESS_TERMCAP_ZO=$(tput ssupm)
-  export LESS_TERMCAP_ZW=$(tput rsupm)
+  LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
+  export LESS_TERMCAP_mb
+  LESS_TERMCAP_md=$(tput bold; tput setaf 6) # cyan
+  export LESS_TERMCAP_md
+  LESS_TERMCAP_me=$(tput sgr0)
+  export LESS_TERMCAP_me
+  LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+  export LESS_TERMCAP_se
+  LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # yellow on blue
+  export LESS_TERMCAP_so
+  LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+  export LESS_TERMCAP_ue
+  LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7) # white
+  export LESS_TERMCAP_us
+  LESS_TERMCAP_mr=$(tput rev)
+  export LESS_TERMCAP_mr
+  LESS_TERMCAP_mh=$(tput dim)
+  export LESS_TERMCAP_mh
+  LESS_TERMCAP_ZN=$(tput ssubm)
+  export LESS_TERMCAP_ZN
+  LESS_TERMCAP_ZV=$(tput rsubm)
+  export LESS_TERMCAP_ZV
+  LESS_TERMCAP_ZO=$(tput ssupm)
+  export LESS_TERMCAP_ZO
+  LESS_TERMCAP_ZW=$(tput rsupm)
+  export LESS_TERMCAP_ZW
 
   # Initialize
   # -----------------------------------------------------------------------------
@@ -189,10 +211,12 @@ function configure_shell_env() {
   # tabtab source for packages
   # uninstall by removing these lines
   if [ -f "${XDG_CONFIG_HOME}"/tabtab/zsh/__tabtab.zsh ] && [ -n "$ZSH_VERSION" ]; then
+    # shellcheck source=${XDG_CONFIG_HOME}/tabtab/zsh/__tabtab.zsh disable=SC1091
     source "${XDG_CONFIG_HOME}"/tabtab/zsh/__tabtab.zsh
   fi
 
   if [ -f "${XDG_CONFIG_HOME}"/tabtab/bash/__tabtab.bash ] && [ -n "$BASH_VERSION" ]; then
+    # shellcheck source=${XDG_CONFIG_HOME}/tabtab/bash/__tabtab.bash disable=SC1091
     source "${XDG_CONFIG_HOME}"/tabtab/bash/__tabtab.bash
   fi
 
@@ -202,8 +226,8 @@ function configure_shell_env() {
     # https://github.com/microsoft/WSL/issues/4401
     function isWinDir {
       case $PWD/ in
-        /mnt/*) return $(true);;
-        *) return $(false);;
+        /mnt/*) return "$(true)";;
+        *) return "$(false)";;
       esac
     }
     function git {
