@@ -38,6 +38,7 @@ if test -n $WSLENV
 end
 
 if test "$_os" = Darwin; and type -q brew
+  fish_add_path "/opt/homebrew/bin"
   # add executable pathes that was installed with Homebrew
   eval (brew shellenv)
   set --global --export HOMEBREW_CASK_OPTS "--appdir=$HOME/Applications --fontdir=$HOME/Library/Fonts"

@@ -25,6 +25,7 @@ function configure_shell_env() {
   local _path="${HOME}/workspace/scripts:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin"
 
   if [ "${_os}" = 'Darwin' ] && [ -x /opt/homebrew/bin/brew ]; then
+    _path="/opt/homebrew/bin/:${_path}"
     # add executable pathes that was installed with Homebrew
     eval "$(/opt/homebrew/bin/brew shellenv)"
     export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --fontdir=${HOME}/Library/Fonts"
