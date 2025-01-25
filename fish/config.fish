@@ -67,7 +67,10 @@ end
 # pnpm
 if test -e "$XDG_DATA_HOME/pnpm"
   set --global --export PNPM_HOME "$XDG_DATA_HOME/pnpm"
-  set --global --export PATH "$PNPM_HOME" $PATH
+
+  if not string match -q -- $PNPM_HOME $PATH
+    set --global --export PATH "$PNPM_HOME" $PATH
+  end
 
   # tabtab source for packages
   # uninstall by removing these lines
