@@ -1,5 +1,9 @@
 # shellcheck shell=bash
 
+check_cmd() {
+  which "$1" > /dev/null 2>&1 || return 1
+}
+
 function configure_shell_env() {
   local _os
   _os=$(uname)
@@ -36,7 +40,7 @@ function configure_shell_env() {
 
   # mise
   # https://mise.jdx.dev/
-  if [ -f "${XDG_CONFIG_HOME}/mise/config.toml" ]; then
+  if check_cmd "mise"; then
     if [ -n "$ZSH_VERSION" ]; then
       eval "$(mise activate zsh)"
     elif [ -n "$BASH_VERSION" ]; then
