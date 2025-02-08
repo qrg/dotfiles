@@ -26,6 +26,10 @@ function fish_user_key_bindings
 
   #bind \cx\cx peco_select_z
   bind \cx\cx _fzf_select_z
+
+  bind \cx\cz bd
+  bind \cx\cc _fzf_cd_child_directories
+
 end
 
 function peco_select_z
@@ -181,4 +185,25 @@ function _fzf_select_git_log --description "Select the output of git log and pre
   commandline --replace ''
   commandline --function repaint
   _copy_multi_git_logs_as_markdown $commit_hashes
+end
+
+function _fzf_cd_child_directories
+  set child (
+      fd \
+        --type d \
+        --max-depth 3 \
+        --exclude .git \
+        --exclude node_modules \
+        . \
+      | awk -F/ '{ print NF, $0 }' \
+      | sort -n \
+      | cut -d' ' -f2- \
+      | fzf
+  )
+
+  if test -z "$child"
+    return
+  end
+
+  cd "$child"
 end
