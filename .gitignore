@@ -1,2 +1,4 @@
 # symbolic link
 fish/completions/asdf.fish
+fish/completions/mise.fish
+fish/completions/pnpm.fish
