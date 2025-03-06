@@ -6,6 +6,12 @@
 [init]
   defaultBranch = main
 
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
 [color]
   ui = true
   branch = auto
@@ -33,13 +39,34 @@
 
 [merge]
   ff = false
+  conflictstyle = zdiff3
 
 [pull]
   ff = only
   rebase = true
 
 [push]
-	default = current
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[column]
+  ui = auto
+
+[help]
+  autocorrect = prompt
+
+[commit]
+  verbose = true
+
+[rerere]
+  enabled = true
+  autoupdate = true
 
 [alias]
   s = status
@@ -62,6 +89,10 @@
   fixup = !bash -c 'COMMIT=`git rev-parse ${1:-HEAD}` && git commit --fixup=$COMMIT && GIT_EDITOR=: git rebase -i --autosquash ${COMMIT}^' -
 
 [diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
   compactionHeuristic = true
   wsErrorHighlight = all
 
@@ -79,6 +110,7 @@
 [rebase]
   autoStash = true
   autoSquash = true
+  updateRefs = true
 
 [filter "lfs"]
   smudge = git-lfs smudge -- %f
