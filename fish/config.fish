@@ -100,7 +100,7 @@ end
 
 # mice
 # https://mise.jdx.dev/
-if type -q mise or "$XDG_CONFIG_HOME/mise/config.toml"
+if type -q mise and "$XDG_CONFIG_HOME/mise/config.toml"
   mise activate fish | source
 end
 
