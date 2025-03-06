@@ -140,11 +140,11 @@ set --global --export NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/config"
 # Man pages
 # ------------------------------------------------------------------------------
 if type -q source-highlight
-  set --global --export LESS -R
+  set --global --export LESS --raw-control-chars
   set --global --export LESSOPEN '| src-hilite-lesspipe.sh %s'
 end
 
-set --global --export MANPAGER 'less -R'
+set --global --export MANPAGER 'less --raw-control-chars'
 set --global --export LESS_TERMCAP_mb (tput bold; tput setaf 2) # green
 set --global --export LESS_TERMCAP_md (tput bold; tput setaf 6) # cyan
 set --global --export LESS_TERMCAP_me (tput sgr0)
