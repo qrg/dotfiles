@@ -86,7 +86,7 @@ if test -e "$XDG_DATA_HOME/go"
 end
 
 # rust
-if test -e "$XDG_DATA_HOME/cargo"
+if type -q cargo; or type -q rustup; or test -e "$XDG_DATA_HOME/cargo"
   set --global --export CARGO_HOME "$XDG_DATA_HOME/cargo"
   set --global --export RUSTUP_HOME "$XDG_DATA_HOME/rustup"
   fish_add_path "$CARGO_HOME/bin"

@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 
 check_cmd() {
-  which "$1" > /dev/null 2>&1 || return 1
+  type "$1" > /dev/null 2>&1 || return 1
 }
 
 function configure_shell_env() {
@@ -36,16 +36,6 @@ function configure_shell_env() {
     export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/ # https://formulae.brew.sh/formula/gnutls
     export LIBRARY_PATH="/opt/homebrew/lib:$LIBRARY_PATH"
     export CPATH="/opt/homebrew/include:$CPATH"
-  fi
-
-  # mise
-  # https://mise.jdx.dev/
-  if check_cmd "mise"; then
-    if [ -n "$ZSH_VERSION" ]; then
-      eval "$(mise activate zsh)"
-    elif [ -n "$BASH_VERSION" ]; then
-      eval "$(mise activate bash)"
-    fi
   fi
 
   # nodenv
@@ -83,9 +73,9 @@ function configure_shell_env() {
   fi
 
   # rust
-  if [ -d "${XDG_DATA_HOME}"/.cargo ]; then
-    export CARGO_HOME="${XDG_DATA_HOME}/.cargo"
-    export RUSTUP_HOME="${XDG_DATA_HOME}/.rustup"
+  if check_cmd "rustup" || [ -d "${XDG_DATA_HOME}"/cargo ]; then
+    export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+    export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
     _path="${CARGO_HOME}/bin:${_path}"
   fi
 
@@ -211,6 +201,16 @@ function configure_shell_env() {
 
   # Initialize
   # -----------------------------------------------------------------------------
+
+  # mise
+  # https://mise.jdx.dev/
+  if check_cmd "mise"; then
+    if [ -n "$ZSH_VERSION" ]; then
+      eval "$(mise activate zsh)"
+    elif [ -n "$BASH_VERSION" ]; then
+      eval "$(mise activate bash)"
+    fi
+  fi
 
   # tabtab source for packages
   # uninstall by removing these lines
