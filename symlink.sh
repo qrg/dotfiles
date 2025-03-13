@@ -20,6 +20,9 @@ ln -isvn "${_repo}/fish/functions/fish_user_key_bindings.fish" "${XDG_CONFIG_HOM
 ln -isvn "${_repo}/fish/config.fish" "${XDG_CONFIG_HOME}/fish/config.fish"
 ln -isvn "${_repo}/fish/fish_plugins" "${XDG_CONFIG_HOME}/fish/fish_plugins"
 
+mkdir -p "${XDG_CONFIG_HOME}/ghostty"
+ln -isvn "${_repo}/ghostty/config" "${XDG_CONFIG_HOME}/ghostty/config"
+
 mkdir -p "${XDG_CONFIG_HOME}/git"
 ln -isvn "${_repo}/git/config" "${XDG_CONFIG_HOME}/git/config"
 ln -isvn "${_repo}/git/attributes" "${XDG_CONFIG_HOME}/git/attributes"
@@ -49,7 +52,7 @@ ln -isvn "${_repo}/zsh/.zshenv" "${HOME}/.zshenv"
 ln -isvn "${_repo}/zsh/.zprofile" "${XDG_CONFIG_HOME}/zsh/.zprofile"
 ln -isvn "${_repo}/zsh/.zshrc" "${XDG_CONFIG_HOME}/zsh/.zshrc"
 
-mkdir -p $LOCAL_EXECUTABLE_DIR
+mkdir -p "$LOCAL_EXECUTABLE_DIR"
 ln -isvn "${_repo}/bin/clipboard-copy.sh" "${LOCAL_EXECUTABLE_DIR}/clipboard-copy.sh"
 
 unset _repo

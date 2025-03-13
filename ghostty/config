@@ -1,0 +1,27 @@
+command = /opt/homebrew/bin/fish --login --interactive
+shell-integration = fish
+
+theme = "nord"
+font-family = "JetBrains Mono"
+font-family = "Zen Kaku Gothic New Medium"
+font-size = 14.0
+font-feature = -dlig
+
+adjust-cell-height = 4%
+
+fullscreen = true
+window-padding-x = 24
+window-padding-y = 24
+window-width = 280
+window-height = 70
+
+macos-non-native-fullscreen = true
+
+background = #092833
+foreground = #727783
+
+macos-icon = custom-style
+macos-icon-ghost-color = BCBEC4
+macos-icon-screen-color = 1E1F22
+
+macos-titlebar-style = hidden
