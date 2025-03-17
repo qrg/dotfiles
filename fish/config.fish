@@ -171,6 +171,9 @@ if type -q zoxide
   zoxide init fish | source
 end
 
+set --global --export GHQ_SELECTOR fzf-tmux
+set --global --export GHQ_SELECTOR_OPTS -p 88% --reverse
+
 # Aliases
 # ------------------------------------------------------------------------------
 

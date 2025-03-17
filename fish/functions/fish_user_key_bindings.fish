@@ -25,7 +25,7 @@ function fish_user_key_bindings
   bind \eq push_line
 
   #bind \cx\cx peco_select_z
-  bind \cx\cx _fzf_select_z
+  bind \cx\cx _fzf_select_zoxide
 
   bind \cx\cz bd
   bind \cx\cc _fzf_cd_child_directories
@@ -45,13 +45,15 @@ function peco_select_z
   end
 end
 
-function _fzf_select_z
+function _fzf_select_zoxide
   set -l query (commandline)
+  
   if test -n $query
-    set fzf_flags --query "$query"
+    set fzf_query_params --query "$query"
   end
 
-  z -l | sort -rn | cut -c 12- | fzf-tmux $fzf_flags | read line
+  zoxide query --list | fzf-tmux -p 88% --reverse --preview 'tree --dirsfirst -Fa -L 1 {}' $fzf_query_params | read line
+
   if test $line
     cd $line
     commandline -f repaint
@@ -66,9 +68,9 @@ function _fzf_kill
     set -l uid (id -u)
     set -l pid
     if test $uid -ne 0
-        set pid (ps -f -u $uid | sed 1d | fzf-tmux -m | awk '{ print $2; }')
+        set pid (ps -f -u $uid | sed 1d | fzf-tmux -p 88% --reverse | awk '{ print $2; }')
     else
-        set pid (ps -ef | sed 1d | fzf-tmux -m | awk '{ print $2; }')
+        set pid (ps -ef | sed 1d | fzf-tmux -p 88% --reverse  | awk '{ print $2; }')
     end
 
     test -z $pid
@@ -77,7 +79,7 @@ end
 
 function _fzf_git_branch_switch -d 'fzf: switch git branch, sorted by most recent commit, 30 latest branches'
     set -l branches (git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)')
-    and set -l branch (string replace -a ' ' '\n' $branches | fzf-tmux -d (math 2 + (count $branches)) +m)
+    and set -l branch (string replace -a ' ' '\n' $branches | fzf-tmux -p 88% --reverse -- --delimiter (math 2 + (count $branches)) +m)
     and git switch (echo $branch | sed -e 's/.* //' -e '#remotes/[^/]*/##')
 end
 
@@ -87,7 +89,7 @@ function _fzf_is_in_git_repo
 end
 
 function _fzf-down
-  fzf-tmux --min-height 20 --border --bind ctrl-p:toggle-preview --bind ctrl-a:select-all $argv
+  fzf-tmux -p 88% --reverse --min-height 20 --border --bind ctrl-p:toggle-preview --bind ctrl-a:select-all $argv
 end
 
 function _fzf_add_multi_hashes_to_commandline -d 'add multiple hashes as a range'
@@ -166,6 +168,7 @@ function _fzf_select_git_log --description "Select the output of git log and pre
     set selected_log_lines (
       git log --color=always --format=format:$log_fmt_str --date=short | \
       fzf-tmux --ansi \
+        -p 88% \
         --multi \
         --reverse \
         --tiebreak=index \
@@ -198,7 +201,7 @@ function _fzf_cd_child_directories
       | awk -F/ '{ print NF, $0 }' \
       | sort -n \
       | cut -d' ' -f2- \
-      | fzf
+      | fzf-tmux -p 88% --reverse --preview "tree --dirsfirst -Fa -L 1 {}"
   )
 
   if test -z "$child"
@@ -206,4 +209,27 @@ function _fzf_cd_child_directories
   end
 
   cd "$child"
+end
+
+function bd --description 'Quickly go back to a parent directory up in $PWD'
+    set --local selected_repo (__bd_list | env FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" fzf-tmux -p 88% --reverse --preview 'tree --dirsfirst -Fa -L 1 {}')
+    if test -z $selected_repo
+        commandline -f repaint
+        return
+    end
+
+    commandline --replace " cd $selected_repo"
+    commandline -f repaint
+    commandline -f execute
+end
+
+function __bd_list
+    set -l dir (pwd)
+    for i in (seq 1 20)
+        set dir (dirname $dir)
+        echo $dir
+        if test $dir = /
+            break
+        end
+    end
 end
