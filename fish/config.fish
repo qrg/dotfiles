@@ -30,7 +30,7 @@ end
 # PATH
 # ------------------------------------------------------------------------------
 
-fish_add_path "$HOME/workspace/scripts" "$HOME/.local/bin" /usr/local/bin /usr/local/sbin
+fish_add_path /usr/local/bin /usr/local/sbin
 
 # Visual Studio Code on WSL
 if test -n $WSLENV
@@ -49,7 +49,7 @@ end
 
 # nodenv
 if type -q nodenv
-  fish_add_path "$XDG_DATA_HOME/nodenv/bin" "$XDG_DATA_HOME/nodenv/shims"
+  fish_add_path  --move --prepend "$XDG_DATA_HOME/nodenv/bin" "$XDG_DATA_HOME/nodenv/shims"
   status --is-interactive; and source (nodenv init - | psub)
   if type -q brew
     if test -e (brew --prefix node-build-update-defs)
@@ -60,7 +60,7 @@ end
 
 # rbenv
 if test -e "$XDG_DATA_HOME/rbenv"
-  fish_add_path "$XDG_DATA_HOME/rbenv/shims"
+  fish_add_path --move --prepend "$XDG_DATA_HOME/rbenv/shims"
   status --is-interactive; and source (rbenv init - | psub)
 end
 
@@ -69,7 +69,7 @@ if test -e "$XDG_DATA_HOME/pnpm"
   set --global --export PNPM_HOME "$XDG_DATA_HOME/pnpm"
 
   if not string match -q -- $PNPM_HOME $PATH
-    set --global --export PATH "$PNPM_HOME" $PATH
+    fish_add_path --move --prepend "$PNPM_HOME"
   end
 
   # tabtab source for packages
@@ -82,14 +82,14 @@ end
 # golang
 if test -e "$XDG_DATA_HOME/go"
   set --global --export GOPATH "$XDG_DATA_HOME/go"
-  fish_add_path "$GOPATH/bin"
+  fish_add_path --move --prepend "$GOPATH/bin"
 end
 
 # rust
 if type -q cargo; or type -q rustup; or test -e "$XDG_DATA_HOME/cargo"
   set --global --export CARGO_HOME "$XDG_DATA_HOME/cargo"
   set --global --export RUSTUP_HOME "$XDG_DATA_HOME/rustup"
-  fish_add_path "$CARGO_HOME/bin"
+  fish_add_path --move --prepend "$CARGO_HOME/bin"
 end
 
 # java
@@ -97,6 +97,7 @@ if test -e "$HOMEBREW_PREFIX/opt/openjdk/bin/java"
   fish_add_path "$HOMEBREW_PREFIX/opt/openjdk/bin"
 end
 
+fish_add_path --move --prepend "$HOME/workspace/scripts" "$HOME/.local/bin"
 
 # mice
 # https://mise.jdx.dev/

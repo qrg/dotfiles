@@ -26,7 +26,7 @@ function configure_shell_env() {
 
   # PATH
   # -----------------------------------------------------------------------------
-  local _path="${HOME}/workspace/scripts:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin"
+  local _path="/usr/local/bin:/usr/local/sbin"
 
   if [ "${_os}" = 'Darwin' ] && [ -x /opt/homebrew/bin/brew ]; then
     _path="/opt/homebrew/bin/:${_path}"
@@ -92,6 +92,9 @@ function configure_shell_env() {
   if [ -n "$WSLENV" ]; then
     _path="${_path}":"/mnt/c/Users/${USER}/AppData/Local/Programs/Microsoft VS Code/bin"
   fi
+
+  #
+  _path="${HOME}/workspace/scripts:${HOME}/.local/bin:${_path}"
 
   case ":$PATH:" in
     *":$_path:"*)
