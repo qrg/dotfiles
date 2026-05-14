@@ -101,7 +101,7 @@ fish_add_path --move --prepend "$HOME/workspace/scripts" "$HOME/.local/bin"
 
 # mice
 # https://mise.jdx.dev/
-if type -q mise and "$XDG_CONFIG_HOME/mise/config.toml"
+if type -q mise; and test -e "$XDG_CONFIG_HOME/mise/config.toml"
   mise activate fish | source
 end
 
