@@ -881,3 +881,5 @@ tags
 .mise.toml
 .mise/config.toml
 .mise.*.toml
+
+**/.claude/settings.local.json
