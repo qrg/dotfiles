@@ -253,6 +253,11 @@ function configure_shell_env() {
     }
 
   fi
+
+  # local
+  if [ -f "${XDG_CONFIG_HOME}"/shell/env.local.sh ]; then
+    source "${XDG_CONFIG_HOME}"/shell/env.local.sh
+  fi
 }
 
 configure_shell_env

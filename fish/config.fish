@@ -105,6 +105,11 @@ if type -q mise; and test -e "$XDG_CONFIG_HOME/mise/config.toml"
   mise activate fish | source
 end
 
+# local
+if test -e "$XDG_CONFIG_HOME/fish/env.local.fish"
+  source "$XDG_CONFIG_HOME/fish/env.local.fish"
+end
+
 # unique $PATH
 set --local _path
 for p in $PATH
