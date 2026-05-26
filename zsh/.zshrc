@@ -2,7 +2,7 @@
 # cf.) man zshoptions
 # cf.) http://www.gentei.org/~yuuji/rec/pc/zsh/zshcompsys.txt
 #
-source "${HOME}/.config/shell/env.sh"
+
 # =============================================================================
 # completion
 # cf.) man zshcompsys
