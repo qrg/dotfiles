@@ -9,7 +9,7 @@ font-feature = -dlig
 
 adjust-cell-height = 4%
 
-fullscreen = true
+fullscreen = non-native
 window-padding-x = 24
 window-padding-y = 24
 window-width = 280
