@@ -68,8 +68,8 @@ end
 if test -e "$XDG_DATA_HOME/pnpm"
   set --global --export PNPM_HOME "$XDG_DATA_HOME/pnpm"
 
-  if not string match -q -- $PNPM_HOME $PATH
-    fish_add_path --move --prepend "$PNPM_HOME"
+  if not string match -q -- "$PNPM_HOME/bin" $PATH
+    fish_add_path --move --prepend "$PNPM_HOME/bin"
   end
 
   # tabtab source for packages

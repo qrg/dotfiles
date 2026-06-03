@@ -63,7 +63,7 @@ function configure_shell_env() {
   # pnpm
   if [ -d "${XDG_DATA_HOME}"/pnpm ]; then
     export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
-    _path="${PNPM_HOME}:${_path}"
+    _path="${PNPM_HOME}/bin:${_path}"
   fi
 
   # golang
