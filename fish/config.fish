@@ -220,7 +220,10 @@ abbr --add vim nvim
 
 abbr --add readus 'find . -regex "./node_modules/[^/]*/README.*" -type f | fzf --preview="less {}" --preview-window=right:60% --ansi --bind "enter:execute(open -a \"Marked 2\" {})" --delimiter=/ --with-nth=3 --header="open README"'
 
-abbr --add rg 'rg --hidden --follow --glob "!({.git,node_modules}/*|*.lock)"'
+abbr --add rg 'rg --hidden --follow \
+--glob "!{.git,node_modules}/**" \
+--glob "!*.lock" \
+'
 
 abbr --add mysql 'mysql --pager="less -S"'
 
