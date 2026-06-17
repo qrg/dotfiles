@@ -157,20 +157,22 @@ if type -q source-highlight
   set --global --export LESSOPEN '| src-hilite-lesspipe.sh %s'
 end
 
-set --global --export MANPAGER 'less --raw-control-chars'
-set --global --export LESS_TERMCAP_mb (tput bold; tput setaf 2) # green
-set --global --export LESS_TERMCAP_md (tput bold; tput setaf 6) # cyan
-set --global --export LESS_TERMCAP_me (tput sgr0)
-set --global --export LESS_TERMCAP_so (tput bold; tput setaf 3; tput setab 4) # yellow on blue
-set --global --export LESS_TERMCAP_se (tput rmso; tput sgr0)
-set --global --export LESS_TERMCAP_us (tput smul; tput bold; tput setaf 7) # white
-set --global --export LESS_TERMCAP_ue (tput rmul; tput sgr0)
-set --global --export LESS_TERMCAP_mr (tput rev)
-set --global --export LESS_TERMCAP_mh (tput dim)
-set --global --export LESS_TERMCAP_ZN (tput ssubm)
-set --global --export LESS_TERMCAP_ZV (tput rsubm)
-set --global --export LESS_TERMCAP_ZO (tput ssupm)
-set --global --export LESS_TERMCAP_ZW (tput rsupm)
+if test -n "$TERM"
+  set --global --export MANPAGER 'less --raw-control-chars'
+  set --global --export LESS_TERMCAP_mb (tput bold; tput setaf 2) # green
+  set --global --export LESS_TERMCAP_md (tput bold; tput setaf 6) # cyan
+  set --global --export LESS_TERMCAP_me (tput sgr0)
+  set --global --export LESS_TERMCAP_so (tput bold; tput setaf 3; tput setab 4) # yellow on blue
+  set --global --export LESS_TERMCAP_se (tput rmso; tput sgr0)
+  set --global --export LESS_TERMCAP_us (tput smul; tput bold; tput setaf 7) # white
+  set --global --export LESS_TERMCAP_ue (tput rmul; tput sgr0)
+  set --global --export LESS_TERMCAP_mr (tput rev)
+  set --global --export LESS_TERMCAP_mh (tput dim)
+  set --global --export LESS_TERMCAP_ZN (tput ssubm)
+  set --global --export LESS_TERMCAP_ZV (tput rsubm)
+  set --global --export LESS_TERMCAP_ZO (tput ssupm)
+  set --global --export LESS_TERMCAP_ZW (tput rsupm)    # 処理
+end
 
 # starship
 # if type -q starship
