@@ -105,6 +105,13 @@ if type -q mise; and test -e "$XDG_CONFIG_HOME/mise/config.toml"
   mise activate fish | source
 end
 
+# Vite+ bin (https://viteplus.dev)
+if test -f "$XDG_DATA_HOME/vite-plus/env.fish"
+  set --global --export VP_HOME "$XDG_DATA_HOME/vite-plus"
+  fish_add_path --move --prepend "$VP_HOME/bin"
+  source "$VP_HOME/env.fish"
+end
+
 # local
 if test -e "$XDG_CONFIG_HOME/fish/env.local.fish"
   source "$XDG_CONFIG_HOME/fish/env.local.fish"

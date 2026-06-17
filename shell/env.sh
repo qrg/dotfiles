@@ -53,6 +53,12 @@ function configure_shell_env() {
     eval "$(nodenv init -)"
   fi
 
+  # Vite+ bin (https://viteplus.dev)
+  if [ -f "$XDG_DATA_HOME/vite-plus/env" ]; then
+    export VP_HOME="$XDG_DATA_HOME/vite-plus"
+    _path="${VP_HOME}/bin:${_path}"
+  fi
+
   # rbenv
   if [ -d "${XDG_DATA_HOME}"/rbenv ]; then
     export RBENV_ROOT="${XDG_DATA_HOME}/rbenv"
@@ -215,6 +221,11 @@ function configure_shell_env() {
     elif [ -n "$BASH_VERSION" ]; then
       eval "$(mise activate bash)"
     fi
+  fi
+
+  # Vite+ bin (https://viteplus.dev)
+  if [ -f "$VP_HOME/env" ]; then
+    source "$VP_HOME/env"
   fi
 
   # tabtab source for packages
