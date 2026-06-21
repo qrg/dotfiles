@@ -49,6 +49,7 @@ ln -isvn "${_repo}/tmux/tmux.conf" "${XDG_CONFIG_HOME}/tmux/tmux.conf"
 
 mkdir -p "${XDG_CONFIG_HOME}/zsh"
 ln -isvn "${_repo}/zsh/.zshenv" "${HOME}/.zshenv"
+ln -isvn "${_repo}/zsh/.zshenv" "${XDG_CONFIG_HOME}/zsh/.zshenv"
 ln -isvn "${_repo}/zsh/.zprofile" "${XDG_CONFIG_HOME}/zsh/.zprofile"
 ln -isvn "${_repo}/zsh/.zshrc" "${XDG_CONFIG_HOME}/zsh/.zshrc"
 
