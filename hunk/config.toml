@@ -1,0 +1,27 @@
+theme = "custom" # any built-in theme id, auto, or custom
+mode = "auto"        # auto, split, stack
+vcs = "git"          # git, jj, sl
+watch = false
+exclude_untracked = false
+line_numbers = true
+wrap_lines = false
+menu_bar = true
+agent_notes = true
+transparent_background = true
+
+[custom_theme]
+base = "nord"
+label = "qrg"
+text = "#829ab0"
+addedBg = "#014658"
+addedContentBg = "#004e64"
+removedBg = "#39293a"
+removedContentBg = "#602d34"
+muted = "#506578"
+badgeNeutral = "#506578"
+panel = "#092833"
+accent = "#61a7c1"
+
+[custom_theme.syntax]
+string = "#657693"
+comment = "#657693"
