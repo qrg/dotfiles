@@ -28,6 +28,9 @@ ln -isvn "${_repo}/git/config" "${XDG_CONFIG_HOME}/git/config"
 ln -isvn "${_repo}/git/attributes" "${XDG_CONFIG_HOME}/git/attributes"
 ln -isvn "${_repo}/git/ignore" "${XDG_CONFIG_HOME}/git/ignore"
 
+mkdir -p "${XDG_CONFIG_HOME}/herdr"
+ln -isvn "${_repo}/herdr/config.toml" "${XDG_CONFIG_HOME}/herdr/config.toml"
+
 mkdir -p "${XDG_CONFIG_HOME}/hunk"
 ln -isvn "${_repo}/hunk/config.toml" "${XDG_CONFIG_HOME}/hunk/config.toml"
 
