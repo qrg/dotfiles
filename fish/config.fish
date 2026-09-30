@@ -112,6 +112,11 @@ if test -f "$XDG_DATA_HOME/vite-plus/env.fish"
   source "$VP_HOME/env.fish"
 end
 
+# Docker Desktop
+if test -e "$HOME/.docker/bin"
+  fish_add_path --move --prepend "$HOME/.docker/bin"
+end
+
 # local
 if test -e "$XDG_CONFIG_HOME/fish/env.local.fish"
   source "$XDG_CONFIG_HOME/fish/env.local.fish"

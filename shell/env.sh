@@ -99,6 +99,11 @@ function configure_shell_env() {
     _path="${_path}":"/mnt/c/Users/${USER}/AppData/Local/Programs/Microsoft VS Code/bin"
   fi
 
+  # Docker Desktop
+  if [ -d "${HOME}/.docker/bin" ]; then
+    _path="${HOME}/.docker/bin:${_path}"
+  fi
+
   #
   _path="${HOME}/workspace/scripts:${HOME}/.local/bin:${_path}"
 
