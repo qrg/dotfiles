@@ -21,6 +21,7 @@ name = "solarized"
 
 # Override individual color tokens on top of the base theme.
 # Accepts: hex (#rrggbb), named colors, rgb(r,g,b), or panel_bg = "reset"
+auto_switch = false
 [theme.custom]
 panel_bg = "#0d1f25" # tmux: status-style bg
 accent = "#4c879d"   # tmux: window-status-current-style fg
@@ -239,6 +240,8 @@ pane_gaps = false
 # accent = "cyan"
 
 # Background notification popup delivery
+agent_panel_sort = "spaces"
+show_agent_labels_on_pane_borders = true
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts
@@ -247,6 +250,7 @@ pane_gaps = false
 # delivery = "off"
 # delay_seconds = 1
 
+delivery = "system"
 [ui.toast.herdr]
 # position = "bottom-right"
 
@@ -267,6 +271,7 @@ pane_gaps = false
 # [ui.sound.agents]
 # droid = "off"
 
+enabled = false
 [session]
 # Resume supported AI-agent panes into their native conversation sessions after
 # a Herdr server restart. Requires official integrations that report session refs.
@@ -314,6 +319,7 @@ pane_history = false
 reveal_hidden_cursor_for_cjk_ime = true
 # cjk_ime_agents = ["claude", "pi", "codex"]
 
+switch_ascii_input_source_in_prefix = true
 [advanced]
 # Maximum scrollback buffer size in bytes retained per pane terminal.
 # Matches Ghostty's default scrollback-limit behavior.
