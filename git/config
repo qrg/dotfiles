@@ -52,7 +52,7 @@
 
 [fetch]
   prune = true
-  pruneTags = true
+  pruneTags = false
   all = true
 
 [column]
