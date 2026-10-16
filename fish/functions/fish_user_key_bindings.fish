@@ -120,32 +120,6 @@ function __git_worktree_list -d 'print worktrees as "<current mark>\t<path>\t<br
   end
 end
 
-function _fzf_is_in_git_repo
-  command -s -q git
-    and git rev-parse HEAD >/dev/null 2>&1
-end
-
-function _fzf-down
-  fzf-tmux -p 88% --reverse --min-height 20 --border --bind ctrl-p:toggle-preview --bind ctrl-a:select-all $argv
-end
-
-function _fzf_add_multi_hashes_to_commandline -d 'add multiple hashes as a range'
-  read -d \n -z -a result
-  set -l hashes
-  for hash in $result
-    if test -n (string trim $hash)
-      set -a hashes $hash
-    end
-  end
-  commandline -t ""
-  if test (count $hashes) -gt 1
-    commandline -it -- $hashes[1]".. "$hashes[-1]
-  else
-    commandline -it -- $hashes[1]
-  end
-  commandline -f repaint
-end
-
 function _copy_multi_git_logs_as_markdown -d 'copy multiple git log messages to clipboard'
   set -l hashes
 
