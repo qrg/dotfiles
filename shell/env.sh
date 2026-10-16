@@ -38,32 +38,10 @@ function configure_shell_env() {
     export CPATH="/opt/homebrew/include:$CPATH"
   fi
 
-  # nodenv
-  if [ -d "${XDG_DATA_HOME}"/nodenv ]; then
-    export NODENV_ROOT="${XDG_DATA_HOME}/nodenv"
-    _path="${NODENV_ROOT}/bin:${_path}"
-
-    if type brew > /dev/null 2>&1; then
-      if [ -e "$(brew --prefix node-build-update-defs)" ]; then
-        NODE_BUILD_DEFINITIONS=$(brew --prefix node-build-update-defs)/share/node-build
-        export NODE_BUILD_DEFINITIONS
-      fi
-    fi
-
-    eval "$(nodenv init -)"
-  fi
-
   # Vite+ bin (https://viteplus.dev)
   if [ -f "$XDG_DATA_HOME/vite-plus/env" ]; then
     export VP_HOME="$XDG_DATA_HOME/vite-plus"
     _path="${VP_HOME}/bin:${_path}"
-  fi
-
-  # rbenv
-  if [ -d "${XDG_DATA_HOME}"/rbenv ]; then
-    export RBENV_ROOT="${XDG_DATA_HOME}/rbenv"
-    _path="${RBENV_ROOT}/bin:${_path}"
-    eval "$(rbenv init -)"
   fi
 
   # pnpm

@@ -47,23 +47,6 @@ if test "$_os" = Darwin; and type -q brew
   set --global --export CPATH /opt/homebrew/include:$CPATH
 end
 
-# nodenv
-if type -q nodenv
-  fish_add_path  --move --prepend "$XDG_DATA_HOME/nodenv/bin" "$XDG_DATA_HOME/nodenv/shims"
-  status --is-interactive; and source (nodenv init - | psub)
-  if type -q brew
-    if test -e (brew --prefix node-build-update-defs)
-      set --global --export NODE_BUILD_DEFINITIONS (brew --prefix node-build-update-defs)"/share/node-build"
-    end
-  end
-end
-
-# rbenv
-if test -e "$XDG_DATA_HOME/rbenv"
-  fish_add_path --move --prepend "$XDG_DATA_HOME/rbenv/shims"
-  status --is-interactive; and source (rbenv init - | psub)
-end
-
 # pnpm
 if test -e "$XDG_DATA_HOME/pnpm"
   set --global --export PNPM_HOME "$XDG_DATA_HOME/pnpm"
