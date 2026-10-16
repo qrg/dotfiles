@@ -38,7 +38,7 @@
   untracked = yellow
 
 [merge]
-  ff = false
+  ff = only
   conflictstyle = zdiff3
 
 [pull]
