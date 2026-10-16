@@ -92,7 +92,6 @@
   colorMoved = plain
   mnemonicPrefix = true
   renames = true
-  compactionHeuristic = true
   wsErrorHighlight = all
 
 [diff "exif"]
