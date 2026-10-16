@@ -14,7 +14,6 @@ ln -isvn "${_repo}/bash/bashrc" "${HOME}/.bashrc"
 
 mkdir -p "${XDG_CONFIG_HOME}/fish"
 mkdir -p "${XDG_CONFIG_HOME}/fish/functions"
-ln -isvn "${_repo}/fish/completions" "${XDG_CONFIG_HOME}/fish/completions"
 ln -isvn "${_repo}/fish/functions/fish_prompt.fish" "${XDG_CONFIG_HOME}/fish/functions/fish_prompt.fish"
 ln -isvn "${_repo}/fish/functions/fish_user_key_bindings.fish" "${XDG_CONFIG_HOME}/fish/functions/fish_user_key_bindings.fish"
 ln -isvn "${_repo}/fish/config.fish" "${XDG_CONFIG_HOME}/fish/config.fish"
