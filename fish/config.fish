@@ -54,12 +54,6 @@ if test -e "$XDG_DATA_HOME/pnpm"
   if not string match -q -- "$PNPM_HOME/bin" $PATH
     fish_add_path --move --prepend "$PNPM_HOME/bin"
   end
-
-  # tabtab source for packages
-  # uninstall by removing these lines
-  if test -f "$XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish"
-    source "$XDG_CONFIG_HOME/tabtab/fish/__tabtab.fish"
-  end
 end
 
 # golang
