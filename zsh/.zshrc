@@ -212,18 +212,12 @@ zstyle ':vcs_info:*' enable git
 # 指定しておかないと、下のformatsがほぼ動かない。
 zstyle ':vcs_info:*' max-exports 10
 
-# 左から順番に vcs_info_msg_{n}_ という名前の変数に格納されるので、下で利用する
-zstyle ':vcs_info:*' formats '%R' '%S' '%b' '%s'
-# 状態が特殊な場合のformats
-zstyle ':vcs_info:*' actionformats '%R' '%S' '%b|%a' '%s'
+zstyle ':vcs_info:*' check-for-changes true
 
-# zsh 4.3.10以上の場合は、check-for-changesという機能を使う。
-autoload -Uz is-at-least
-if is-at-least 4.3.10; then
-    zstyle ':vcs_info:*' check-for-changes true
-    zstyle ':vcs_info:*' formats '%R' '%S' '%b' '%s' '%c' '%u'
-    zstyle ':vcs_info:*' actionformats '%R' '%S' '%b|%a' '%s' '%c' '%u'
-fi
+# 左から順番に vcs_info_msg_{n}_ という名前の変数に格納されるので、下で利用する
+zstyle ':vcs_info:*' formats '%R' '%S' '%b' '%s' '%c' '%u'
+# 状態が特殊な場合のformats
+zstyle ':vcs_info:*' actionformats '%R' '%S' '%b|%a' '%s' '%c' '%u'
 
 # zsh の PROMPT に渡す文字列は可読性があまり良くないため
 # 文字列を組み立てるのは関数で行う
