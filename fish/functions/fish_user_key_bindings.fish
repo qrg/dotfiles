@@ -79,19 +79,22 @@ function _fzf_git_worktree_switch -d 'fzf: cd to a worktree of the current git r
     __git_worktree_list \
     | fzf-tmux -p 88% --reverse \
         --delimiter \t \
+        --with-nth 1..3 \
         --tiebreak=index \
         --header 'first: main worktree / *: current' \
-        --preview 'git -C {2} -c color.status=always status --short --branch'
+        --preview 'git -C {4} -c color.status=always status --short --branch'
   )
 
   if test -n "$selected"
-    cd (string split --field 2 \t -- $selected)
+    cd (string split --field 4 \t -- $selected)
   end
   commandline -f repaint
 end
 
-function __git_worktree_list -d 'print worktrees as "<current mark>\t<path>\t<branch>"'
+function __git_worktree_list -d 'print worktrees as "<current mark>\t<display path>\t<branch>\t<path>"'
   set -l current (git rev-parse --show-toplevel 2>/dev/null)
+  set -l home_pattern '^'(string escape --style=regex -- $HOME)'(?=/|$)'
+  set -l main_path
   set -l path
   set -l label
   set -l is_bare
@@ -111,7 +114,19 @@ function __git_worktree_list -d 'print worktrees as "<current mark>\t<path>\t<br
         if test -n "$path"; and test -z "$is_bare"
           set -l mark ' '
           test "$path" = "$current"; and set mark '*'
-          printf '%s\t%s\t%s\n' $mark $path $label
+          # porcelain output lists the main worktree first
+          test -z "$main_path"; and set main_path $path
+
+          # . for the main worktree, a relative path inside it, ~ for the rest
+          set -l display_path
+          if test "$path" = "$main_path"
+            set display_path .
+          else if string match --quiet -- "$main_path/*" $path
+            set display_path (string sub --start (math (string length -- $main_path) + 2) -- $path)
+          else
+            set display_path (string replace --regex -- $home_pattern '~' $path)
+          end
+          printf '%s\t%s\t%s\t%s\n' $mark $display_path $label $path
         end
         set path
         set label
