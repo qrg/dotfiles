@@ -1,27 +1,19 @@
 function fish_user_key_bindings
-  #bind \cr peco_select_history
   bind \cr _fzf_search_history
 
   # decors/fish-ghq binds ctrl-g alone, which competes with the ctrl-g chords below
   bind --erase ctrl-g
   bind --erase --mode insert ctrl-g
 
-  #bind \cg\cg peco_select_ghq_repository
   bind \cg\cg __ghq_repository_search
 
-  #bind \cgb peco_select_git_branch
   bind \cgb _fzf_git_branch_switch
 
   bind \cgw _fzf_git_worktree_switch
 
-  #bind \cgf peco_select_git_file
-  #bind \cgs peco_select_git_file_with_status
   bind \cgs _fzf_search_git_status
   bind \cgl _fzf_select_git_log
-  #bind \cgt peco_select_git_tag
-  #bind \cgh peco_select_git_hash
 
-  #bind \cx\ck peco_kill
   bind \cx\ck _fzf_kill
 
   bind \cxp _fzf_search_processes
@@ -30,25 +22,11 @@ function fish_user_key_bindings
 
   bind \eq push_line
 
-  #bind \cx\cx peco_select_z
   bind \cx\cx _fzf_select_zoxide
 
   bind \cx\cz bd
   bind \cx\cc _fzf_cd_child_directories
 
-end
-
-function peco_select_z
-  set -l query (commandline)
-  if test -n $query
-    set peco_flags --query "$query"
-  end
-
-  z -l | sort -rn | cut -c 12- | peco $peco_flags | read line
-  if test $line
-    cd $line
-    commandline -f repaint
-  end
 end
 
 function _fzf_select_zoxide

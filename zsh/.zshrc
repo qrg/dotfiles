@@ -342,8 +342,8 @@ REPORTTIME=3
 # =============================================================================
 # functions
 # =============================================================================
-function git-checkout-peco() {
-  local selected_branch_name="$(git branch -a | peco | tr -d ' ')"
+function git-checkout-fzf() {
+  local selected_branch_name="$(git branch -a | fzf | tr -d ' ')"
   case "$selected_branch_name" in
     *-\>* )
       selected_branch_name="$(echo ${selected_branch_name} | perl -ne 's/^.*->(.*?)\/(.*)$/\2/;print')";;
@@ -357,30 +357,17 @@ function git-checkout-peco() {
   zle clear-screen
 }
 
-function select-history-peco() {
-  local tac
-  ((($+commands[gtac])) && tac="gtac") || \
-    (($+commands[tac])) && tac="tac" || \
-    tac="tail -r"
-  BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
+function select-history-fzf() {
+  BUFFER=$(fc -l -n 1 | fzf --tac --no-sort --query "$LBUFFER")
   CURSOR=$#BUFFER
   zle -R -c
 }
 
-function ghq-src-peco () {
-  local selected=$(ghq list -p | peco --query "$LBUFFER")
-  if [ -n "$selected" ]; then
-    BUFFER="cd ${selected}"
-    zle accept-line
-  fi
-  zle clear-screen
-}
-
 function ghq-src-fzf() {
     local selected
-    selected="$(ghq list | fzf-tmux --query="$LBUFFER")"
-    if [ -n "$(ghq root)/${selected}" ]; then
-        BUFFER="cd $(ghq root)/${selected}"
+    selected="$(ghq list -p | fzf-tmux --query="$LBUFFER")"
+    if [ -n "${selected}" ]; then
+        BUFFER="cd ${(q)selected}"
         zle accept-line
     fi
     zle reset-prompt
@@ -428,12 +415,12 @@ bindkey '^R' history-incremental-search-backward
 # として使いたい
 stty stop undef
 
-zle -N select-history-peco
-bindkey '^r' select-history-peco
-zle -N ghq-src-peco
-bindkey '^g' ghq-src-peco
-zle -N git-checkout-peco
-bindkey '^xgb' git-checkout-peco
+zle -N select-history-fzf
+bindkey '^r' select-history-fzf
+zle -N ghq-src-fzf
+bindkey '^g' ghq-src-fzf
+zle -N git-checkout-fzf
+bindkey '^xgb' git-checkout-fzf
 
 
 # ==============================================================================

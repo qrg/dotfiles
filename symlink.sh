@@ -37,9 +37,6 @@ ln -isvn "${_repo}/hunk/config.toml" "${XDG_CONFIG_HOME}/hunk/config.toml"
 mkdir -p "${XDG_CONFIG_HOME}/nvim"
 ln -isvn "${_repo}/nvim/init.vim" "${XDG_CONFIG_HOME}/nvim/init.vim"
 
-mkdir -p "${XDG_CONFIG_HOME}/peco"
-ln -isvn "${_repo}/peco/config.json" "${XDG_CONFIG_HOME}/peco/config.json"
-
 mkdir -p "${XDG_CONFIG_HOME}/shell"
 ln -isvn "${_repo}/shell/aliases.sh" "${XDG_CONFIG_HOME}/shell/aliases.sh"
 ln -isvn "${_repo}/shell/env.sh" "${XDG_CONFIG_HOME}/shell/env.sh"
