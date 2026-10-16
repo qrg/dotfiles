@@ -12,6 +12,8 @@ function fish_user_key_bindings
   #bind \cgb peco_select_git_branch
   bind \cg\cb _fzf_git_branch_switch
 
+  bind \cgw _fzf_git_worktree_switch
+
   #bind \cgf peco_select_git_file
   #bind \cgs peco_select_git_file_with_status
   bind \cgs _fzf_search_git_status
@@ -85,6 +87,59 @@ function _fzf_git_branch_switch -d 'fzf: switch git branch, sorted by most recen
     set -l branches (git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)')
     and set -l branch (string replace -a ' ' '\n' $branches | fzf-tmux -p 88% --reverse -- --delimiter (math 2 + (count $branches)) +m)
     and git switch (echo $branch | sed -e 's/.* //' -e '#remotes/[^/]*/##')
+end
+
+function _fzf_git_worktree_switch -d 'fzf: cd to a worktree of the current git repository'
+  if not git rev-parse --git-dir >/dev/null 2>&1
+    echo '_fzf_git_worktree_switch: Not in a git repository.' >&2
+    commandline -f repaint
+    return 1
+  end
+
+  # the main worktree always comes first, so selecting it is how to go back to the repository
+  set -l selected (
+    __git_worktree_list \
+    | fzf-tmux -p 88% --reverse \
+        --delimiter \t \
+        --tiebreak=index \
+        --header 'first: main worktree / *: current' \
+        --preview 'git -C {2} -c color.status=always status --short --branch'
+  )
+
+  if test -n "$selected"
+    cd (string split --field 2 \t -- $selected)
+  end
+  commandline -f repaint
+end
+
+function __git_worktree_list -d 'print worktrees as "<current mark>\t<path>\t<branch>"'
+  set -l current (git rev-parse --show-toplevel 2>/dev/null)
+  set -l path
+  set -l label
+  set -l is_bare
+
+  # porcelain output ends each worktree record with an empty line
+  for line in (git worktree list --porcelain) ''
+    switch $line
+      case 'worktree *'
+        set path (string replace 'worktree ' '' -- $line)
+      case 'branch *'
+        set label '['(string replace 'branch refs/heads/' '' -- $line)']'
+      case 'HEAD *'
+        set label '(detached '(string sub --length 7 (string replace 'HEAD ' '' -- $line))')'
+      case bare
+        set is_bare 1
+      case ''
+        if test -n "$path"; and test -z "$is_bare"
+          set -l mark ' '
+          test "$path" = "$current"; and set mark '*'
+          printf '%s\t%s\t%s\n' $mark $path $label
+        end
+        set path
+        set label
+        set is_bare
+    end
+  end
 end
 
 function _fzf_is_in_git_repo
