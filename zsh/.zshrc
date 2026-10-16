@@ -109,8 +109,6 @@ setopt no_auto_param_slash
 setopt complete_aliases
 
 # 補完後，不要な "/" を削除する/しない
-# auto-fu.zsh を利用する場合、autoremoveslash を unsetopt しておかないと
-# パスを補完した際にスラッシュが二重になる。
 #setopt no_auto_remove_slash
 unsetopt no_auto_remove_slash
 
@@ -271,39 +269,6 @@ RPROMPT='`echo_rprompt``git_prompt_stash_count`'
 
 
 
-# ----------------------------------------------------------
-# MySQL PROMPT
-
-# \c コマンド何回実行したかを数えるカウンタ。
-# \D 日時(フル Tue May 29 14:40:48 2012)
-# \d 利用中のデフォルトデータベース
-# \h 接続先ホスト(サーバ)
-# \l デリミタ(区切り文字、デフォルトはセミコロン)(5.1.12で新規追加)
-# \m 分
-# \n 改行
-# \O 月名(頭3文字 Jan, Feb, …)
-# \o 月名(数字)
-# \P am/pm
-# \p TCP/IPポート番号、またはソケットファイル名
-# \R 時(24時間制)
-# \r 時(12時間制)
-# \S セミコロン
-# \s 秒
-# \t タブ
-# \U ユーザ名(ホスト名含む)
-# \u ユーザ名
-# \v MySQLサーバのバージョン
-# \w 曜日名(頭3文字 Mon, Tue, …)
-# \Y 年(4桁)
-# \y 年(2桁)
-# \_ 空白
-# \  空白(スラッシュの後に空白文字)
-# \' シングルクォーテーションマーク
-# \" ダブルクォーテーションマーク
-# \\ バックスラッシュ
-
-# mysqlプロンプトのカラー
-export MYSQL_PS1="\n$GRAY [MySQL] $GREEN\u$GRAY@$GREEN\h $CYAN\d $GRAY\v $GRAY --- \D $NORMAL\n> "
 
 
 # =============================================================================
@@ -369,8 +334,6 @@ function ghq-src-fzf() {
 # `$ bindkey` コマンドでキーバインド一覧表示
 # ^   -> Ctrl
 # ^[  -> Meta
-# auto-fu.zsh を使う場合は、一旦 off にしないと使えないキーバインドがある
-# C-g で toggle auto-fu on/off
 # ==============================================================================
 
 # like emacs keybindings
@@ -394,7 +357,6 @@ bindkey "^N" history-beginning-search-forward-end
 # IGNOREEOF forces the user to type exit or logout, instead of just pressing ^D.
 # ^D で logout させない(ミスタイプによる意図しないログアウト防止).
 # ただし10回連続で ^D すると logout.
-# auto-fu.zsh を利用する場合 IGNOREEOF の設定が無視される
 bindkey -r "^D"
 setopt ignoreeof
 
