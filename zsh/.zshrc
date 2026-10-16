@@ -52,7 +52,6 @@ zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:messages' format '%F{yellow}%d'$DEFAULT
 zstyle ':completion:*:warnings' format '%F{red}No matches for:''%F{yellow} %d'$DEFAULT
-zstyle ':completion:*:descriptions' format '%F{yellow} %B%d%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:descriptions' format '%F{yellow}%B%d%b%f'$DEFAULT
 
@@ -127,9 +126,6 @@ zle -N predict-off
 
 # current dir は補完候補から外す
 zstyle ':completion:*' ignore-parents parent pwd ..''
-
-# man 補完でセクション番号別に表示
-zstyle ':completion:*:manuals' separate-sections true
 
 # enable case-insensitive search
 zstyle ':filter-select' case-insensitive yes
@@ -407,8 +403,6 @@ bindkey "^N" history-beginning-search-forward-end
 # auto-fu.zsh を利用する場合 IGNOREEOF の設定が無視される
 bindkey -r "^D"
 setopt ignoreeof
-
-bindkey '^R' history-incremental-search-backward
 
 # ^S で stop しない
 # ^S は ^R で command history から incremental search する機能の forward
