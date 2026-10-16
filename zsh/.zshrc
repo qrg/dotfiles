@@ -201,7 +201,7 @@ setopt hist_reduce_blanks # 余分なスペースを削除
 # %F{color} フォーマットについて
 # > http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Visual-effects
 PROMPT="
-%F{green}%n@%m %F{cyan}%f%~%F{gray} ---  %D{%m}.%D{%d} $(LANG=C date +'%a') %D{%T}$(LANG=ja_JP.UTF-8)%f
+%F{green}%n@%m %F{cyan}%f%~%F{gray} ---  %D{%m}.%D{%d} %D{%a} %D{%T}%f
 %(!.#.$) "
 
 # ----------------------------------------------------------
