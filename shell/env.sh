@@ -94,29 +94,27 @@ function configure_shell_env() {
       ;;
   esac
 
+  # keep the first occurrence of each entry, as fish/config.fish does
   uniq_path(){
     local _paths
-    local _from
-    local _to
-    local _uniq_paths=()
+    local _path_entry
+    local _uniq_path=":"
 
     if [ -n "$ZSH_VERSION" ]; then
       IFS=':' read -r -A _paths <<< "$PATH"
-      _from=${#_paths[@]}
-      _to=1
     elif [ -n "$BASH_VERSION" ]; then
       IFS=':' read -r -a _paths <<< "$PATH"
-      _from=$(( ${#_paths[@]}-1 ))
-      _to=0
     fi
 
-    for (( idx=_from ; idx>=_to ; idx-- )) ; do
-      if [[ ! " ${_uniq_paths[*]} " = " ${_paths[idx]} " ]]; then
-        _uniq_paths=("${_paths[idx]}" "${_uniq_paths[@]}")
-      fi
+    for _path_entry in "${_paths[@]}"; do
+      case "$_uniq_path" in
+        *":${_path_entry}:"*) ;;
+        *) _uniq_path="${_uniq_path}${_path_entry}:" ;;
+      esac
     done
 
-    echo "${_uniq_paths[*]}" | tr " " ":"
+    _uniq_path="${_uniq_path#:}"
+    echo "${_uniq_path%:}"
   }
 
   # Environment variables
