@@ -2,6 +2,10 @@ function fish_user_key_bindings
   #bind \cr peco_select_history
   bind \cr _fzf_search_history
 
+  # decors/fish-ghq binds ctrl-g alone, which competes with the ctrl-g chords below
+  bind --erase ctrl-g
+  bind --erase --mode insert ctrl-g
+
   #bind \cg\cg peco_select_ghq_repository
   bind \cg\cg __ghq_repository_search
 
