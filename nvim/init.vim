@@ -23,19 +23,6 @@ set clipboard+=unnamedplus
 set showmatch
 set backspace=indent,eol,start
 
-if &term =~ "xterm"
-  let &t_SI .= "\e[?2004h"
-  let &t_EI .= "\e[?2004l"
-  let &pastetoggle = "\e[201~"
-
-  function XTermPasteBegin(ret)
-    set paste
-      return a:ret
-  endfunction
-
-  inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-endif
-
 set expandtab
 set smarttab
 set tabstop=2
@@ -66,7 +53,7 @@ set wildmode=list:longest,full
 set showcmd
 
 set hidden
-set visualbell t_vb=
+set visualbell
 set mouse=a
 set mousehide
 
