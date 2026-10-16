@@ -11,8 +11,6 @@ if has('persistent_undo')
 endif
 
 
-set wildmenu
-set wildmode=longest,full
 set ignorecase
 set smartcase
 
