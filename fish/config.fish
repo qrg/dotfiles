@@ -33,7 +33,7 @@ end
 fish_add_path /usr/local/bin /usr/local/sbin
 
 # Visual Studio Code on WSL
-if test -n $WSLENV
+if test -n "$WSLENV"
   fish_add_path "/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"
 end
 
