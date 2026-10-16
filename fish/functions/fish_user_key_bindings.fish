@@ -10,7 +10,7 @@ function fish_user_key_bindings
   bind \cg\cg __ghq_repository_search
 
   #bind \cgb peco_select_git_branch
-  bind \cg\cb _fzf_git_branch_switch
+  bind \cgb _fzf_git_branch_switch
 
   bind \cgw _fzf_git_worktree_switch
 
