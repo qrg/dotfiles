@@ -24,14 +24,14 @@ function fish_user_key_bindings
 
   bind \cx\cx _fzf_select_zoxide
 
-  bind \cx\cz bd
+  bind \cx\cz cdup
   bind \cx\cc _fzf_cd_child_directories
 
 end
 
 function _fzf_select_zoxide
   set -l query (commandline)
-  
+
   if test -n $query
     set fzf_query_params --query "$query"
   end
@@ -237,8 +237,8 @@ function _fzf_cd_child_directories
   cd "$child"
 end
 
-function bd --description 'Quickly go back to a parent directory up in $PWD'
-    set --local selected_repo (__bd_list | env FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" fzf-tmux -p 88% --reverse --preview 'tree --dirsfirst -Fa -L 1 {}')
+function cdup --description 'Quickly go back to a parent directory up in $PWD'
+    set --local selected_repo (__cdup_list | env FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" fzf-tmux -p 88% --reverse --preview 'tree --dirsfirst -Fa -L 1 {}')
     if test -z $selected_repo
         commandline -f repaint
         return
@@ -249,7 +249,7 @@ function bd --description 'Quickly go back to a parent directory up in $PWD'
     commandline -f execute
 end
 
-function __bd_list
+function __cdup_list
     set -l dir (pwd)
     for i in (seq 1 20)
         set dir (dirname $dir)
